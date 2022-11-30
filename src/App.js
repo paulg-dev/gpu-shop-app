@@ -9,6 +9,11 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
+import Products from './pages/Products';
+import AdminDash from './components/AdminDash';
+import AddProduct from './components/AddProduct';
+import EditProduct from './components/EditProduct';
+
 import './App.css';
 
 function App() {
@@ -23,14 +28,17 @@ function App() {
   }
 
   useEffect(()=>{
+
     fetch('http://localhost:4000/users/details',{
+      method: 'GET',
       headers:{
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
+    
     .then(res=>res.json())
     .then(data=>{
-      console.log(data);
+      // console.log(data);
 
       if(typeof data._id !== "undefined"){
         setUser({
@@ -53,11 +61,15 @@ function App() {
           <AppNavbar/>
           <Container>
             <Routes>
-              <Route path="/" element={<Home/>}/>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/logout" element={<Logout/>}/>
-              <Route path="/register" element={<Register/>}/>
-              <Route path="*" element={<Error/>}/>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/admin" element={<AdminDash />} />
+              <Route path="/addProduct" element={<AddProduct />} />
+              <Route path="/editProduct/:productId" element={<EditProduct />} />
+              <Route path="*" element={<Error />} />
             </Routes>
           </Container>
         </Router>

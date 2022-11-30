@@ -5,21 +5,21 @@ import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 
 
-export default function Login() {
 
+export default function Login() {
 
   const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
   const [isActive, setIsActive] = useState ('');
 
-  console.log(email);
-  console.log(password);
+  // console.log(email);
+  // console.log(password);
 
   const { user, setUser } = useContext(UserContext);
 
   function authenticate(e) {
 
-      e.preventDefault()
+     e.preventDefault()
 
       fetch('http://localhost:4000/users/login', {
         method: 'POST',
@@ -34,12 +34,14 @@ export default function Login() {
       .then(res=>res.json())
       .then(data=>{
 
-        console.log(data);
-
+      console.log("Data from login fetch:")  
+      console.log(data);
 
         if(typeof data.access !== "undefined"){
 
-          localStorage.setItem('token',data.access)
+          localStorage.setItem('token', data.access)
+          localStorage.setItem('userId', data.id);
+          localStorage.setItem('isAdmin', data.isAdmin);
 
           retrieveUserDetails(data.access)
 
@@ -52,36 +54,41 @@ export default function Login() {
         }else{
 
           Swal.fire({
-            title: "Authentication Failed!",
+            title: "Login Failed!",
             icon: "error",
-            text: "Check your credentials!" 
+            text: "Check your email and password!" 
           });
           
         }
       })
 
     
-      const retrieveUserDetails = (token) =>{
+      const retrieveUserDetails = (token) => {
 
-        fetch('http//localhost:4000/users/details', {
+
+        fetch('http://localhost:4000/users/details', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log(data);
-
+        
+        console.log("Data from bearer token fetch:");
+        console.log(data);
 
           setUser({
             id: data._id,
             isAdmin: data.isAdmin
           });
+
         })
+
       }
 
-      setEmail("");
+      // setEmail("");
       setPassword("");
+
 
   }
 
@@ -93,16 +100,18 @@ export default function Login() {
       setIsActive(false)
     }
  
-
   }, [email, password])
+
+
+  // console.log("User details set for current session:");
+  // console.log(user);
 
 
   return (
 
     (user.id !== null)
     ?
-    <Navigate to="/courses"/>
-
+    <Navigate to="/" />
     :
     <Form onSubmit={(e)=>authenticate(e)}>
       <Form.Group className="mb-3" controlId="userEmail">

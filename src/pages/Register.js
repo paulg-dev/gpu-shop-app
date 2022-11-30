@@ -20,13 +20,6 @@ export default function Register() {
 
     const [isActive, setIsActive] = useState(false);
 
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
-    console.log(mobileNo);
-    console.log(password1);
-    console.log(password2);
-
 
     function registerUser(e){
 
@@ -45,15 +38,15 @@ export default function Register() {
       })
       .then(res=>res.json())
       .then(data=>{
-        console.log(data)
-
+      
+      console.log(data)
 
         if(data === true){
 
             Swal.fire({
             title: "Duplicate Email Found!",
             icon: "error",
-            text: "Kindly provide another email to complete the registration!"
+            text: "Kindly use another email to complete the registration!"
           })
 
         }else{
@@ -75,7 +68,7 @@ export default function Register() {
           .then(data=>{
           	
 
-            if(data===true){
+            if(data === true){
 
               setFirstName("");
               setLastName("");
@@ -112,13 +105,13 @@ export default function Register() {
 
   useEffect(()=>{
 
-    if((firstName !=="" && lastName !== "" && mobileNo.length === 11 && email !=="" && password1 !=="" && password2 !=="")&&(password1===password2)){
+    if ((firstName !=="" && lastName !== "" && mobileNo.length === 11 && email !=="" && password1 !=="" && password2 !=="")&&(password1===password2)){
       setIsActive(true)
     }else{
       setIsActive(false)
     }
 
-  },[firstName,lastName,email,mobileNo,password1,password2])
+  }, [firstName, lastName, email, mobileNo, password1, password2]);
 
 
   return (
@@ -188,10 +181,10 @@ export default function Register() {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="password2">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>Verify Password</Form.Label>
         <Form.Control
         type="password"
-        placeholder="Verify Password"
+        placeholder="Enter your password again"
         value={password2}
         onChange={e=>setPassword2(e.target.value)}
         required/>
