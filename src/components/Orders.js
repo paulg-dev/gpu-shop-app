@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, Container } from "react-bootstrap";
+import { Table, Container, Row, Col } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
@@ -57,26 +57,36 @@ export default function Orders(){
 		?
 		<>
 
-		<AdminDash />
+		<Container>
+      		<Row>
+        		<Col md={12} lg={4}>
+            		<AdminDash />
+        		</Col>
 
-			<div>
-			<Container>
-				<Table className="text-center" striped bordered hover>
-		     		<thead>
-		       			<tr>
-		         			<th>Customer Id</th>
-		         			<th>Product</th>
-		         			<th>Quantity</th>
-		         			<th>Product Subtotal</th>
-		         			<th>Purchased On</th>
-		       			</tr>
-		           </thead>
-		     	   <tbody>
-		            { allOrders }
-		           </tbody>
-		        </Table>
-		    </Container>
-		    </div>
+        		<Col md={12} lg={8}>
+        			<div>
+						<Container>
+							<Table className="text-center my-5" striped bordered hover>
+		     					<thead>
+		       						<tr>
+		         						<th>Customer Id</th>
+		         						<th>Product</th>
+		         						<th>Quantity</th>
+		         						<th>Product Subtotal</th>
+		         						<th>Purchased On</th>
+		       						</tr>
+		           				</thead>
+		     	   				<tbody>
+		            				{ allOrders }
+		           				</tbody>
+		        			</Table>
+		    			</Container>
+		    		</div>
+        		</Col>
+      		</Row>
+    	</Container>
+
+			
 		</>
 		:
 		<Navigate to="/login" />

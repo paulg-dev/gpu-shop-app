@@ -46,7 +46,10 @@ function App() {
       if(typeof data._id !== "undefined"){
         setUser({
           id: data._id,
-          isAdmin: data.isAdmin
+          isAdmin: data.isAdmin,
+          email: data.email,
+          firstName: data.firstName,
+          lastName: data.lastName
         });
       }else{
         setUser({

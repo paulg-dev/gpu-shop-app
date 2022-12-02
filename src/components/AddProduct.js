@@ -15,6 +15,7 @@ export default function AddProduct() {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [price, setPrice] = useState(0);
+	const [stocks, setStocks] = useState(0)
 
     const [isActive, setIsActive] = useState(false);
 
@@ -32,6 +33,7 @@ export default function AddProduct() {
 			    name: name,
 			    description: description,
 			    price: price,
+			    stocks: stocks,
 
 			})
 	    })
@@ -47,7 +49,7 @@ export default function AddProduct() {
 	    		    text: `${name} is now listed in the shop.`
 	    		});
 
-	    		navigate("/admin");
+	    		navigate("/admin/allProducts");
 	    	}
 	    	else{
 	    		Swal.fire({
@@ -81,7 +83,7 @@ export default function AddProduct() {
     	user.isAdmin
     	?
 			<>
-		    	<h1 className="my-5 text-center">Add a Product</h1>
+		    	{/*<h1 className="my-5 text-center">Add a Product</h1>*/}
 		        <Form onSubmit={(e) => addProduct(e)}>
 		        	<Form.Group controlId="name" className="mb-3">
 		                <Form.Label>Product Name</Form.Label>
@@ -117,6 +119,17 @@ export default function AddProduct() {
 		                />
 		            </Form.Group>
 
+		            <Form.Group controlId="stocks" className="mb-3">
+		                <Form.Label>Stocks</Form.Label>
+		                <Form.Control 
+			                type="number" 
+			                placeholder="Enter Number of Stocks" 
+			                value = {stocks}
+			                onChange={e => setStocks(e.target.value)}
+			                required
+		                />
+		            </Form.Group>
+
 	        	    { isActive 
 	        	    	? 
 	        	    	<Button variant="primary" type="submit" id="submitBtn">
@@ -124,10 +137,10 @@ export default function AddProduct() {
 	        	    	</Button>
 	        	        : 
 	        	        <Button variant="danger" type="submit" id="submitBtn" disabled>
-	        	        	Save
+	        	        	Save Product
 	        	        </Button>
 	        	    }
-	        	    	<Button className="m-2" as={Link} to="/admin" variant="success" type="submit" id="submitBtn">
+	        	    	<Button className="m-2" as={Link} to="/admin/allProducts" variant="success" type="submit" id="submitBtn">
 	        	    		Cancel
 	        	    	</Button>
 		        </Form>

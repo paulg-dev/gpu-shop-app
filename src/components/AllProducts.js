@@ -1,12 +1,18 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Container, Row, Col, Modal } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
+import EditProduct from './EditProduct';
 
 import Swal from "sweetalert2";
 
 export default function AllProducts(){
+
+	const [show, setShow] = useState(false);
+
+  	const handleClose = () => setShow(false);
+  	const handleShow = () => setShow(true);
 
 	const {user} = useContext(UserContext);
 
@@ -52,7 +58,29 @@ export default function AllProducts(){
 
 										<Button variant="success" size="sm" onClick ={() => unarchive(product._id, product.name)}>Unarchive</Button>
 
-										<Button as={ Link } to={`/editProduct/${product._id}`} variant="secondary" size="sm" className="m-2">Edit</Button>
+										<Button onClick={handleShow} variant="secondary" size="sm" className="m-2">Edit</Button>
+
+										<Modal
+        									show={show}
+        									onHide={handleClose}
+        									backdrop="static"
+        									keyboard={false}
+        									centered
+      									>
+        								<Modal.Header closeButton>
+          								<Modal.Title>Edit Product</Modal.Title>
+        								</Modal.Header>
+        								<Modal.Body>
+          									<EditProduct />
+        								</Modal.Body>
+       					 				{/*<Modal.Footer>
+          									<Button variant="secondary" onClick={handleClose}>
+            								Cancel
+          									</Button>
+          									<Button variant="primary">Edit Product</Button>
+        								</Modal.Footer>*/}
+      									</Modal>
+
 									</>
 							}
 
@@ -149,23 +177,33 @@ export default function AllProducts(){
 		(user.isAdmin)
 		?
 		<>
-			<AdminDash />
-			<Table className="text-center" striped bordered hover>
-		     <thead>
-		       <tr>
-		         {/*<th>Product ID</th>*/}
-		         <th>Product Name</th>
-		         <th>Description</th>
-		         <th>Price</th>
-		         <th>Stocks</th>
-		         <th>Status</th>
-		         <th>Action</th>
-		       </tr>
-		     </thead>
-		     <tbody>
-		       { allProducts }
-		     </tbody>
-		   </Table>
+		<Container>
+      		<Row>
+        		<Col md={12} lg={4}>
+            		<AdminDash />
+        		</Col>
+        		
+        		<Col md={12} lg={8}>
+        			<Table className="text-center my-5" striped bordered hover>
+		     			<thead>
+		       				<tr>
+		         			{/*<th>Product ID</th>*/}
+		         			<th>Product Name</th>
+		         			<th>Description</th>
+		         			<th>Price</th>
+		         			<th>Stocks</th>
+		         			<th>Status</th>
+		         			<th>Action</th>
+		       				</tr>
+		     			</thead>
+		     			<tbody>
+		       				{ allProducts }
+		     			</tbody>
+		   			</Table>
+                </Col>
+      		</Row>
+   		</Container>
+			
 		</>
 		:
 		<Navigate to="/products" />

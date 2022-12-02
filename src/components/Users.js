@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, Button, Container } from "react-bootstrap";
+import { Table, Button, Container, Row, Col } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
@@ -145,28 +145,36 @@ export default function Users(){
 		(user.isAdmin)
 		?
 		<>
-
-		<AdminDash />	
-
-			<div>
-			<Container>
-				<Table className="text-center" striped bordered hover>
-		     		<thead>
-		       			<tr>
-		         			<th>First Name</th>
-		         			<th>Last Name</th>
-		         			<th>Email</th>
-		         			<th>Mobile No</th>
-		         			<th>Status</th>
-		         			<th>Update</th>
-		       			</tr>
-		           </thead>
-		     	   <tbody>
-		            { allUsers }
-		           </tbody>
-		        </Table>
-		    </Container>
-		    </div>
+		<Container>
+      		<Row>
+        		<Col md={12} lg={4}>
+            		<AdminDash />
+        		</Col>
+        		
+        		<Col md={12} lg={8}>
+        			<div>
+						<Container>
+							<Table className="text-center my-5" striped bordered hover>
+		     				<thead>
+		       					<tr>
+		         					<th>First Name</th>
+		         					<th>Last Name</th>
+		         					<th>Email</th>
+		         					<th>Mobile No</th>
+		         					<th>Status</th>
+		         					<th>Update</th>
+		       					</tr>
+		           			</thead>
+		     	   			<tbody>
+		            			{ allUsers }
+		           			</tbody>
+		        			</Table>
+		    			</Container>
+		    		</div>
+          			
+        		</Col>
+      		</Row>
+    	</Container>	
 		</>
 		:
 		<Navigate to="/login" />
