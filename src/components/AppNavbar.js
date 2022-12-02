@@ -8,12 +8,12 @@ export default function AppNavbar(){
 	const { user } = useContext(UserContext);
 
 	return(
-		<Navbar bg="light" expand="lg">
+		<Navbar variant="dark" bg="primary" expand="lg" sticky="top">
 	      <Container>
-	        <Navbar.Brand as={Link} to="/">My E-Commerce App</Navbar.Brand>
+	        <Navbar.Brand as={Link} to="/">E-Commerce App Logo</Navbar.Brand>
 	        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 	        <Navbar.Collapse id="basic-navbar-nav">
-	          <Nav className="justify-content-end">
+	          <Nav className="ms-auto">
 	            <Nav.Link as={Link} to="/">Home</Nav.Link>
 	            <Nav.Link as={Link} to="/products">Products</Nav.Link>
 
@@ -33,6 +33,7 @@ export default function AppNavbar(){
 	            }
 
 	          </Nav>
+
 	        </Navbar.Collapse>
 	      </Container>
 	    </Navbar>

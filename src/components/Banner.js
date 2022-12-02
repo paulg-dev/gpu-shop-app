@@ -9,7 +9,7 @@ export default function Banner({bannerProp}){
 
 	return (
 
-		<div className="text-center my-5">
+		<div className="text-center mt-5">
 			<Row>
 				<Col>
 					<h1>{title}</h1>

@@ -1,4 +1,5 @@
 
+import { Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 // import { useEffect, useState, useContext } from 'react';
 // import { Navigate } from 'react-router-dom';
@@ -33,12 +34,22 @@ export default function Products(){
 
 
 	return(
-		// (user.isAdmin)?
-		// <Navigate to="/admin"/>
-		// :
-		<>
-			<h1>Products</h1>
-			{products}
-		</>
+
+		<div className="mt-5">
+			<Row>
+				<Col md={12} lg={7}>
+					{/*(user.isAdmin)?
+					<Navigate to="/admin"/>
+					:*/}
+					<>
+						<h3 className="text-center">Products</h3>
+						{products}
+					</>
+				</Col>
+				<Col md={12} lg={5}>
+				</Col>
+			</Row>
+		</div>
+
 	)
 }

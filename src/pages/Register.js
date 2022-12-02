@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -80,7 +80,7 @@ export default function Register() {
               Swal.fire({
                 title: "Registration successful!",
                 icon: "success",
-                text: "Welcome to my E-Commerce-App!"
+                text: "Please login to start shopping!"
               })
 
               navigate("/login")
@@ -120,87 +120,109 @@ export default function Register() {
     ?
     <Navigate to="/products"/>
     :
-    <Form onSubmit={(e)=>registerUser(e)}>
-      <Form.Group className="mb-3" controlId="firstName">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control
-        type="text"
-        placeholder="Enter First Name"
-        value={firstName}
-        onChange={e=>setFirstName(e.target.value)}
-        required
-        />
-      </Form.Group>
+    <Container>
+      <Row>
+        <Col md={12} lg={6}>
+            {/*<img src=""  className="img-fluid" alt="Sample Image" />*/}
+        </Col>
+        <Col md={12} lg={6}>
 
-      <Form.Group className="mb-3" controlId="lastName">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control
-        type="text"
-        placeholder="Enter Last Name"
-        value={lastName}
-        onChange={e=>setLastName(e.target.value)}
-        required
-        />
-      </Form.Group>
+        <Card className="p-2 mb-3 mt-5" border="dark">
+            <Card.Header as="h4">Register</Card.Header>
+            <Card.Body>
 
-      <Form.Group className="mb-3" controlId="userEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-        type="email"
-        placeholder="Enter email"
-        value={email}
-        onChange={e=>setEmail(e.target.value)}
-        required
-        />
-        
-      </Form.Group>
+          <Form className="mt-3" onSubmit={(e)=>registerUser(e)}>
+            <Form.Group className="mb-3" controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+              type="text"
+              placeholder=""
+              value={firstName}
+              onChange={e=>setFirstName(e.target.value)}
+              required
+              />
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="mobileNo">
-        <Form.Label>Mobile Number</Form.Label>
-        <Form.Control
-        type="text"
-        placeholder="Enter Mobile Number"
-        value={mobileNo}
-        onChange={e=>setMobileNo(e.target.value)}
-        required
-        />
-        <Form.Text className="text-muted">
-          Mobile number must be eleven digits.
-        </Form.Text>
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+              type="text"
+              placeholder=""
+              value={lastName}
+              onChange={e=>setLastName(e.target.value)}
+              required
+              />
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password1">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-        type="password"
-        placeholder="Password"
-        value={password1}
-        onChange={e=>setPassword1(e.target.value)}
-        required
-        />
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="userEmail">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+              type="email"
+              placeholder="Enter a valid email address"
+              value={email}
+              onChange={e=>setEmail(e.target.value)}
+              required
+              />
+              
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="password2">
-        <Form.Label>Verify Password</Form.Label>
-        <Form.Control
-        type="password"
-        placeholder="Enter your password again"
-        value={password2}
-        onChange={e=>setPassword2(e.target.value)}
-        required/>
-      </Form.Group>
+            <Form.Group className="mb-3" controlId="mobileNo">
+              <Form.Label>Mobile Number</Form.Label>
+              <Form.Control
+              type="text"
+              placeholder="Mobile number must be 11 digits"
+              value={mobileNo}
+              onChange={e=>setMobileNo(e.target.value)}
+              required
+              />
+              <Form.Text className="text-muted">
+                
+              </Form.Text>
+            </Form.Group>
 
+            <Form.Group className="mb-3" controlId="password1">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+              type="password"
+              placeholder="Passwords must match"
+              value={password1}
+              onChange={e=>setPassword1(e.target.value)}
+              required
+              />
+            </Form.Group>
 
-        { isActive ?      
-            <Button variant="success" type="submit" id="submitBtn">
-                Submit
-            </Button>
-          :
-            <Button variant="danger" type="submit" id="submitBtn" disabled>
-                Submit
-            </Button>
-        }
+            <Form.Group className="mb-3" controlId="password2">
+              <Form.Label>Verify Password</Form.Label>
+              <Form.Control
+              type="password"
+              placeholder="Passwords must match"
+              value={password2}
+              onChange={e=>setPassword2(e.target.value)}
+              required/>
+            </Form.Group>
 
-    </Form>
+              <div className="text-center">
+              { isActive ?      
+                  <Button variant="success" type="submit" id="submitBtn">
+                      Sign Up
+                  </Button>
+                :
+                  <Button variant="danger" type="submit" id="submitBtn" disabled>
+                      Sign Up
+                  </Button>
+              }
+              </div>
+           </Form>
+
+            </Card.Body>
+            <Card.Footer className="text-center">
+                  Already have an account? <a href="/login">Log In</a>
+            </Card.Footer>
+          </Card>  
+
+        </Col>
+      </Row>
+    </Container>
+
   );
 }

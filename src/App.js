@@ -11,8 +11,11 @@ import Logout from './pages/Logout';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import AdminDash from './components/AdminDash';
+import AllProducts from './components/AllProducts';
 import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct';
+import Users from './components/Users';
+import Orders from './components/Orders';
 
 import './App.css';
 
@@ -69,6 +72,9 @@ function App() {
               <Route path="/admin" element={<AdminDash />} />
               <Route path="/addProduct" element={<AddProduct />} />
               <Route path="/editProduct/:productId" element={<EditProduct />} />
+              <Route path="/admin/users" element={<Users />} />
+              <Route path="/admin/orders" element={<Orders />} />
+              <Route path="/admin/allProducts" element={<AllProducts />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>

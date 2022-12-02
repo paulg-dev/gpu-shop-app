@@ -105,7 +105,7 @@ export default function EditProduct() {
     	user.isAdmin
     	?
 			<>
-		    	<h1 className="my-5 text-center">Edit Product</h1>
+		    	<h3 className="my-5 text-center">Edit Product</h3>
 		        <Form onSubmit={(e) => editProduct(e)}>
 		        	<Form.Group controlId="name" className="mb-3">
 		                <Form.Label>Product Name</Form.Label>
