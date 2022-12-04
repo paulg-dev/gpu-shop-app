@@ -1,0 +1,15 @@
+
+.prodImg {
+	width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.prodImg:hover {
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	transition: 0.5s ease;
+	z-index: 1;
+}
+

@@ -5,6 +5,8 @@ import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 import NumericInput from "react-numeric-input";
 
+import './ProductView.css'
+
 //import the "useNavigate" hook from react-router-dom and redirect the user back to the "Products" page after enrolling to a course.
 
 export default function ProductView(){
@@ -18,8 +20,12 @@ export default function ProductView(){
 	//Retrieve the "prductId" via the url using the "useParams" hook from react-router-dom and create a "useEffect" hook to check if the courseId is retrieved properly
 	const { productId } = useParams();
 
-	const [name, setName] = useState("");
-	const [description, setDescription] = useState("");
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	const [imageUrl, setImageUrl] = useState('');
+	// const [brand, setBrand] = useState('');
+	// const [isListed, setIsListed] = useState(true);
+	// const [isFeatured, setIsFeatured] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(0);
 
@@ -75,8 +81,13 @@ export default function ProductView(){
 		.then(data=>{
 			setName(data.name);
 			setDescription(data.description);
+			setImageUrl(data.imageUrl);
+			// setBrand(data.brand);
+			// setIsListed(data.isListed);
+			// setIsFeatured(data.isFeatured);
 			setPrice(data.price);
-			setStocks(data.stocks)
+			setStocks(data.stocks);
+			
 		})
 
 	},[productId])
@@ -86,11 +97,13 @@ export default function ProductView(){
 		<Container className="mt-5">
 		  <Row>
 
-		  	<Col md={12} lg={4}>
-            		
+		  	<Col md={12} lg={5}>
+				<Card className="prodImgCard p-3 mb-3">
+					<Card.Img className="prodImg rounded-2" variant="top" src={imageUrl} />
+				</Card>
         	</Col>
         		
-        	<Col md={12} lg={8}>
+        	<Col md={12} lg={7}>
 
         		<Card>
 					<Card.Body>
@@ -151,7 +164,14 @@ export default function ProductView(){
 
            			 </Card.Footer>
 				</Card>
-				
+				<div className="text-center mt-4">
+						{
+							(user.isAdmin) ?
+							<Button variant="primary" as={Link} to={`/editProduct/${productId}`}>Edit Product</Button>
+							:
+							<></>
+						}
+				</div>
 		     </Col>
 		  </Row>
 		</Container>

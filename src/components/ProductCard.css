@@ -1,0 +1,20 @@
+
+.cardProdName, .cardPriceLabel {
+	color: black;
+	font-weight: 900;
+}
+
+.cardProdPrice {
+	color: orangered;
+	font-weight: 900;
+}
+
+.cardProdImg {
+    width: 250px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.cardBody {
+	background-color: rgba(175,184,185, 0.9);
+}
