@@ -23,7 +23,8 @@ export default function Orders(){
 		.then(data => {
 			
 			// console.log(data);
-
+			
+			// eslint-disable-next-line
 			setAllOrders(data.map(order => {
 
 				for(let i=0; i<data.length; i++) {
@@ -53,6 +54,7 @@ export default function Orders(){
 
 
 	return(
+
 		(user.isAdmin)
 		?
 		<>
@@ -67,7 +69,7 @@ export default function Orders(){
         			<div>
 						<Container>
 							<Table className="text-center my-5" striped bordered hover>
-		     					<thead>
+		     					<thead className="table-dark">
 		       						<tr>
 		         						<th>Customer Id</th>
 		         						<th>Product</th>

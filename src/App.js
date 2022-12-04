@@ -12,7 +12,8 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import AdminDash from './components/AdminDash';
 import AllProducts from './components/AllProducts';
-import AddProduct from './components/AddProduct';
+import ProductView from './components/ProductView';
+// import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct';
 import Users from './components/Users';
 import Orders from './components/Orders';
@@ -73,8 +74,9 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/products" element={<Products />} />
               <Route path="/admin" element={<AdminDash />} />
-              <Route path="/addProduct" element={<AddProduct />} />
+              {/*<Route path="/addProduct" element={<AddProduct />} />*/}
               <Route path="/editProduct/:productId" element={<EditProduct />} />
+              <Route path="/products/:productId" element={<ProductView />} />
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/orders" element={<Orders />} />
               <Route path="/admin/allProducts" element={<AllProducts />} />

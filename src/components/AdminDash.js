@@ -31,13 +31,13 @@ export default function AdminDash(){
               				<Form.Control
               					className="mb-3"
               					type="text"
-              					placeholder="Mobile number must be 11 digits"
+              					readOnly
               					value={"Name: " + user.firstName +  " " + user.lastName }
               				/>
               				<Form.Control
              					className="mb-3"
               					type="text"
-              					placeholder="Mobile number must be 11 digits"
+              					readOnly
               					value={"Email: " + user.email}
               				/>
             				</Form.Group>
@@ -51,6 +51,7 @@ export default function AdminDash(){
         								as={ButtonGroup}
         								title="Products"
         								id="bg-vertical-dropdown-1"
+        								className="mt-1"
       								>
         				
         							<Dropdown.Item as={Link} to="/admin/allProducts">View Products</Dropdown.Item>
@@ -78,8 +79,8 @@ export default function AdminDash(){
       									</Modal>
       								</DropdownButton>
 
-      								<Button as={Link} to="/admin/users">Users</Button>
-     								<Button as={Link} to="/admin/orders">Orders</Button>
+      								<Button as={Link} to="/admin/users" className="mt-1">Users</Button>
+     								<Button as={Link} to="/admin/orders" className="mt-1">Orders</Button>
 
     							</ButtonGroup>
 

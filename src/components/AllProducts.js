@@ -1,18 +1,12 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, Button, Container, Row, Col, Modal } from "react-bootstrap";
+import { Table, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
-import EditProduct from './EditProduct';
 
 import Swal from "sweetalert2";
 
 export default function AllProducts(){
-
-	const [show, setShow] = useState(false);
-
-  	const handleClose = () => setShow(false);
-  	const handleShow = () => setShow(true);
 
 	const {user} = useContext(UserContext);
 
@@ -39,50 +33,27 @@ export default function AllProducts(){
 						<td>{product.description}</td>
 						<td>{product.price}</td>
 						<td>{product.stocks}</td>
-						<td>{product.isActive ? "Active" : "Inactive"}</td>
+						<td>{product.isListed ? "Active" : "Inactive"}</td>
 						<td>
+								
+								<ButtonGroup vertical>
 
-							{
+									{
+										(product.isListed)
+										?	
+										<>
+										<Button className="p-2" variant="primary" size="sm" onClick ={() => archive(product._id, product.name)}>Archive</Button>
+										</>
+										:
+										<>
+										<Button className="p-2" variant="primary" size="sm" onClick ={() => unarchive(product._id, product.name)}>Unarchive</Button>
+										</>
+									}
 
-								(product.isActive)
-								?	
-									<>
+     								<Button variant="primary" className="mt-1" as={Link} to={`/editProduct/${product._id}`}>Edit</Button>
 
-										<Button variant="warning" size="sm" onClick ={() => archive(product._id, product.name)}>Archive</Button>
 
-										<Button as={ Link } to={`/editProduct/${product._id}`} variant="secondary" size="sm" className="m-2">Edit</Button>
-
-									</>
-								:
-									<>
-
-										<Button variant="success" size="sm" onClick ={() => unarchive(product._id, product.name)}>Unarchive</Button>
-
-										<Button onClick={handleShow} variant="secondary" size="sm" className="m-2">Edit</Button>
-
-										<Modal
-        									show={show}
-        									onHide={handleClose}
-        									backdrop="static"
-        									keyboard={false}
-        									centered
-      									>
-        								<Modal.Header closeButton>
-          								<Modal.Title>Edit Product</Modal.Title>
-        								</Modal.Header>
-        								<Modal.Body>
-          									<EditProduct />
-        								</Modal.Body>
-       					 				{/*<Modal.Footer>
-          									<Button variant="secondary" onClick={handleClose}>
-            								Cancel
-          									</Button>
-          									<Button variant="primary">Edit Product</Button>
-        								</Modal.Footer>*/}
-      									</Modal>
-
-									</>
-							}
+    							</ButtonGroup>
 
 						</td>
 					</tr>
@@ -104,7 +75,7 @@ export default function AllProducts(){
 				"Authorization": `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				isActive: false
+				isListed: false
 			})
 		})
 		.then(res => res.json())
@@ -131,6 +102,7 @@ export default function AllProducts(){
 
 
 	const unarchive = (productId, productName) =>{
+		
 		console.log(productId);
 		console.log(productName);
 
@@ -141,8 +113,8 @@ export default function AllProducts(){
 				"Authorization": `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				isActive: true
-			})
+				isListed: true
+			}),
 		})
 		.then(res => res.json())
 		.then(data =>{
@@ -174,6 +146,7 @@ export default function AllProducts(){
 
 
 	return(
+
 		(user.isAdmin)
 		?
 		<>
@@ -185,7 +158,7 @@ export default function AllProducts(){
         		
         		<Col md={12} lg={8}>
         			<Table className="text-center my-5" striped bordered hover>
-		     			<thead>
+		     			<thead className="table-dark">
 		       				<tr>
 		         			{/*<th>Product ID</th>*/}
 		         			<th>Product Name</th>

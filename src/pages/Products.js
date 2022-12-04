@@ -15,7 +15,7 @@ export default function Products(){
 
 	useEffect(()=>{
 
-	fetch('http://localhost:4000/products')
+	fetch('http://localhost:4000/products/active')
 	.then(res=>res.json())
 	.then(data=>{
 

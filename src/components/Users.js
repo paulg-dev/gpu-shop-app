@@ -155,7 +155,7 @@ export default function Users(){
         			<div>
 						<Container>
 							<Table className="text-center my-5" striped bordered hover>
-		     				<thead>
+		     				<thead className="table-dark">
 		       					<tr>
 		         					<th>First Name</th>
 		         					<th>Last Name</th>
