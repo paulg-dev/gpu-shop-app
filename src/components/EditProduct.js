@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Navigate, useParams, useNavigate, Link } from 'react-router-dom';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import AdminDash from './AdminDash';
@@ -126,6 +126,12 @@ export default function EditProduct() {
 
     }, [productId]);
 
+    function backButton(){
+    	window.history.back()
+    }
+
+
+
     return (
 
     	user.isAdmin
@@ -183,6 +189,7 @@ export default function EditProduct() {
 		            			<Form.Select
 		            				className="mx-4 px-2"
 		            				required
+		            				value = {brand}
 		            				onChange={e => setBrand(e.target.value)}>
       								<option className="mx-3">Select Brand</option>
       								<option value="nvidia">NVIDIA</option>
@@ -254,7 +261,8 @@ export default function EditProduct() {
 	        	        	Update Product
 	        	        </Button>
 	        	    }
-	        	    	<Button className="m-2" as={Link} to="/admin/allProducts" variant="danger" type="submit" id="submitBtn">
+	        	    	{/*<Button className="m-2" as={Link} to="/admin/allProducts" variant="danger" type="submit" id="submitBtn">
+	        	    	*/}<Button className="m-2" onClick={backButton} variant="danger">
 	        	    		Cancel
 	        	    	</Button>
 	        	    </div>

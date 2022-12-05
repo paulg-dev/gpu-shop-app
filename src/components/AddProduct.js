@@ -14,7 +14,7 @@ export default function AddProduct() {
 
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
-	const [imageUrl, setImageUrl] = useState('');
+	const [imageUrl, setImageUrl] = useState('https://e1.pngegg.com/pngimages/485/484/png-clipart-bundle-icon-gpu-cpu-file-icon-thumbnail.png');
 	const [brand, setBrand] = useState('');
 	const [isListed, setIsListed] = useState(true);
 	const [isFeatured, setIsFeatured] = useState(false);
@@ -85,7 +85,7 @@ export default function AddProduct() {
 
 	    setName('');
 	    setDescription('');
-	    setImageUrl('');
+	    setImageUrl('https://e1.pngegg.com/pngimages/485/484/png-clipart-bundle-icon-gpu-cpu-file-icon-thumbnail.png');
 	    setBrand('Select Brand');
 	    setIsListed(true);
 	    setIsFeatured(false);
@@ -98,7 +98,7 @@ export default function AddProduct() {
 	useEffect(() => {
 
 
-        if(name !== "" && description !== "" && imageUrl !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && stocks > 0){
+        if(name !== "" && description !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && stocks > 0){
             setIsActive(true);
         } else {
             setIsActive(false);
@@ -178,7 +178,8 @@ export default function AddProduct() {
 		                			<InputGroup.Text>₱</InputGroup.Text>
 		                			<Form.Control
 		                				className="text-end" 
-			                			type="number" 
+			                			type="number"
+			                			min = {0}
 			                			placeholder="Enter Product Price" 
 			                			value = {price}
 			                			onChange={e => setPrice(e.target.value)}
@@ -195,8 +196,9 @@ export default function AddProduct() {
 		                			<InputGroup>
 		                			<Form.Control 
 		                				className="text-end"
-			                			type="number" 
-			                			placeholder="Enter Number of Stocks" 
+			                			type="number"
+			                			min = {0}
+			                			placeholder="Enter Stocks" 
 			                			value = {stocks}
 			                			onChange={e => setStocks(e.target.value)}
 			                			required

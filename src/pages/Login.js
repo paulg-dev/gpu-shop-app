@@ -1,9 +1,8 @@
-import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card, FloatingLabel } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
-
 
 export default function Login() {
 
@@ -117,10 +116,10 @@ export default function Login() {
     :
     <Container>
       <Row>
-        <Col md={12} lg={6}>
-            {/*<img src=""  className="img-fluid" alt="Sample Image" />*/}
+        <Col md={12} lg={7}>
+            
         </Col>
-        <Col md={12} lg={6}>
+        <Col md={12} lg={5}>
 
           <Card className="p-2 mb-3 mt-5" border="dark">
             <Card.Header as="h4">Log In</Card.Header>
@@ -130,17 +129,26 @@ export default function Login() {
 
                   <Form.Group className="mb-4 " controlId="userEmail">
                     {/*<Form.Label>Email address</Form.Label>*/}
+                  <FloatingLabel
+                    controlId="floatingEmail"
+                    label="Email address"
+                  >  
                     <Form.Control
                     type="email"
-                    placeholder="Email"
+                    placeholder="Email address"
                     value={email}
                     onChange={e=>setEmail(e.target.value)}
                     required
                     />
+                  </FloatingLabel>
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="password">
                     {/*<Form.Label>Password</Form.Label>*/}
+                  <FloatingLabel
+                    controlId="floatingPassword"
+                    label="Password"
+                  >
                     <Form.Control
                     type="password"
                     placeholder="Password"
@@ -148,6 +156,7 @@ export default function Login() {
                     onChange={e=>setPassword(e.target.value)}
                     required
                       />
+                  </FloatingLabel>
                   </Form.Group>
 
                   <div className="text-center">

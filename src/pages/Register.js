@@ -122,10 +122,10 @@ export default function Register() {
     :
     <Container>
       <Row>
-        <Col md={12} lg={6}>
+        <Col md={12} lg={7}>
             {/*<img src=""  className="img-fluid" alt="Sample Image" />*/}
         </Col>
-        <Col md={12} lg={6}>
+        <Col md={12} lg={5}>
 
         <Card className="p-2 mb-3 mt-5" border="dark">
             <Card.Header as="h4">Register</Card.Header>

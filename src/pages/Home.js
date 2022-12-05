@@ -7,7 +7,7 @@ import './Home.css';
 export default function Home(){
 
 	const data = {
-		title: "E-Commerce-App",
+		title: "E-Commerce App",
 		content: "Your one-stop shop for Graphics Card Units!",
 		destination: "/products",
 		label: "Shop now!"
@@ -22,8 +22,8 @@ export default function Home(){
 					<Banner bannerProp={data}/>
 					
 					<div className="mt-4">
-					<Carousel>
-						<Carousel.Item>
+					<Carousel className="mb-4">
+						<Carousel.Item >
 							<img
 								className="d-block w-100"
 								src={require('../images/productivity.jpg')}

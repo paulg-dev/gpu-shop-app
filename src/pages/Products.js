@@ -1,8 +1,8 @@
 
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col,  ButtonGroup, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 // import { useEffect, useState, useContext } from 'react';
-// import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 // import UserContext from '../UserContext';
 import FeaturedProducts from '../components/FeaturedProducts'
@@ -43,6 +43,20 @@ export default function Products(){
 					:*/}
 					<>	
 						<h4 className="text-center">PRODUCTS</h4>
+
+								<div className="text-center">
+
+								<ButtonGroup className="mt-3 mb-5">
+
+									<Button as={Link} to="/admin/users" className="mt-1" variant="primary">All GPUs</Button>
+									<Button as={Link} to="/admin/users" className="mt-1" variant="dark">NVIDIA</Button>
+      								<Button as={Link} to="/admin/users" className="mt-1" variant="dark">AMD</Button>
+     								<Button as={Link} to="/admin/orders" className="mt-1" variant="dark">INTEL</Button>
+
+    							</ButtonGroup>
+
+    							</div>
+
 						<div className="prodSection flex-row">
 						<Row className="prodRow" sm={1} md={4}>
 						{products}

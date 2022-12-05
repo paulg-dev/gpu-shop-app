@@ -26,7 +26,7 @@ export default function AdminDash(){
 
 					<Card className="p-2 mb-3 mt-5" border="dark">
             			<Card.Header as="h5">
-            				<Form.Group className="mb-3" controlId="mobileNo">
+            				<Form.Group className="mb-3" controlId="profile">
               				<Form.Label>Profile</Form.Label>
               				<Form.Control
               					className="mb-3"

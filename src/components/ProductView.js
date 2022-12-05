@@ -1,21 +1,19 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 import NumericInput from "react-numeric-input";
 
 import './ProductView.css'
 
-//import the "useNavigate" hook from react-router-dom and redirect the user back to the "Products" page after enrolling to a course.
 
 export default function ProductView(){
 
 	//Consume the "User" context object to be able to obtain the user ID so we can buy a product
 	const { user } = useContext(UserContext);
 
-	// Allows us to gain access to methods that will allow us to redirect a user to a different page after buying a
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	//Retrieve the "prductId" via the url using the "useParams" hook from react-router-dom and create a "useEffect" hook to check if the courseId is retrieved properly
 	const { productId } = useParams();
@@ -23,29 +21,40 @@ export default function ProductView(){
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
-	// const [brand, setBrand] = useState('');
+	const [brand, setBrand] = useState('');
 	// const [isListed, setIsListed] = useState(true);
 	// const [isFeatured, setIsFeatured] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(0);
 
+	const [quantity, setQuantity] = useState(0);
 
-	//"order" function that will "purchase" a product and bind it to the "Buy Now" button
-	const order = (productId) =>{
 
-		fetch(`http://localhost:4000/orders`,{
+	//"order" function that will "purchase" a product and bind it to the "Check out" button
+	const order = (productId, quantity) =>{
+
+		fetch('http://localhost:4000/orders',{
 			method:'POST',
 			headers:{
-				'Content-Type':'application/json',
-				Authorization:`Bearer ${localStorage.getItem('token')}`
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token')}`
 			},
 			body: JSON.stringify({
-				productId: productId
+
+				products : [ 
+						   		{
+									productId: productId,
+									quantity: quantity
+								}
+				]
 			})
 		})
 		.then(res=>res.json())
 		.then(data=>{
-			//conditional statement that will alert the user of a successful/failed purhcase
+
+			console.log(data)
+
+			//conditional statement that will alert the user of a successful/failed purchase
 			if(data===true){
 
 				Swal.fire({
@@ -53,15 +62,15 @@ export default function ProductView(){
 				  icon: "success",
 				  text: "Thank you for purchasing!"
 				});
-				// redirect the user back to products page
-				navigate("/products")
+				
+				// navigate("/products")
 
 			}else{
 
 				Swal.fire({
 				  title: "Something went wrong!",
 				  icon: "error",
-				  text: "Check your credentials!"
+				  text: "Please try again in a while."
 				});
 
 			}
@@ -82,7 +91,7 @@ export default function ProductView(){
 			setName(data.name);
 			setDescription(data.description);
 			setImageUrl(data.imageUrl);
-			// setBrand(data.brand);
+			setBrand(data.brand);
 			// setIsListed(data.isListed);
 			// setIsFeatured(data.isFeatured);
 			setPrice(data.price);
@@ -92,6 +101,10 @@ export default function ProductView(){
 
 	},[productId])
 
+
+	const priceFormatted = price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
+
+	// console.log(priceFormatted)
 
 	return(
 		<Container className="mt-5">
@@ -107,11 +120,40 @@ export default function ProductView(){
 
         		<Card>
 					<Card.Body>
-						<Card.Title>{name}</Card.Title>
+						<div className="text-end">
+
+							{
+									(brand !== "nvidia" && brand !== "amd")?
+										<img
+											className="brandImg mb-3"
+											src={require('../images/intel.png')}
+											alt="intel"
+										/>
+										:
+										<>
+											{
+												(brand !== "nvidia") ?
+													<img
+														className="brandImg mb-3"
+														src={require('../images/amd.png')}
+														alt="amd"
+													/>
+													:
+													<img
+														className="brandImg mb-3"
+														src={require('../images/nvidia.png')}
+														alt="nvidia"
+													/>
+											}
+										</>
+							}
+
+						</div>
+						<Card.Title className="prodName">{name}</Card.Title>
 						<Card.Subtitle className="mt-3">Description:</Card.Subtitle>
 						<Card.Text>{description}</Card.Text>
 						<Card.Subtitle>Price:</Card.Subtitle>
-						<Card.Text className="text-warning">PHP {price}.00</Card.Text>
+						<Card.Text className="prodPrice">{priceFormatted}</Card.Text>
 						
 						<div className="text-center">
 							<Row>
@@ -120,25 +162,38 @@ export default function ProductView(){
 
 									<NumericInput 
 										mobile
-										className = "text-center px-3"
+										className = "text-center px-3 m-1"
 										min = {1}
 										max = {stocks}
 										size = {8}
+										onStep={e => setQuantity(e.target.value)}
 										required
 									/>
 
 								</Col>
-{/*								<Col>
-									
-								</Col>*/}
+
 								<Col className = "text-muted">
+									{
+									(stocks < 10)?
+									<>
+										{
+										(stocks === 1)?
+										<>Only 1 piece left</>
+										:
+										<>Only {stocks} pieces left</>
+										}
+									</>
+									:
+									<>
 									{stocks} pieces available
+									</>
+									}
 								</Col>
 							</Row>
 						</div>
 						
 					</Card.Body>
-					{/*conditionally render the order button if a user is logged in and a button that will redirect the a user to the "Login" page if they are not logged in*/}
+					
 					<Card.Footer className="text-center">
 
 						{
@@ -152,7 +207,7 @@ export default function ProductView(){
 									:
 									<>
 									<Button className="mx-3" variant="secondary" onClick={()=>addToCart(productId)}>Add to Cart</Button>
-									<Button className="mx-3" variant="primary" onClick={()=>order(productId)}>Check Out</Button>
+									<Button className="mx-3" variant="primary" onClick={()=>order(productId, quantity)}>Check Out</Button>
 									</>
 									}
 								</>

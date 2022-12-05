@@ -13,3 +13,20 @@
 	z-index: 1;
 }
 
+.prodPrice {
+	font-size: 25px;
+	font-weight: bold;
+	color: rgba(238, 77, 45, 1);
+
+}
+
+.prodName {
+	font-size: 28px !important;
+	font-weight: bold !important;
+}
+
+
+.brandImg {
+	width: 100px;
+	margin: auto;
+}

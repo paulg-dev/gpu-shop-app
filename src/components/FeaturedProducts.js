@@ -1,8 +1,10 @@
 
-import { Row, Card } from 'react-bootstrap';
+import { Row, Card, Badge } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 import ProductCard from '../components/ProductCard';
+
+import './FeaturedProducts.css'
 
 export default function Products(){
 
@@ -31,8 +33,11 @@ export default function Products(){
 	return(
 
 		<div className="mt-3" >
-			<Card className="bg-primary text-center p-3" border="light">
-					<Card.Header className="text-light">FEATURED PRODUCTS</Card.Header>
+			<Card className="cardDiv text-center p-3 rounded-5" bg="primary" border="light">
+					<Card.Header className="text-light">
+					FEATURED PRODUCTS
+					<Badge className="m-2" bg="danger">NEW</Badge>
+					</Card.Header>
 					<Card.Body>
 					<div className="d-flex flex-row">
 					<Row sm={1} md={1}>

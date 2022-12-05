@@ -4,6 +4,8 @@ import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
 
+import './AllProducts.css'
+
 import Swal from "sweetalert2";
 
 export default function AllProducts(){
@@ -29,7 +31,7 @@ export default function AllProducts(){
 				return(
 					<tr key={product._id}>
 						{/*<td>{product._id}</td>*/}
-						<td>{product.name}</td>
+						<td><Button className="prodNameButton mt-1" as={Link} to={`/products/${product._id}`}>{product.name}</Button></td>
 						<td>{product.description}</td>
 						<td>{product.price}</td>
 						<td>{product.stocks}</td>

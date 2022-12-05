@@ -35,8 +35,8 @@ export default function Orders(){
 						<td>{order.userId}</td>
 						<td>{order.products[i].productName}</td>
 						<td>{order.products[i].quantity}</td>
-						<td>₱ {order.productSubtotal}.00</td>
-						<td>{order.purchasedOn}</td>
+						<td>₱ {order.orderSubtotal}.00</td>
+						<td>{order.orderedOn}</td>
 					</tr>
 				)
 
@@ -74,8 +74,8 @@ export default function Orders(){
 		         						<th>Customer Id</th>
 		         						<th>Product</th>
 		         						<th>Quantity</th>
-		         						<th>Product Subtotal</th>
-		         						<th>Purchased On</th>
+		         						<th>Order Amount</th>
+		         						<th>Order Date</th>
 		       						</tr>
 		           				</thead>
 		     	   				<tbody>

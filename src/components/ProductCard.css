@@ -5,7 +5,7 @@
 }
 
 .cardProdPrice {
-	color: orangered;
+	color: rgba(238, 77, 45, 1);
 	font-weight: 900;
 }
 
@@ -16,5 +16,5 @@
 }
 
 .cardBody {
-	background-color: rgba(175,184,185, 0.9);
+	background-color: rgba(175,184,185, 0.8);
 }
