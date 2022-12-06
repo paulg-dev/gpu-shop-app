@@ -31,13 +31,12 @@ export default function AppNavbar(){
 	            		:
 	            		<>
 	            			<Nav.Link as={Link} to="/myCart">Cart</Nav.Link>
-	            			<Nav.Link as={Link} to="/myProfile">Profile</Nav.Link>
+	            			<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>
 	            		< />
 	            		}
 	            	
 	            			{/*<Nav.Link as={Link} to="/logout">Logout</Nav.Link>*/}
 	            			<Nav.Link onClick={handleShow}>Logout</Nav.Link>
-
 
 	            				<Modal
         							show={show}
@@ -46,6 +45,7 @@ export default function AppNavbar(){
         							keyboard={false}
         							centered
       							>
+
         						<Modal.Header>
           						<Modal.Title>Are you sure you want to log out?</Modal.Title>
         						</Modal.Header>
@@ -60,14 +60,8 @@ export default function AppNavbar(){
           							</Button>
 
         						</Modal.Body>
-       					 				{/*<Modal.Footer>
-          									<Button variant="secondary" onClick={handleClose}>
-            								Cancel
-          									</Button>
-          									<Button variant="primary">Add Product</Button>
-        					  			</Modal.Footer>*/}
-      							</Modal>
 
+      							</Modal>
 	            	</>
 	            	:
 	            	<>

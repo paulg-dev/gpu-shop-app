@@ -23,7 +23,7 @@ export default function Home(){
 					
 					<div className="mt-4">
 					<Carousel className="mb-4">
-						<Carousel.Item >
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/productivity.jpg')}
@@ -34,7 +34,7 @@ export default function Home(){
 						</Carousel.Caption>
 						</Carousel.Item>
 
-						<Carousel.Item>
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/gaming.jpg')}
@@ -45,7 +45,7 @@ export default function Home(){
 						</Carousel.Caption>
 						</Carousel.Item>
 
-						<Carousel.Item>
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/cryptoMining.jpg')}
@@ -56,7 +56,7 @@ export default function Home(){
 						</Carousel.Caption>
 						</Carousel.Item>
 
-						<Carousel.Item>
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/virtualReality.jpg')}
@@ -67,7 +67,7 @@ export default function Home(){
 						</Carousel.Caption>
 						</Carousel.Item>
 
-						<Carousel.Item>
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/rendering.jpg')}
@@ -78,7 +78,7 @@ export default function Home(){
 						</Carousel.Caption>
 						</Carousel.Item>
 
-						<Carousel.Item>
+						<Carousel.Item interval={2000}>
 							<img
 								className="d-block w-100"
 								src={require('../images/enthusiasts.jpg')}

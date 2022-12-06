@@ -80,7 +80,8 @@ export default function Login() {
             isAdmin: data.isAdmin,
             email: data.email,
             firstName: data.firstName,
-            lastName: data.lastName
+            lastName: data.lastName,
+            mobileNo: data.mobileNo
           });
 
         })

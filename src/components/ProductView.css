@@ -30,3 +30,24 @@
 	width: 100px;
 	margin: auto;
 }
+
+.qtyInput {
+	width: 120px !important;
+}
+
+.logout {
+	background-color: rgba( 255, 255 , 255, 0) !important;
+	color: rgba( 93, 167 , 219, 1) !important;
+	border: none !important;
+}
+
+.orderDetailsText {
+	text-align: center;
+}
+
+.orderDetailsPrice {
+	text-align: center;
+	font-weight: bold;
+	color: rgba(238, 77, 45, 1) !important;
+	font-size: 25px !important;
+}

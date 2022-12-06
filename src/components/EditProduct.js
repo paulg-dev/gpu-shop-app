@@ -88,7 +88,7 @@ export default function EditProduct() {
 	useEffect(() => {
 
 
-        if(name !== "" && description !== "" && imageUrl !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && stocks > 0){
+        if(name !== "" && description !== "" && imageUrl !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && !(stocks < 0)){
             setIsActive(true);
         } else {
             setIsActive(false);
@@ -129,7 +129,6 @@ export default function EditProduct() {
     function backButton(){
     	window.history.back()
     }
-
 
 
     return (

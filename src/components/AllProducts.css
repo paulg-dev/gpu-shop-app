@@ -1,7 +1,41 @@
 
 .prodNameButton {
-	background-color: rgba(175,184,185, 0);
-	color: black;
-	border: none;
-	text-decoration-line: underline;
+	background-color: rgba( 255, 255 , 255, 0) !important;
+	color: rgba( 93, 167 , 219, 1) !important;
+	border: none !important;
+	font-weight: bold !important;
 }
+
+/* 
+Best result so far
+--header not flexed to max width to match  table contents
+--header contents not vertically centered
+*/
+
+
+/*.prodTableRow, .prodTableHead {
+	display: flex !important;
+ 	justify-content: center !important;
+ 	flex-direction: row !important;
+ 	align-items: center !important;
+}*/
+
+
+/*
+--All columns with even width
+*/
+
+/*.prodTable {
+	table-layout: fixed;
+}*/
+
+
+/*.hideOnSmall {
+	display: none;
+}*/
+
+
+.prodTable {
+	overflow: hidden;
+}
+

@@ -7,15 +7,14 @@ import ProductCard from '../components/ProductCard';
 // import UserContext from '../UserContext';
 import FeaturedProducts from '../components/FeaturedProducts'
 
-import './Product.css';
 
-export default function Products(){
+export default function Nvidia (){
 
 	const [products, setProducts] =useState([])
 
 	useEffect(()=>{
 
-	fetch('http://localhost:4000/products/active')
+	fetch('http://localhost:4000/products/nvidia')
 	.then(res=>res.json())
 	.then(data=>{
 
@@ -59,7 +58,7 @@ export default function Products(){
 
 						<div className="prodSection flex-row">
 						<Row className="prodRow" sm={1} md={4}>
-							{products}
+						{products}
 						</Row>
 						</div>
 					</>

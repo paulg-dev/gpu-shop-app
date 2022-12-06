@@ -17,6 +17,11 @@ import ProductView from './components/ProductView';
 import EditProduct from './components/EditProduct';
 import Users from './components/Users';
 import Orders from './components/Orders';
+import NvidiaFilter from './components/NvidiaFilter';
+import AmdFilter from './components/AmdFilter';
+import IntelFilter from './components/IntelFilter';
+import UserProfile from './components/UserProfile';
+
 
 import './App.css';
 
@@ -50,7 +55,8 @@ function App() {
           isAdmin: data.isAdmin,
           email: data.email,
           firstName: data.firstName,
-          lastName: data.lastName
+          lastName: data.lastName,
+          mobileNo: data.mobileNo
         });
       }else{
         setUser({
@@ -73,6 +79,9 @@ function App() {
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/products/nvidia" element={<NvidiaFilter />} />
+              <Route path="/products/amd" element={<AmdFilter />} />
+              <Route path="/products/intel" element={<IntelFilter />} />
               <Route path="/admin" element={<AdminDash />} />
               {/*<Route path="/addProduct" element={<AddProduct />} />*/}
               <Route path="/editProduct/:productId" element={<EditProduct />} />
@@ -80,6 +89,7 @@ function App() {
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/orders" element={<Orders />} />
               <Route path="/admin/allProducts" element={<AllProducts />} />
+              <Route path="/users/details" element={<UserProfile />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>
