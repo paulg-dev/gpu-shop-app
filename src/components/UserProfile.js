@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { Button, ButtonGroup, Container, Row, Col, Card, Form } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Card, Form, InputGroup } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
+
+import './UserProfile.css'
 
 
 export default function UserProfile(){
@@ -13,7 +15,6 @@ export default function UserProfile(){
 
 	const {user} = useContext(UserContext);
 
-
 	return(
 		(user.isAdmin)
 		?
@@ -21,45 +22,53 @@ export default function UserProfile(){
 		:
 		<>
 		<Container>
-			<Row>
-				<Col md={12} lg={4}>
 					<div className="my-5 text-center">
-					<h3>User Profile</h3>
+					<h3>USER DASHBOARD</h3>
 
 					<Card className="p-2 mb-3 mt-5" border="dark">
             			<Card.Header as="h5">
+
             				<Form.Group className="mb-3" controlId="profile">
-              				<Form.Label>Account Details</Form.Label>
+              				<Form.Label>Profile</Form.Label>
+              				<InputGroup className="mb-3">
+		                	<InputGroup.Text>Full Name</InputGroup.Text>
               				<Form.Control
-              					className="mb-3"
+              					
               					type="text"
               					readOnly
-              					value={"Name: " + user.firstName +  " " + user.lastName }
+              					value={user.firstName +  " " + user.lastName }
               				/>
+              				</InputGroup>
+
+              				<InputGroup className="mb-3">
+		                	<InputGroup.Text>Email Add</InputGroup.Text>
               				<Form.Control
-             					className="mb-3"
+             					
               					type="text"
               					readOnly
-              					value={"Email: " + user.email}
+              					value={user.email}
               				/>
+              				</InputGroup>
 
+            				<InputGroup className="mb-3">
+		                	<InputGroup.Text>Mobile No</InputGroup.Text>
               				<Form.Control
-             					className="mb-3"
+             					
               					type="text"
               					readOnly
-              					value={"Contact: " + user.mobileNo}
+              					value={user.mobileNo}
               				/>
-
-
+              				</InputGroup>
             				</Form.Group>
+
             			</Card.Header>
             			<Card.Body>
-            				<h5>Orders Management</h5>
+            				<h5>Order Management</h5>
 
             					<ButtonGroup vertical>
 
-      								<Button as={Link} to="/myCart" className="mt-1">My Cart</Button>
-     								<Button as={Link} to="/myCart" className="mt-1">Orders</Button>
+      								<Button as={Link} to="/users/viewCart" className="mt-1">My Cart</Button>
+     								<Button as={Link} to="/users/getUserOrders" className="mt-1">Orders</Button>
 
     							</ButtonGroup>
 
@@ -68,12 +77,6 @@ export default function UserProfile(){
           			</Card> 
           			</div>   
 				
-				</Col>
-				
-				<Col md={12} lg={8}>
-				</Col>
-
-				</Row>
 				</Container>
 			
 		</>

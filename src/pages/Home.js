@@ -7,7 +7,7 @@ import './Home.css';
 export default function Home(){
 
 	const data = {
-		title: "E-Commerce App",
+		title: "GPU ONLINE SHOP",
 		content: "Your one-stop shop for Graphics Card Units!",
 		destination: "/products",
 		label: "Shop now!"

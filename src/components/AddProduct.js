@@ -158,12 +158,18 @@ export default function AddProduct() {
 
 		            			<Form.Check className="mx-4"
         							type="checkbox"
+        							defaultChecked={true}
         							label="List Product"
+        							value={isListed}
+        							onChange={e => setIsListed(e.target.value)}
       							/>
 
 		            			<Form.Check className="mx-4"
 		            				type="checkbox"
+        							defaultChecked={false}
         							label="Feature Product"
+        							value={isFeatured}
+        							onChange={e => setIsFeatured(e.target.value)}
       							/>
 
 		            </div>

@@ -23,6 +23,8 @@ export default function AllProducts(){
 		})
 		.then(res => res.json())
 		.then(data => {
+
+			setAllProducts(data.reverse());
 			
 			// console.log(data);
 
@@ -282,17 +284,20 @@ export default function AllProducts(){
         		</Col>
         		
         		<Col md={12} lg={8}>
-        			<Table className="prodTable text-center my-5" width="100%" bordered striped hover>
+        			<div className="dataLabel mt-4 text-center">
+        			PRODUCT DATABASE
+        			</div>
+        			<Table className="prodTable text-center mt-4" width="100%" bordered striped hover>
 		     			<thead className="table-dark prodTableHead">
 		       				<tr>
 		         			{/*<th>Product ID</th>*/}
 		         			<th width="15%" className="hideOnSmall">Manufacturer</th>
 		         			<th width="25%">Product Name</th>
 		         			{/*<th>Description</th>*/}
-		         			<th width="20%x" className="hideOnSmall">Price</th>
+		         			<th width="20%" className="hideOnSmall">Price</th>
 		         			<th width="12%">Stocks</th>
 		         			<th width="13%" className="hideOnSmall">Status</th>
-		         			<th width="15%">Action</th>
+		         			<th width="15%">Actions</th>
 		       				</tr>
 		     			</thead>
 		     			<tbody className="prodTableBody">

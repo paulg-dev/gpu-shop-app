@@ -1,3 +1,9 @@
-.prodFeatured {
-	background-color: #45607d;
+/*.prodFeatured {
+	background-color: #45607d !important;
+}
+*/
+
+.productsMain {
+	font-weight: bold;
+	font-size: 30px;
 }

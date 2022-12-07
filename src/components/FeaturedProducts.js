@@ -16,7 +16,6 @@ export default function Products(){
 	.then(res=>res.json())
 	.then(data=>{
 
-
 	const productArr = (data.map(product => {
 
 		return (

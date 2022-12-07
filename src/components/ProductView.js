@@ -93,9 +93,52 @@ export default function ProductView(){
 	}
 
 
-	const addToCart = (productId) =>{
+	function addToCart (e) {
+
+	    e.preventDefault();
+
+	    fetch('http://localhost:4000/users/addToCart', {
+	    	method: "PUT",
+	    	headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token')}`
+			},
+			body: JSON.stringify({
+					name: name,
+					quantity: quantity
+			})
+	    })
+	    .then(res=>res.json())
+		.then(data=>{
+
+			console.log(data)
+			console.log(quantity)
+
+			if(data===true){
+
+				Swal.fire({
+				  title: "Successfully added to Cart!",
+				  icon: "success",
+				});
+				
+				// navigate("/products")
+
+			}else{
+
+				Swal.fire({
+				  title: "Something went wrong!",
+				  icon: "error",
+				  text: "Please try again in a while."
+				});
+
+			}
+
+		})
+
+		setQuantity(0);
 
 	}
+
 
 	useEffect(()=>{
 
@@ -116,8 +159,10 @@ export default function ProductView(){
 			setStocks(data.stocks);
 			
 		})
+	
 
 	},[productId])
+
 
 
 	useEffect(() => {
@@ -139,6 +184,7 @@ export default function ProductView(){
 	const subtotalFormatted = orderSubtotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
 	// console.log(priceFormatted)
+
 
 	return(
 		<Container className="mt-5">
@@ -266,7 +312,7 @@ export default function ProductView(){
 									{
 									(user.isAdmin)?
 									<div>
-									<Button className="logout" onClick={handleShow}>Log out</Button>and use a customer account to purchase.
+									<Button className="logout" onClick={handleShow}><strong>Log out</strong> and use a customer account to purchase.</Button>
 									{/*<a className="logout" onClick={handleShow}>Log out</a> and use a customer account to purchase.*/}
 
 										<Modal
@@ -302,6 +348,7 @@ export default function ProductView(){
 	        	    				<Button className="mx-3" variant="dark" onClick={addToCart}>
 	        	    					Add to Cart
 	        	    				</Button>
+
 	        	    				<Button className="mx-3" variant="primary" onClick={handleShow}>
 	        	    					Check Out
 	        	    				</Button>
@@ -409,7 +456,7 @@ export default function ProductView(){
 
 							
 							:
-							<Link className="btn btn-danger" to="/login">Log in to purchase</Link>
+							<Link className="btn btn-dark" to="/login">Log in to purchase</Link>
 						}
 
            			 </Card.Footer>

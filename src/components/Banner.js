@@ -12,9 +12,9 @@ export default function Banner({bannerProp}){
 		<div className="text-center mt-5">
 			<Row>
 				<Col>
-					<h1>{title}</h1>
-					<p>{content}</p>
-					<Button as={Link} to={destination} variant="primary">{label}</Button>
+					<h2 className="mb-3">{title}</h2>
+					<h5 className="mb-4">{content}</h5>
+					<Button className="mb-4" as={Link} to={destination} variant="primary">{label}</Button>
 				</Col>
 			</Row>
 		</div>	

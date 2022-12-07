@@ -19,6 +19,7 @@ export default function Products(){
 	.then(res=>res.json())
 	.then(data=>{
 
+	setProducts(data.reverse());
 
 	const productArr = (data.map(product => {
 
@@ -42,7 +43,7 @@ export default function Products(){
 					<Navigate to="/admin"/>
 					:*/}
 					<>	
-						<h4 className="text-center">PRODUCTS</h4>
+						<h4 className="productsMain text-center">PRODUCTS</h4>
 
 								<div className="text-center">
 

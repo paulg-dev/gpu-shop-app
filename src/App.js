@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UserProvider } from './UserContext';
 import AppNavbar from './components/AppNavbar';
+import Footer from './components/Footer';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -21,7 +22,8 @@ import NvidiaFilter from './components/NvidiaFilter';
 import AmdFilter from './components/AmdFilter';
 import IntelFilter from './components/IntelFilter';
 import UserProfile from './components/UserProfile';
-
+import UserOrders from './components/UserOrders';
+import UserCart from './components/UserCart';
 
 import './App.css';
 
@@ -68,10 +70,10 @@ function App() {
   },[]);
 
   return (
-
+    
     <UserProvider value = {{user, setUser, unsetUser}}>
         <Router>
-          <AppNavbar/>
+          <AppNavbar />
           <Container>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -90,11 +92,15 @@ function App() {
               <Route path="/admin/orders" element={<Orders />} />
               <Route path="/admin/allProducts" element={<AllProducts />} />
               <Route path="/users/details" element={<UserProfile />} />
+              <Route path="/users/getUserOrders" element={<UserOrders />} />
+              <Route path="/users/viewCart" element={<UserCart />} />
+
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>
         </Router>
     </UserProvider>
+    
 
   );
 }

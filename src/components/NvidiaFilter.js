@@ -41,7 +41,7 @@ export default function Nvidia (){
 					<Navigate to="/admin"/>
 					:*/}
 					<>	
-						<h4 className="text-center">PRODUCTS</h4>
+						<h4 className="productsMain text-center">PRODUCTS</h4>
 
 								<div className="text-center">
 

@@ -15,7 +15,7 @@ export default function AppNavbar(){
 	return(
 		<Navbar variant="dark" bg="primary" expand="lg" sticky="top">
 	      <Container>
-	        <Navbar.Brand as={Link} to="/">E-Commerce App Logo</Navbar.Brand>
+	        <Navbar.Brand as={Link} to="/">GPU Shop Logo</Navbar.Brand>
 	        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 	        <Navbar.Collapse id="basic-navbar-nav">
 	          <Nav className="ms-auto">
@@ -30,8 +30,8 @@ export default function AppNavbar(){
 	            			<Nav.Link as={Link} to="/admin/allProducts">Admin Dash</Nav.Link>
 	            		:
 	            		<>
-	            			<Nav.Link as={Link} to="/myCart">Cart</Nav.Link>
-	            			<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>
+	            			<Nav.Link as={Link} to="/users/viewCart">Cart</Nav.Link>
+	            			{/*<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>*/}
 	            		< />
 	            		}
 	            	

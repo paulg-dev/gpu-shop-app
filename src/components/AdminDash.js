@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Button, Dropdown, DropdownButton, Container, Row, Col, Modal, Card, Form, ButtonGroup } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, Container, Row, Col, Modal, Card, Form, ButtonGroup, InputGroup } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import AddProduct from './AddProduct';
@@ -18,7 +18,7 @@ export default function AdminDash(){
 		?
 		<>
 			<div className="my-5 text-center">
-				<h3>Administrator Dashboard</h3>
+				<h3>ADMIN DASHBOARD</h3>
 				<Container>
 				<Row>
 					
@@ -28,22 +28,30 @@ export default function AdminDash(){
             			<Card.Header as="h5">
             				<Form.Group className="mb-3" controlId="profile">
               				<Form.Label>Profile</Form.Label>
+              				<InputGroup className="mb-3">
+		                	<InputGroup.Text>Name</InputGroup.Text>
               				<Form.Control
-              					className="mb-3"
+              					
               					type="text"
               					readOnly
-              					value={"Name: " + user.firstName +  " " + user.lastName }
+              					value={user.firstName +  " " + user.lastName }
               				/>
+              				</InputGroup>
+
+              				<InputGroup className="mb-3">
+		                	<InputGroup.Text>Email</InputGroup.Text>
               				<Form.Control
-             					className="mb-3"
+             					
               					type="text"
               					readOnly
-              					value={"Email: " + user.email}
+              					value={user.email}
               				/>
+              				</InputGroup>
+
             				</Form.Group>
             			</Card.Header>
             			<Card.Body>
-            				<h5>Database Management</h5>
+            				<h5>Data Management</h5>
 
             					<ButtonGroup vertical>
 
@@ -85,9 +93,7 @@ export default function AdminDash(){
     							</ButtonGroup>
 
             			</Card.Body>
-            			<Card.Footer className="text-center">
-                  
-            			</Card.Footer>
+
           			</Card>     
 					
 					</Col>

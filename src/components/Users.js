@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from "react";
-import { Table, Button, Container, Row, Col } from "react-bootstrap";
+import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
+
+import './Users.css'
 
 import Swal from "sweetalert2";
 
@@ -30,7 +32,24 @@ export default function Users(){
 					<tr key={user._id}>
 						<td>{user.firstName}</td>
 						<td>{user.lastName}</td>
-						<td>{user.email}</td>
+						<td>
+							<OverlayTrigger
+								trigger="click"
+								placement="left"
+								overlay={
+									<Popover>
+									<Popover.Body>
+										User ID: {user._id}
+									</Popover.Body>
+									</Popover>
+								}
+							>
+							
+								<Button className="userEmail">
+								{user.email}
+								</Button>
+							</OverlayTrigger>	
+						</td>
 						<td>{user.mobileNo}</td>
 						<td>{user.isAdmin ? "Admin" : "User"}</td>
 						<td>
@@ -152,16 +171,19 @@ export default function Users(){
         		</Col>
         		
         		<Col md={12} lg={8}>
+        			<div className="dataLabel mt-4 text-center">
+        			USER DATABASE
+        			</div>
         			<div>
 						<Container>
-							<Table className="text-center my-5" striped bordered hover>
+							<Table className="text-center mt-4" striped bordered hover>
 		     				<thead className="table-dark">
 		       					<tr>
 		         					<th>First Name</th>
 		         					<th>Last Name</th>
-		         					<th>Email</th>
-		         					<th>Mobile No</th>
-		         					<th>Status</th>
+		         					<th>Email Address</th>
+		         					<th>Mobile No.</th>
+		         					<th>Role</th>
 		         					<th>Update</th>
 		       					</tr>
 		           			</thead>

@@ -46,7 +46,7 @@ export default function Login() {
           Swal.fire({
             title: "Login Successful!",
             icon: "success",
-            text: "Welcome to my E-Commerce-App!"
+            text: "Welcome to the GPU Online Shop!"
           });
 
         }else{
