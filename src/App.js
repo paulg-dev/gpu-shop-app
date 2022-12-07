@@ -40,7 +40,7 @@ function App() {
 
   useEffect(()=>{
 
-    fetch('http://localhost:4000/users/details',{
+    fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
       method: 'GET',
       headers:{
         Authorization: `Bearer ${localStorage.getItem('token')}`

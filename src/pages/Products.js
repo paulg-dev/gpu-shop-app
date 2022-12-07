@@ -15,7 +15,7 @@ export default function Products(){
 
 	useEffect(()=>{
 
-	fetch('http://localhost:4000/products/active')
+	fetch(`${process.env.REACT_APP_API_URL}/products/active`)
 	.then(res=>res.json())
 	.then(data=>{
 

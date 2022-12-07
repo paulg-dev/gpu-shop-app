@@ -27,7 +27,7 @@ export default function AddProduct() {
 
 	    e.preventDefault();
 
-	    fetch('http://localhost:4000/products/', {
+	    fetch(`${process.env.REACT_APP_API_URL}/products/`, {
 	    	method: "POST",
 	    	headers: {
 				"Content-Type": "application/json",

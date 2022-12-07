@@ -16,7 +16,7 @@ export default function Users(){
 
 	const fetchData = () =>{
 
-		fetch('http://localhost:4000/users/',{
+		fetch(`${process.env.REACT_APP_API_URL}/users/`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
@@ -84,7 +84,7 @@ export default function Users(){
 		console.log(userId);
 		console.log(userName);
 
-		fetch(`http://localhost:4000/users/updateAdmin/${userId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/users/updateAdmin/${userId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -121,7 +121,7 @@ export default function Users(){
 		console.log(userId);
 		console.log(userName);
 
-		fetch(`http://localhost:4000/users/updateUser/${userId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/users/updateUser/${userId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",

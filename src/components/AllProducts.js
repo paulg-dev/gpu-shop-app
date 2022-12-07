@@ -16,7 +16,7 @@ export default function AllProducts(){
 
 	const fetchData = () =>{
 
-		fetch('http://localhost:4000/products/',{
+		fetch(`${process.env.REACT_APP_API_URL}/products/`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
@@ -117,7 +117,7 @@ export default function AllProducts(){
 		console.log(productId);
 		console.log(productName);
 
-		fetch(`http://localhost:4000/products/archive/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/archive/${productId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -155,7 +155,7 @@ export default function AllProducts(){
 		console.log(productId);
 		console.log(productName);
 
-		fetch(`http://localhost:4000/products/activate/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/activate/${productId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -193,7 +193,7 @@ export default function AllProducts(){
 		console.log(productId);
 		console.log(productName);
 
-		fetch(`http://localhost:4000/products/removeFeatured/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/removeFeatured/${productId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -232,7 +232,7 @@ export default function AllProducts(){
 		console.log(productId);
 		console.log(productName);
 
-		fetch(`http://localhost:4000/products/addFeatured/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/addFeatured/${productId}`,{
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",

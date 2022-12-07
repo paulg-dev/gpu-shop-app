@@ -44,7 +44,7 @@ export default function ProductView(){
 
 	    e.preventDefault();
 
-	    fetch('http://localhost:4000/orders', {
+	    fetch(`${process.env.REACT_APP_API_URL}/orders`, {
 	    	method: "POST",
 	    	headers: {
 				"Content-Type": "application/json",
@@ -97,7 +97,7 @@ export default function ProductView(){
 
 	    e.preventDefault();
 
-	    fetch('http://localhost:4000/users/addToCart', {
+	    fetch(`${process.env.REACT_APP_API_URL}/users/addToCart`, {
 	    	method: "PUT",
 	    	headers: {
 				"Content-Type": "application/json",
@@ -146,7 +146,7 @@ export default function ProductView(){
 
 		console.log(productId);
 
-		fetch(`http://localhost:4000/products/${productId}`)
+		fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`)
 		.then(res=>res.json())
 		.then(data=>{
 			setName(data.name);

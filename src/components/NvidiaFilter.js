@@ -14,7 +14,7 @@ export default function Nvidia (){
 
 	useEffect(()=>{
 
-	fetch('http://localhost:4000/products/nvidia')
+	fetch(`${process.env.REACT_APP_API_URL}/products/nvidia`)
 	.then(res=>res.json())
 	.then(data=>{
 

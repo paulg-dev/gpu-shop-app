@@ -32,7 +32,7 @@ export default function EditProduct() {
 
 	    e.preventDefault();
 
-	    fetch(`http://localhost:4000/products/${productId}`, {
+	    fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, {
 	    	method: "PUT",
 	    	headers: {
 				"Content-Type": "application/json",
@@ -101,7 +101,7 @@ export default function EditProduct() {
 
     	console.log(productId);
 
-    	fetch(`http://localhost:4000/products/${productId}`,{
+    	fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`,{
 			method: "GET",
 			headers:{
 				"Content-Type": "application/json",

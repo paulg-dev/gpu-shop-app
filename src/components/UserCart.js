@@ -64,7 +64,7 @@ export default function Orders(){
 
 	const fetchData = () =>{
 
-		fetch('http://localhost:4000/users/viewCart',{
+		fetch(`${process.env.REACT_APP_API_URL}/users/viewCart`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}

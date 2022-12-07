@@ -30,7 +30,7 @@ export default function Orders(){
 
 	const fetchData = () =>{
 
-		fetch('http://localhost:4000/orders/getUserOrders',{
+		fetch(`${process.env.REACT_APP_API_URL}/orders/getUserOrders`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}

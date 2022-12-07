@@ -13,7 +13,7 @@ export default function Intel (){
 
 	useEffect(()=>{
 
-	fetch('http://localhost:4000/products/intel')
+	fetch(`${process.env.REACT_APP_API_URL}/products/intel`)
 	.then(res=>res.json())
 	.then(data=>{
 
