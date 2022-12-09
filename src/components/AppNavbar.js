@@ -13,7 +13,7 @@ export default function AppNavbar(){
   	const handleShow = () => setShow(true);
 
 	return(
-		<Navbar variant="dark" bg="primary" expand="lg" sticky="top">
+		<Navbar className="navbarMain" variant="dark" bg="secondary" expand="lg" sticky="top">
 	      <Container>
 	        <Navbar.Brand as={Link} to="/">GPU Shop Logo</Navbar.Brand>
 	        <Navbar.Toggle aria-controls="basic-navbar-nav" />

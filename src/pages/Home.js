@@ -19,7 +19,7 @@ export default function Home(){
 			<Row>
 				<Col md={12} lg={8}>
 
-					<Banner bannerProp={data}/>
+					<Banner bannerProp={data} />
 					
 					<div className="mt-4">
 					<Carousel className="mb-4">

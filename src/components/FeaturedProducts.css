@@ -1,5 +1,6 @@
 
 .cardDiv {
-	background-color: rgba(44, 62, 80, .15);
+	background: rgba(0, 38, 38, 1) !important;
 	backdrop-filter: blur(5px);
+
 }

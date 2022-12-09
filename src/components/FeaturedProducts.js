@@ -32,7 +32,7 @@ export default function Products(){
 	return(
 
 		<div className="mt-3" >
-			<Card className="cardDiv text-center p-3 rounded-5" bg="primary" border="light">
+			<Card className="cardDiv text-center p-3 rounded-5" bg="secondary" border="light">
 					<Card.Header className="text-light">
 					FEATURED PRODUCTS
 					<Badge className="m-2" bg="danger">NEW</Badge>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { UserProvider } from './UserContext';
 import AppNavbar from './components/AppNavbar';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import Login from './pages/Login';
