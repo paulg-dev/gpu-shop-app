@@ -345,7 +345,7 @@ export default function ProductView(){
 									{ isActive 
 	        	    				?
 	        	    				<>
-	        	    				<Button className="mx-3" variant="dark" onClick={addToCart}>
+	        	    				<Button className="mx-3" variant="warning" onClick={addToCart}>
 	        	    					Add to Cart
 	        	    				</Button>
 
@@ -441,7 +441,7 @@ export default function ProductView(){
 	        	    				</>
 	        	        			:
 	        	        			<> 
-	        	        			<Button className="mx-3" variant="dark" disabled>
+	        	        			<Button className="mx-3" variant="warning" disabled>
 	        	    					Add to Cart
 	        	    				</Button>
 	        	        			<Button className="mx-3" variant="primary" disabled>
@@ -456,7 +456,7 @@ export default function ProductView(){
 
 							
 							:
-							<Link className="btn btn-dark" to="/login">Log in to purchase</Link>
+							<Link className="btn btn-warning" to="/login">Log in to purchase</Link>
 						}
 
            			 </Card.Footer>
