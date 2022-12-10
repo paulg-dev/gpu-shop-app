@@ -43,3 +43,51 @@
     transform: rotate(360deg);
   }
 }
+
+.bannerBtn {
+  background-color: rgba(44, 62, 80, 1) !important;
+  border-color: rgba(44, 62, 80, 1) !important;
+}
+
+.dataLabel, .productsMain {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+
+.btn-primary {
+  background-color: rgba(44, 62, 80, 1) !important;
+  border-color: rgba(44, 62, 80, 1) !important;
+}
+
+
+.prodNameButton {
+  background: none !important;
+  color: rgba( 93, 167 , 219, 1) !important;
+  border: none !important;
+  font-weight: bold !important;
+}
+
+.btn-danger {
+  background-color: rgba(126, 25, 27, 0.9) !important;
+  border-color: rgba(126, 25, 27, 1) !important;
+}
+
+.btn-warning {
+  background-color: rgba(221, 87, 28, 1) !important;
+  border-color: rgba(221, 87, 28, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;;
+}
+
+.featuredProdCard {
+    background-color: rgba(44, 62, 80, 1) !important;
+}
+
+.navbar {
+    background-color: rgba(44, 62, 80, 1);
+}
+
+
+.btn-group:selected {
+
+}

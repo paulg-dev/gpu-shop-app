@@ -10,7 +10,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
-import Products from './pages/Products';
+import ActiveProducts from './pages/ActiveProducts';
 import AdminDash from './components/AdminDash';
 import AllProducts from './components/AllProducts';
 import ProductView from './components/ProductView';
@@ -80,7 +80,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/products" element={<Products />} />
+              <Route path="/products" element={<ActiveProducts />} />
               <Route path="/products/nvidia" element={<NvidiaFilter />} />
               <Route path="/products/amd" element={<AmdFilter />} />
               <Route path="/products/intel" element={<IntelFilter />} />

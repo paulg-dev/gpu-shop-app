@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 
 import ProductCard from '../components/ProductCard';
 
-import './FeaturedProducts.css'
-
-export default function Products(){
+export default function Products () {
 
 	const [products, setProducts] =useState([])
 
@@ -32,7 +30,7 @@ export default function Products(){
 	return(
 
 		<div className="mt-3" >
-			<Card className="cardDiv text-center p-3 rounded-5" bg="secondary" border="light">
+			<Card className="featuredProdCard text-center p-3 rounded-5" border="light">
 					<Card.Header className="text-light">
 					FEATURED PRODUCTS
 					<Badge className="m-2" bg="danger">NEW</Badge>

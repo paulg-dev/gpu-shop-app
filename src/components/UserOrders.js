@@ -6,6 +6,7 @@ import UserContext from "../UserContext";
 import UserProfile from './UserProfile';
 
 // import Swal from "sweetalert2";
+import '../App.css'
 
 export default function Orders(){
 

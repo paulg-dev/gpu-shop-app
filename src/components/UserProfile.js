@@ -3,9 +3,6 @@ import { Button, ButtonGroup, Container, Card, Form, InputGroup } from "react-bo
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 
-import './UserProfile.css'
-
-
 export default function UserProfile(){
 
 	// const [show, setShow] = useState(false);

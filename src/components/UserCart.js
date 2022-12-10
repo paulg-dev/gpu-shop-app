@@ -4,8 +4,7 @@ import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import UserProfile from './UserProfile';
 
-import './UserProfile.css'
-
+import '../App.css';
 
 export default function Orders(){
 

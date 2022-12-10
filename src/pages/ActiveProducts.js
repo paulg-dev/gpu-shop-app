@@ -7,9 +7,7 @@ import ProductCard from '../components/ProductCard';
 // import UserContext from '../UserContext';
 import FeaturedProducts from '../components/FeaturedProducts'
 
-import './Product.css';
-
-export default function Products(){
+export default function ActiveProducts (){
 
 	const [products, setProducts] =useState([])
 
@@ -49,7 +47,7 @@ export default function Products(){
 
 								<ButtonGroup className="mt-3 mb-5">
 
-									<Button as={Link} to="/products" className="mt-1" variant="dark">All GPUs</Button>
+									<Button as={Link} to="/products" className="mt-1" variant="primary">All GPUs</Button>
 									<Button as={Link} to="/products/nvidia" className="mt-1" variant="secondary">NVIDIA</Button>
       								<Button as={Link} to="/products/amd" className="mt-1" variant="secondary">AMD</Button>
      								<Button as={Link} to="/products/intel" className="mt-1" variant="secondary">INTEL</Button>

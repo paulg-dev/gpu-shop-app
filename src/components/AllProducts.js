@@ -4,7 +4,7 @@ import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import AdminDash from './AdminDash';
 
-import './AllProducts.css'
+import '../App.css'
 
 import Swal from "sweetalert2";
 
