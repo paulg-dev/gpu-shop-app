@@ -1,8 +1,10 @@
 
 import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-import './ProductCard.css';
+import '../css/ProductCard.css';
 
 export default function ProductCard({productProp}){
 
@@ -12,19 +14,27 @@ export default function ProductCard({productProp}){
 	const priceFormatted = price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 	
 	return(
-
-		<Card className="cardProd p-1 mb-3 rounded-3" border="light" as={Link} to={`/products/${_id}`}>
-		<Card.Img className="cardProdImg rounded-3" variant="top" src={imageUrl} alt="Product image"/>
-			<Card.ImgOverlay className="d-flex align-items-end">	
-			<Card.Body className="cardBody rounded-3">
-				<Card.Title className="cardProdName">{name}</Card.Title>
-				{/*<Card.Subtitle className="cardPriceLabel mt-2">Price:</Card.Subtitle>*/}
-				<Card.Text className="cardProdPrice">{priceFormatted}</Card.Text>
-				{/*<Button as={Link} to={`/products/${_id}`}>Details</Button>*/}
-			</Card.Body>
-			</Card.ImgOverlay>
-		</Card>
-
-
+		<Container className="p-2 mb-2">
+			<Card className="cardProd mb-3 h-100">
+			<Card.Img className="cardProdImg" variant="top" src={imageUrl} alt="Product image"/>
+				{/*<Card.ImgOverlay className="d-flex align-items-end">	*/}
+				<Card.Body className="cardBody d-flex flex-column text-center">
+					<Card.Title className="cardProdName">{name}</Card.Title>
+					{/*<Card.Subtitle className="cardPriceLabel mt-2">Price:</Card.Subtitle>*/}
+					<Row className="cardProdDetails">
+						<Col className="py-2" md={12} lg={6}>
+						<Card.Text className="cardProdPrice">{priceFormatted}</Card.Text>
+						</Col>
+						<Col md={12} lg={6}>
+						<Button className="cardProdBtn" as={Link} to={`/products/${_id}`}>
+							Details &nbsp;
+							<FontAwesomeIcon icon={faArrowRight} />
+						</Button>
+						</Col>
+					</Row>
+				</Card.Body>
+				{/*</Card.ImgOverlay>*/}
+			</Card>
+		</Container>
 	)
 }

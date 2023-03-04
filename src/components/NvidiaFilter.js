@@ -57,7 +57,7 @@ export default function Nvidia (){
     							</div>
 
 						<div className="prodSection flex-row">
-						<Row className="prodRow" sm={1} md={4}>
+						<Row className="prodRow" xs={2} md={3}>
 						{products}
 						</Row>
 						</div>

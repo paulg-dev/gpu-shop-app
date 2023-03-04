@@ -2,6 +2,10 @@ import { useContext, useState } from 'react';
 import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import UserContext from '../UserContext';
+import '../css/AppNavbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faHome, faStore, faExternalLink, faUser, faPen, faGear } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function AppNavbar(){
 
@@ -12,31 +16,48 @@ export default function AppNavbar(){
   	const handleClose = () => setShow(false);
   	const handleShow = () => setShow(true);
 
-	return(
-		<Navbar expand="lg" sticky="top">
+	return (
+		<Navbar className="gradient" expand="lg" sticky="top">
 	      <Container>
-	        <Navbar.Brand className="text-light" as={Link} to="/">GPU Shop Logo</Navbar.Brand>
+	        <Navbar.Brand as={Link} to="/">
+	        	<img className="navbarLogo" src={require("../images/navbarLogo.png")} alt="GPU_Shop_Logo"/>
+	        </Navbar.Brand>
 	        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 	        <Navbar.Collapse id="basic-navbar-nav">
 	          <Nav className="ms-auto">
 
-	            <Nav.Link className="text-light" as={Link} to="/">Home</Nav.Link>
-	            <Nav.Link className="text-light" as={Link} to="/products">Products</Nav.Link>
+	            <Nav.Link className="text-light" as={Link} to="/">
+	            	<FontAwesomeIcon icon={faHome} />
+	            	&nbsp; Home
+	            </Nav.Link>
+	            <Nav.Link className="text-light" as={Link} to="/products">
+	            	<FontAwesomeIcon icon={faStore} />
+	            	&nbsp; Products
+	            </Nav.Link>
 	            
 	            {(user.id !== null) ?
 
 	            	<>
 	            		{(user.isAdmin) ?
-	            			<Nav.Link className="text-light" as={Link} to="/admin/allProducts">Admin Dash</Nav.Link>
+	            			<Nav.Link className="text-light" as={Link} to="/admin/allProducts">
+	            				<FontAwesomeIcon icon={faGear} />
+	            				&nbsp; Manage
+	            			</Nav.Link>
 	            		:
 	            		<>
-	            			<Nav.Link className="text-light"  as={Link} to="/users/viewCart">Cart</Nav.Link>
+	            			<Nav.Link className="text-light"  as={Link} to="/users/viewCart">
+	            				<FontAwesomeIcon icon={faShoppingCart} />
+	            				&nbsp; Cart
+	            			</Nav.Link>
 	            			{/*<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>*/}
 	            		< />
 	            		}
 	            	
 	            			{/*<Nav.Link as={Link} to="/logout">Logout</Nav.Link>*/}
-	            			<Nav.Link className="text-light" onClick={handleShow}>Logout</Nav.Link>
+	            			<Nav.Link className="text-light" onClick={handleShow}>
+	            				<FontAwesomeIcon icon={faExternalLink} />
+	            				&nbsp; Logout
+	            			</Nav.Link>
 
 	            				<Modal
         							show={show}
@@ -65,8 +86,14 @@ export default function AppNavbar(){
 	            	</>
 	            	:
 	            	<>
-	            		<Nav.Link className="text-light" as={Link} to="/login">Login</Nav.Link>
-	            		<Nav.Link className="text-light" as={Link} to="/register">Register</Nav.Link>
+	            		<Nav.Link className="text-light" as={Link} to="/login">
+	            			<FontAwesomeIcon icon={faUser} />
+	            			&nbsp; Login
+	            		</Nav.Link>
+	            		<Nav.Link className="text-light" as={Link} to="/register">
+	            			<FontAwesomeIcon icon={faPen} />
+	            			&nbsp; Register
+	            		</Nav.Link>
 	            	</>
 	            }
 

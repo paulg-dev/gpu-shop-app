@@ -5,7 +5,7 @@ import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 // import NumericInput from "react-numeric-input";
 
-import './ProductView.css'
+import '../css/ProductView.css'
 
 
 export default function ProductView(){

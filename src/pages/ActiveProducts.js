@@ -1,4 +1,4 @@
-
+ 
 import { Row, Col,  ButtonGroup, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 // import { useEffect, useState, useContext } from 'react';
@@ -57,7 +57,7 @@ export default function ActiveProducts (){
     							</div>
 
 						<div className="prodSection flex-row">
-						<Row className="prodRow" sm={1} md={4}>
+						<Row className="prodRow" xs={2} md={3}>
 							{products}
 						</Row>
 						</div>

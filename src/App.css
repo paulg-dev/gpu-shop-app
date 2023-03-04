@@ -35,18 +35,18 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .bannerBtn {
-  background-color: rgba(44, 62, 80, 1) !important;
+  /* fallback for old browsers */
+  background: rgba(44, 62, 80, 98%);
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(24, 49, 83, 98%), rgba(44, 62, 80, 98%));
+    
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(24, 49, 83, 98%), rgba(44, 62, 80, 98%));
+
   border-color: rgba(44, 62, 80, 1) !important;
+  padding: 0.5rem 2rem !important;
 }
 
 .dataLabel, .productsMain {
@@ -54,12 +54,10 @@
   font-size: 30px;
 }
 
-
 .btn-primary {
   background-color: rgba(44, 62, 80, 1) !important;
   border-color: rgba(44, 62, 80, 1) !important;
 }
-
 
 .prodNameButton {
   background: none !important;
@@ -77,17 +75,4 @@
   background-color: rgba(221, 87, 28, 1) !important;
   border-color: rgba(221, 87, 28, 1) !important;
   color: rgba(255, 255, 255, 1) !important;;
-}
-
-.featuredProdCard {
-    background-color: rgba(44, 62, 80, 1) !important;
-}
-
-.navbar {
-    background-color: rgba(44, 62, 80, 1);
-}
-
-
-.btn-group:selected {
-
 }
