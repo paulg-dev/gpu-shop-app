@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Table, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import AdminDash from './AdminDash';
+import AdminDashboard from './AdminDashboard';
 
 import '../App.css'
 
@@ -14,7 +14,7 @@ export default function AllProducts(){
 
 	const [allProducts, setAllProducts] = useState([]);
 
-	const fetchData = () =>{
+	const fetchData = () => {
 
 		fetch(`${process.env.REACT_APP_API_URL}/products/`,{
 			headers:{
@@ -28,7 +28,7 @@ export default function AllProducts(){
 			
 			// console.log(data);
 
-			setAllProducts(data.map(product => {
+			setAllProducts(data.map((product, index) => {
 
 
 				const priceFormatted = product.price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
@@ -36,12 +36,13 @@ export default function AllProducts(){
 				return(
 					<tr key={product._id} className="prodTableRow">
 						{/*<td>{product._id}</td>*/}
-						<td className="hideOnSmall"><div className="mt-5">
+						<td>{index + 1}</td>
+						<td className="hideOnSmall"><div>
 
 							{
 									(product.brand !== "nvidia" && product.brand !== "amd")?
 										<img
-											className="brandImg mb-3"
+											className="brandImg"
 											src={require('../images/intel.png')}
 											alt="intel"
 										/>
@@ -50,13 +51,13 @@ export default function AllProducts(){
 											{
 												(product.brand !== "nvidia") ?
 													<img
-														className="brandImg mb-3"
+														className="brandImg"
 														src={require('../images/amd.png')}
 														alt="amd"
 													/>
 													:
 													<img
-														className="brandImg mb-3"
+														className="brandImg"
 														src={require('../images/nvidia.png')}
 														alt="nvidia"
 													/>
@@ -66,11 +67,11 @@ export default function AllProducts(){
 
 
 						</div></td>
-						<td><div className="mt-5"><Button className="prodNameButton" as={Link} to={`/products/${product._id}`}>{product.name}</Button></div></td>
+						<td><div><Button className="prodNameButton" as={Link} to={`/products/${product._id}`}>{product.name}</Button></div></td>
 						{/*<td>{product.description}</td>*/}
-						<td className="hideOnSmall"><div className="mt-5">{priceFormatted}</div></td>
-						<td><div className="mt-5">{product.stocks}</div></td>
-						<td className="hideOnSmall"><div className="mt-4"><div>{product.isListed ? "Active" : "Inactive"},</div><div className="mt-3"> {product.isFeatured ? "Featured" : "Not Feautured"}</div></div></td>
+						<td className="hideOnSmall"><div>{priceFormatted}</div></td>
+						<td><div>{product.stocks}</div></td>
+						<td className="hideOnSmall"><div><div>{product.isListed ? "Active" : "Inactive"},</div><div className="mt-3"> {product.isFeatured ? "Featured" : "Not Feautured"}</div></div></td>
 						<td>
 								
 								<ButtonGroup vertical>
@@ -79,11 +80,11 @@ export default function AllProducts(){
 										(product.isListed)
 										?	
 										<>
-										<Button className="p-2" variant="danger" size="sm" onClick ={() => archive(product._id, product.name)}>Archive</Button>
+										<Button className="py-2 px-1" variant="danger" size="sm" onClick = {() => archive(product._id, product.name)}>Archive</Button>
 										</>
 										:
-										<>
-										<Button className="p-2" variant="success" size="sm" onClick ={() => unarchive(product._id, product.name)}>Activate</Button>
+										<> 
+										<Button className="py-2 px-1" variant="success" size="sm" onClick = {() => unarchive(product._id, product.name)}>Activate</Button>
 										</>
 									}
 
@@ -91,11 +92,11 @@ export default function AllProducts(){
 										(product.isFeatured)
 										?	
 										<>
-										<Button className="p-2 mt-1" variant="danger" size="sm" onClick ={() => removeFeatured(product._id, product.name)}>Remove From Featured</Button>
+										<Button className="py-2 px-1 mt-1" variant="danger" size="sm" onClick = {() => removeFeatured(product._id, product.name)}>Remove From Featured</Button>
 										</>
 										:
 										<>
-										<Button className="p-2 mt-1" variant="success" size="sm" onClick ={() => addFeatured(product._id, product.name)}>Add to Featured</Button>
+										<Button className="py-2 px-1 mt-1" variant="success" size="sm" onClick = {() => addFeatured(product._id, product.name)}>Add to Featured</Button>
 										</>
 									}
 
@@ -112,7 +113,7 @@ export default function AllProducts(){
 	}
 
 
-	const archive = (productId, productName) =>{
+	const archive = (productId, productName) => {
 
 		console.log(productId);
 		console.log(productName);
@@ -150,7 +151,7 @@ export default function AllProducts(){
 	}
 
 
-	const unarchive = (productId, productName) =>{
+	const unarchive = (productId, productName) => {
 		
 		console.log(productId);
 		console.log(productName);
@@ -188,7 +189,7 @@ export default function AllProducts(){
 	}
 
 
-	const removeFeatured = (productId, productName) =>{
+	const removeFeatured = (productId, productName) => {
 
 		console.log(productId);
 		console.log(productName);
@@ -227,7 +228,7 @@ export default function AllProducts(){
 
 
 
-	const addFeatured = (productId, productName) =>{
+	const addFeatured = (productId, productName) => {
 		
 		console.log(productId);
 		console.log(productName);
@@ -265,7 +266,7 @@ export default function AllProducts(){
 	}
 
 
-	useEffect(()=>{
+	useEffect(() => {
 
 		fetchData();
 	})
@@ -280,19 +281,20 @@ export default function AllProducts(){
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
-            		<AdminDash />
+            		<AdminDashboard />
         		</Col>
         		
         		<Col md={12} lg={8}>
         			<div className="dataLabel mt-4 text-center">
         			PRODUCT DATABASE
         			</div>
-        			<Table className="prodTable text-center mt-4" width="100%" bordered striped hover>
+        			<Table className="text-center mt-4 align-middle" width="100%" bordered striped hover>
 		     			<thead className="table-dark prodTableHead">
 		       				<tr>
 		         			{/*<th>Product ID</th>*/}
-		         			<th width="15%" className="hideOnSmall">Manufacturer</th>
-		         			<th width="25%">Product Name</th>
+		         			<th width="6%">#</th>
+		         			<th width="12%" className="hideOnSmall">Manufacturer</th>
+		         			<th width="22%">Product Name</th>
 		         			{/*<th>Description</th>*/}
 		         			<th width="20%" className="hideOnSmall">Price</th>
 		         			<th width="12%">Stocks</th>

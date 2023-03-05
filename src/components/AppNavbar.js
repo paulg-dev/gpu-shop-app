@@ -17,7 +17,7 @@ export default function AppNavbar(){
   	const handleShow = () => setShow(true);
 
 	return (
-		<Navbar className="gradient" expand="lg" sticky="top">
+		<Navbar className="nav-gradient" expand="lg false" sticky="top" collapseOnSelect>
 	      <Container>
 	        <Navbar.Brand as={Link} to="/">
 	        	<img className="navbarLogo" src={require("../images/navbarLogo.png")} alt="GPU_Shop_Logo"/>
@@ -26,37 +26,30 @@ export default function AppNavbar(){
 	        <Navbar.Collapse id="basic-navbar-nav">
 	          <Nav className="ms-auto">
 
-	            <Nav.Link className="text-light" as={Link} to="/">
-	            	<FontAwesomeIcon icon={faHome} />
-	            	&nbsp; Home
+	            <Nav.Link as={Link} to="/" eventKey="1">
+	            	<FontAwesomeIcon icon={faHome} /> &nbsp; Home
 	            </Nav.Link>
-	            <Nav.Link className="text-light" as={Link} to="/products">
-	            	<FontAwesomeIcon icon={faStore} />
-	            	&nbsp; Products
+	            <Nav.Link as={Link} to="/products" eventKey="2">
+	            	<FontAwesomeIcon icon={faStore} /> &nbsp; Products
 	            </Nav.Link>
 	            
 	            {(user.id !== null) ?
 
 	            	<>
 	            		{(user.isAdmin) ?
-	            			<Nav.Link className="text-light" as={Link} to="/admin/allProducts">
-	            				<FontAwesomeIcon icon={faGear} />
-	            				&nbsp; Manage
+	            			<Nav.Link as={Link} to="/admin/allProducts" eventKey="3">
+	            				<FontAwesomeIcon icon={faGear} /> &nbsp; Manage
 	            			</Nav.Link>
 	            		:
 	            		<>
-	            			<Nav.Link className="text-light"  as={Link} to="/users/viewCart">
-	            				<FontAwesomeIcon icon={faShoppingCart} />
-	            				&nbsp; Cart
+	            			<Nav.Link as={Link} to="/users/viewCart" eventKey="4">
+	            				<FontAwesomeIcon icon={faShoppingCart} /> &nbsp; Cart
 	            			</Nav.Link>
 	            			{/*<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>*/}
 	            		< />
 	            		}
-	            	
-	            			{/*<Nav.Link as={Link} to="/logout">Logout</Nav.Link>*/}
-	            			<Nav.Link className="text-light" onClick={handleShow}>
-	            				<FontAwesomeIcon icon={faExternalLink} />
-	            				&nbsp; Logout
+	            			<Nav.Link onClick={handleShow}>
+	            				<FontAwesomeIcon icon={faExternalLink} /> &nbsp; Logout
 	            			</Nav.Link>
 
 	            				<Modal
@@ -86,13 +79,11 @@ export default function AppNavbar(){
 	            	</>
 	            	:
 	            	<>
-	            		<Nav.Link className="text-light" as={Link} to="/login">
-	            			<FontAwesomeIcon icon={faUser} />
-	            			&nbsp; Login
+	            		<Nav.Link as={Link} to="/login" eventKey="5">
+	            			<FontAwesomeIcon icon={faUser} /> &nbsp; Login
 	            		</Nav.Link>
-	            		<Nav.Link className="text-light" as={Link} to="/register">
-	            			<FontAwesomeIcon icon={faPen} />
-	            			&nbsp; Register
+	            		<Nav.Link as={Link} to="/register" eventKey="6">
+	            			<FontAwesomeIcon icon={faPen} /> &nbsp; Register
 	            		</Nav.Link>
 	            	</>
 	            }

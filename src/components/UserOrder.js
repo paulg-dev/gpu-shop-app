@@ -1,10 +1,12 @@
+
 import { useContext, useState, useEffect } from "react";
 import { Table, Container, Row, Col, Button } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import AdminDash from './AdminDash';
+import UserProfile from './UserProfile';
 
 // import Swal from "sweetalert2";
+import '../App.css'
 
 export default function Orders(){
 
@@ -29,7 +31,7 @@ export default function Orders(){
 
 	const fetchData = () =>{
 
-		fetch(`${process.env.REACT_APP_API_URL}/orders/`,{
+		fetch(`${process.env.REACT_APP_API_URL}/orders/getUserOrders`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
@@ -39,10 +41,8 @@ export default function Orders(){
 
 			setAllOrders(data.reverse());
 			
-			// console.log(data);
-			
 			// eslint-disable-next-line
-			setAllOrders(data.map(order => {
+			setAllOrders(data.map((order, index) => {
 
 				const priceFormatted = order.orderSubtotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
@@ -51,19 +51,18 @@ export default function Orders(){
 				return(
 
 					<tr key={order._id}>
-						<td><div className="mt-3">{order.userId}</div></td>
+						<td>{index + 1}</td>
+						<td className="hideOnSmall">{order._id}</td>
 						<td>
-							<div className="mt-2">
+							{order.products[i].quantity} pc/s of
 							<Button 
 								className="prodNameButton" 
 								as={Link} to={`/products/${order.products[i].productId}`}
 							>{order.products[i].productName}
 							</Button>
-							</div>
 						</td>
-						<td><div className="mt-3">{order.products[i].quantity}</div></td>
-						<td><div className="mt-3">{priceFormatted}</div></td>
-						<td><div className="mt-2">{formatDate(order.orderedOn)}</div></td>
+						<td>{priceFormatted}</td>
+						<td>{formatDate(order.orderedOn)}</td>
 					</tr>
 				)
 
@@ -73,8 +72,7 @@ export default function Orders(){
 		})
 	}
 
-
-	useEffect(()=>{
+	useEffect(() => {
 
 		fetchData();
 	})
@@ -82,30 +80,30 @@ export default function Orders(){
 
 	return(
 
-		(user.isAdmin)
+		(user.id !== null)
 		?
 		<>
 
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
-            		<AdminDash />
+            		<UserProfile />
         		</Col>
 
         		<Col md={12} lg={8}>
-        			<div className="dataLabel mt-4 text-center">
-        			ORDER DATABASE
+        			<div className="dataLabel mt-5 text-center">
+        			ORDER HISTORY
         			</div>
         			<div>
 						<Container>
-							<Table className="text-center mt-4" width="100%" striped bordered hover>
-		     					<thead className="table-dark">
+							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+		     					<thead className="table-dark align-middle">
 		       						<tr>
-		         						<th width="10%">Customer Id</th>
-		         						<th width="30%">Product</th>
-		         						<th width="10%">Quantity</th>
-		         						<th width="25%">Order Amount</th>
-		         						<th width="25%">Order Date</th>
+		       							<th width="6%">#</th>
+		         						<th className="hideOnSmall" width="24%">Order Id</th>
+		         						<th width="28%">Order Details</th>
+		         						<th width="24%">Order Amount</th>
+		         						<th width="18%">Order Date</th>
 		       						</tr>
 		           				</thead>
 		     	   				<tbody>
@@ -117,7 +115,6 @@ export default function Orders(){
         		</Col>
       		</Row>
     	</Container>
-
 			
 		</>
 		:

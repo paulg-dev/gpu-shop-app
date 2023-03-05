@@ -46,10 +46,18 @@ export default function Intel (){
 
 								<ButtonGroup className="mt-3 mb-5">
 
-									<Button as={Link} to="/products" className="mt-1" variant="primary">All GPUs</Button>
-									<Button as={Link} to="/products/nvidia" className="mt-1" variant="dark">NVIDIA</Button>
-      								<Button as={Link} to="/products/amd" className="mt-1" variant="dark">AMD</Button>
-     								<Button as={Link} to="/products/intel" className="mt-1" variant="dark">INTEL</Button>
+									<Button as={Link} to="/products" variant="secondary">
+										All GPUs
+									</Button>
+									<Button as={Link} to="/products/nvidia" variant="secondary">
+										NVIDIA
+									</Button>
+      								<Button as={Link} to="/products/amd" variant="secondary">
+      									AMD
+      								</Button>
+     								<Button as={Link} to="/products/intel" className="intelFilter" variant="primary">
+     									INTEL
+     								</Button>
 
     							</ButtonGroup>
 

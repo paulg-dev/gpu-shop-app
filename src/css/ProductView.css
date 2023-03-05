@@ -16,7 +16,7 @@
 .prodPrice {
 	font-size: 25px;
 	font-weight: bold;
-	color: rgba(238, 77, 45, 1);
+	color: var(--price-red);
 
 }
 
@@ -37,7 +37,7 @@
 
 .logout {
 	background-color: rgba( 255, 255 , 255, 0) !important;
-	color: rgba( 93, 167 , 219, 1) !important;
+	color: var(--link-blue) !important;
 	border: none !important;
 }
 
@@ -48,6 +48,6 @@
 .orderDetailsPrice {
 	text-align: center;
 	font-weight: bold;
-	color: rgba(238, 77, 45, 1) !important;
+	color: var(--price-red) !important;
 	font-size: 25px !important;
 }

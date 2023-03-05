@@ -2,8 +2,6 @@ import Banner from '../components/Banner';
 import { Row, Col, Carousel } from 'react-bootstrap';
 import FeaturedProducts from '../components/FeaturedProducts'
 
-import './Home.css';
-
 export default function Home(){
 
 	const data = {

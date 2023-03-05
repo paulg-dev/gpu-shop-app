@@ -76,7 +76,7 @@ export default function Orders(){
 			// console.log(data);
 			
 			// eslint-disable-next-line
-			setAllInCart(data.map(cart => {
+			setAllInCart(data.map((cart, index) => {
 
 				for(let i=0; i<data.length; i++) {
 
@@ -84,129 +84,125 @@ export default function Orders(){
 
 				const subTotalFormatted = cart.subTotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
-				return(
+				return (
 
 					<tr key={cart._id}>
+						<td>{index + 1}</td>
 						<td>
-							<Form.Check className="mt-4"
+							<Form.Check
 		            				type="checkbox"
         							defaultChecked={false}
       						/>
       					</td>
 						
 						<td>
-							<div className="mt-2">
 							<Button 
 								className="prodNameButton" 
 								as={Link} to={`/products/${cart.productId}`}
 							>{cart.productName}
 							</Button>
-							</div>
 						</td>
-						<td><div className="mt-4">{priceFormatted}</div></td>
-						<td><div className="mt-4">{cart.quantity}</div></td>
-						<td><div className="mt-4">{subTotalFormatted}</div></td>
+						<td className="hideOnSmall">{priceFormatted}</td>
+						<td className="hideOnSmall">{cart.quantity}</td>
+						<td>{subTotalFormatted}</td>
 						<td>
-						<div>
-						<ButtonGroup vertical className="mt-2">
-						<Button className="mb-1" variant="success" onClick={handleShow}>
-	        	    					Checkout
-	        	    				</Button>
+							<ButtonGroup vertical>
+								<Button className="mb-1" variant="success" onClick={handleShow}>
+			        	    					Checkout
+			        	    				</Button>
 
-	        	    					<Modal
-	        	    						className="orderModal"
-        									show={show}
-        									onHide={handleClose}
-        									backdrop="static"
-        									keyboard={false}
-        									centered
-      									>
+			        	    					<Modal
+			        	    						className="orderModal"
+		        									show={show}
+		        									onHide={handleClose}
+		        									backdrop="static"
+		        									keyboard={false}
+		        									centered
+		      									>
 
-        									<Modal.Header>
-          									<Modal.Title>Confirm order?</Modal.Title>
-        									</Modal.Header>
+		        									<Modal.Header>
+		          									<Modal.Title>Confirm order?</Modal.Title>
+		        									</Modal.Header>
 
-        									<Modal.Body className="m-2 text-center">
-        									
-        										<Form.Group className="mb-3" controlId="purchaseDetails">
-              										<Form.Label>Purchase Details</Form.Label>
+		        									<Modal.Body className="m-2 text-center">
+		        									
+		        										<Form.Group className="mb-3" controlId="purchaseDetails">
+		              										<Form.Label>Purchase Details</Form.Label>
 
-              										<InputGroup className="mb-3">
-		                								<InputGroup.Text>Product:</InputGroup.Text>
-		                								<Form.Control
-		                									className="orderDetailsText" 
-              												type="text"
-              												readOnly
-              												value={cart.productName}
-		                								/>
-		               			 					</InputGroup>
+		              										<InputGroup className="mb-3">
+				                								<InputGroup.Text>Product:</InputGroup.Text>
+				                								<Form.Control
+				                									className="orderDetailsText" 
+		              												type="text"
+		              												readOnly
+		              												value={cart.productName}
+				                								/>
+				               			 					</InputGroup>
 
-              										<div>
-		            									<Row>
+		              										<div>
+				            									<Row>
 
-		            										<Col>
-		            											<Form.Group controlId="price" className="mb-3">
-		                											<InputGroup>
-		                											<InputGroup.Text>Price:</InputGroup.Text>
-		                											<Form.Control
-		                												className="orderDetailsText"
-              															type="text"
-              															readOnly
-              															value={priceFormatted}
-		                											/>
-		                											</InputGroup>
-		            											</Form.Group>
-		            										</Col>
+				            										<Col>
+				            											<Form.Group controlId="price" className="mb-3">
+				                											<InputGroup>
+				                											<InputGroup.Text>Price:</InputGroup.Text>
+				                											<Form.Control
+				                												className="orderDetailsText"
+		              															type="text"
+		              															readOnly
+		              															value={priceFormatted}
+				                											/>
+				                											</InputGroup>
+				            											</Form.Group>
+				            										</Col>
 
-		            										<Col>
-		            											<Form.Group controlId="quantity" className="mb-3">
-		                											<InputGroup>
-		                											<InputGroup.Text>Quantity:</InputGroup.Text>
-		                											<Form.Control
-		                												className="orderDetailsText"
-              															type="text"
-              															readOnly
-              															value={cart.quantity}
-		                											/>
-		               			 									</InputGroup>
-		            											</Form.Group>
-		            										</Col>
+				            										<Col>
+				            											<Form.Group controlId="quantity" className="mb-3">
+				                											<InputGroup>
+				                											<InputGroup.Text>Quantity:</InputGroup.Text>
+				                											<Form.Control
+				                												className="orderDetailsText"
+		              															type="text"
+		              															readOnly
+		              															value={cart.quantity}
+				                											/>
+				               			 									</InputGroup>
+				            											</Form.Group>
+				            										</Col>
 
-		            									</Row>
-		            								</div>
+				            									</Row>
+				            								</div>
 
 
-		            								<InputGroup>
-		                								<InputGroup.Text>Order Amount:</InputGroup.Text>
-		                								<Form.Control
-		                									className="orderDetailsPrice" 
-              												type="text"
-              												readOnly
-              												value={subTotalFormatted}
-		                								/>
-		               			 					</InputGroup>
+				            								<InputGroup>
+				                								<InputGroup.Text>Order Amount:</InputGroup.Text>
+				                								<Form.Control
+				                									className="orderDetailsPrice" 
+		              												type="text"
+		              												readOnly
+		              												value={subTotalFormatted}
+				                								/>
+				               			 					</InputGroup>
 
-            									</Form.Group>
+		            									</Form.Group>
 
-        										<Button className="mx-2" variant="primary" >
-        											Confirm
-        										</Button>
-        										<Button className="mx-2" variant="secondary" onClick={handleClose}>
-        											Cancel
-          										</Button>
-        									</Modal.Body>
+		        										<Button className="mx-2" variant="primary" >
+		        											Confirm
+		        										</Button>
+		        										<Button className="mx-2" variant="secondary" onClick={handleClose}>
+		        											Cancel
+		          										</Button>
+		        									</Modal.Body>
 
-      									</Modal>
+		      									</Modal>
 
-      			
-      					<Button variant="danger">
-      					Remove
-      					</Button>					
-      					</ButtonGroup>
-						</div>
+		      			
+		      					<Button variant="danger">
+		      					Remove
+		      					</Button>					
+	      					</ButtonGroup>
 						</td>
 					</tr>
-
 				)
 
 				}
@@ -216,13 +212,13 @@ export default function Orders(){
 	}
 
 
-	useEffect(()=>{
+	useEffect(() => {
 
 		fetchData();
 	})
 
 
-	return(
+	return (
 
 		(user.id !== null)
 		?
@@ -240,15 +236,16 @@ export default function Orders(){
         			</div>
         			<div>
 						<Container>
-							<Table className="text-center mt-4" width="100%" striped bordered hover>
-		     					<thead className="table-dark">
+							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+		     					<thead className="table-dark align-middle">
 		       						<tr>
-		         						<th width="13%">Select</th>
+		       							<th width="6%">#</th>
+		         						<th width="9%">Select</th>
 		         						<th width="25%">Product Name</th>
-		         						<th width="15%">Price</th>
-		         						<th width="12%">Quantity</th>
+		         						<th className="hideOnSmall" width="17%">Price</th>
+		         						<th className="hideOnSmall" width="7%">Qty</th>
 		         						<th width="20%">Subtotal</th>
-		         						<th width="15%">Action</th>
+		         						<th width="17%">Action</th>
 		       						</tr>
 		           				</thead>
 		     	   				<tbody>

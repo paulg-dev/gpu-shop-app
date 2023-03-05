@@ -1,12 +1,10 @@
-
 import { useContext, useState, useEffect } from "react";
 import { Table, Container, Row, Col, Button } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import UserProfile from './UserProfile';
+import AdminDashboard from './AdminDashboard';
 
 // import Swal from "sweetalert2";
-import '../App.css'
 
 export default function Orders(){
 
@@ -31,7 +29,7 @@ export default function Orders(){
 
 	const fetchData = () =>{
 
-		fetch(`${process.env.REACT_APP_API_URL}/orders/getUserOrders`,{
+		fetch(`${process.env.REACT_APP_API_URL}/orders/`,{
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
@@ -44,7 +42,7 @@ export default function Orders(){
 			// console.log(data);
 			
 			// eslint-disable-next-line
-			setAllOrders(data.map(order => {
+			setAllOrders(data.map((order, index) => {
 
 				const priceFormatted = order.orderSubtotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
@@ -53,19 +51,21 @@ export default function Orders(){
 				return(
 
 					<tr key={order._id}>
-						<td><div className="mt-4">{order._id}</div></td>
+						<td>{index + 1}</td>
+						<td className="hideOnSmall">{order.userId}</td>
 						<td>
-							<div className="mt-2">
-							{order.products[i].quantity} pc/s of
+							<div>
 							<Button 
 								className="prodNameButton" 
 								as={Link} to={`/products/${order.products[i].productId}`}
-							>{order.products[i].productName}
+							>
+							{order.products[i].productName}
 							</Button>
 							</div>
 						</td>
-						<td><div className="mt-4">{priceFormatted}</div></td>
-						<td><div className="mt-4">{formatDate(order.orderedOn)}</div></td>
+						<td><div>{order.products[i].quantity}</div></td>
+						<td><div>{priceFormatted}</div></td>
+						<td><div>{formatDate(order.orderedOn)}</div></td>
 					</tr>
 				)
 
@@ -84,29 +84,31 @@ export default function Orders(){
 
 	return(
 
-		(user.id !== null)
+		(user.isAdmin)
 		?
 		<>
 
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
-            		<UserProfile />
+            		<AdminDashboard />
         		</Col>
 
         		<Col md={12} lg={8}>
-        			<div className="dataLabel mt-5 text-center">
-        			ORDER HISTORY
+        			<div className="dataLabel mt-4 text-center">
+        			ORDER DATABASE
         			</div>
         			<div>
 						<Container>
-							<Table className="text-center mt-4" width="100%" striped bordered hover>
-		     					<thead className="table-dark">
+							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+		     					<thead className="table-dark align-middle">
 		       						<tr>
-		         						<th width="25%">Order Id</th>
-		         						<th width="30%">Order Details</th>
-		         						<th width="25%">Order Amount</th>
-		         						<th width="20%">Order Date</th>
+		       							<th width="6%">#</th>
+		         						<th width="10%" className="hideOnSmall">Customer Id</th>
+		         						<th width="28%">Product</th>
+		         						<th width="10%">Qty</th>
+		         						<th width="24%">Order Amount</th>
+		         						<th width="24%">Order Date</th>
 		       						</tr>
 		           				</thead>
 		     	   				<tbody>

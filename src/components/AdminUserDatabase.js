@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import UserContext from "../UserContext";
-import AdminDash from './AdminDash';
+import AdminDashboard from './AdminDashboard';
 
 import '../css/Users.css'
 
@@ -26,11 +26,12 @@ export default function Users(){
 			
 			// console.log(data);
 
-			setAllUsers(data.map(user => {
+			setAllUsers(data.map((user, index) => {
 
 				return(
 					<tr key={user._id}>
-						<td>{user.firstName}</td>
+						<td>{index + 1}</td>
+						<td className="hideOnSmall">{user.firstName}</td>
 						<td>{user.lastName}</td>
 						<td>
 							<OverlayTrigger
@@ -50,8 +51,8 @@ export default function Users(){
 								</Button>
 							</OverlayTrigger>	
 						</td>
-						<td>{user.mobileNo}</td>
-						<td>{user.isAdmin ? "Admin" : "User"}</td>
+						<td className="hideOnSmall">{user.mobileNo}</td>
+						<td className="hideOnSmall">{user.isAdmin ? "Admin" : "User"}</td>
 						<td>
 
 							{
@@ -167,7 +168,7 @@ export default function Users(){
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
-            		<AdminDash />
+            		<AdminDashboard />
         		</Col>
         		
         		<Col md={12} lg={8}>
@@ -176,14 +177,15 @@ export default function Users(){
         			</div>
         			<div>
 						<Container>
-							<Table className="text-center mt-4" striped bordered hover>
-		     				<thead className="table-dark">
+							<Table className="text-center mt-4 align-middle" striped bordered hover>
+		     				<thead className="table-dark align-middle">
 		       					<tr>
-		         					<th>First Name</th>
+		       						<th>#</th>
+		         					<th className="hideOnSmall">First Name</th>
 		         					<th>Last Name</th>
 		         					<th>Email Address</th>
-		         					<th>Mobile No.</th>
-		         					<th>Role</th>
+		         					<th className="hideOnSmall">Mobile No.</th>
+		         					<th className="hideOnSmall">Role</th>
 		         					<th>Update</th>
 		       					</tr>
 		           			</thead>

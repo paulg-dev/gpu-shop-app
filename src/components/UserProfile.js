@@ -28,7 +28,7 @@ export default function UserProfile(){
             				<Form.Group className="mb-3" controlId="profile">
               				<Form.Label>Profile</Form.Label>
               				<InputGroup className="mb-3">
-		                	<InputGroup.Text>Full Name</InputGroup.Text>
+		                	<InputGroup.Text className="userProfileLabel">Full Name</InputGroup.Text>
               				<Form.Control
               					
               					type="text"
@@ -38,7 +38,7 @@ export default function UserProfile(){
               				</InputGroup>
 
               				<InputGroup className="mb-3">
-		                	<InputGroup.Text>Email Add</InputGroup.Text>
+		                	<InputGroup.Text className="userProfileLabel">Email Add</InputGroup.Text>
               				<Form.Control
              					
               					type="text"
@@ -48,7 +48,7 @@ export default function UserProfile(){
               				</InputGroup>
 
             				<InputGroup className="mb-3">
-		                	<InputGroup.Text>Mobile No</InputGroup.Text>
+		                	<InputGroup.Text className="userProfileLabel">Mobile No</InputGroup.Text>
               				<Form.Control
              					
               					type="text"

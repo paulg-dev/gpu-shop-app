@@ -11,18 +11,17 @@ import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Register from './pages/Register';
 import ActiveProducts from './pages/ActiveProducts';
-import AdminDash from './components/AdminDash';
-import AllProducts from './components/AllProducts';
+import AdminDashboard from './components/AdminDashboard';
+import AdminProductDatabase from './components/AdminProductDatabase';
 import ProductView from './components/ProductView';
-// import AddProduct from './components/AddProduct';
 import EditProduct from './components/EditProduct';
-import Users from './components/Users';
-import Orders from './components/Orders';
+import AdminUserDatabase from './components/AdminUserDatabase';
+import AdminOrderDatabase from './components/AdminOrderDatabase';
 import NvidiaFilter from './components/NvidiaFilter';
 import AmdFilter from './components/AmdFilter';
 import IntelFilter from './components/IntelFilter';
 import UserProfile from './components/UserProfile';
-import UserOrders from './components/UserOrders';
+import UserOrder from './components/UserOrder';
 import UserCart from './components/UserCart';
 
 import './App.css';
@@ -84,20 +83,20 @@ function App() {
               <Route path="/products/nvidia" element={<NvidiaFilter />} />
               <Route path="/products/amd" element={<AmdFilter />} />
               <Route path="/products/intel" element={<IntelFilter />} />
-              <Route path="/admin" element={<AdminDash />} />
-              {/*<Route path="/addProduct" element={<AddProduct />} />*/}
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/editProduct/:productId" element={<EditProduct />} />
               <Route path="/products/:productId" element={<ProductView />} />
-              <Route path="/admin/users" element={<Users />} />
-              <Route path="/admin/orders" element={<Orders />} />
-              <Route path="/admin/allProducts" element={<AllProducts />} />
+              <Route path="/admin/users" element={<AdminUserDatabase />} />
+              <Route path="/admin/orders" element={<AdminOrderDatabase />} />
+              <Route path="/admin/allProducts" element={<AdminProductDatabase />} />
               <Route path="/users/details" element={<UserProfile />} />
-              <Route path="/users/getUserOrders" element={<UserOrders />} />
+              <Route path="/users/getUserOrders" element={<UserOrder />} />
               <Route path="/users/viewCart" element={<UserCart />} />
 
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>
+          {/*<Footer />*/}
         </Router>
     </UserProvider>
     

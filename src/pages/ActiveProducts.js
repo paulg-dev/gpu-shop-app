@@ -47,10 +47,18 @@ export default function ActiveProducts (){
 
 								<ButtonGroup className="mt-3 mb-5">
 
-									<Button as={Link} to="/products" className="mt-1" variant="primary">All GPUs</Button>
-									<Button as={Link} to="/products/nvidia" className="mt-1" variant="secondary">NVIDIA</Button>
-      								<Button as={Link} to="/products/amd" className="mt-1" variant="secondary">AMD</Button>
-     								<Button as={Link} to="/products/intel" className="mt-1" variant="secondary">INTEL</Button>
+									<Button as={Link} to="/products" variant="primary">
+										All GPUs
+									</Button>
+									<Button as={Link} to="/products/nvidia" variant="secondary">
+										NVIDIA
+									</Button>
+      								<Button as={Link} to="/products/amd" variant="secondary">
+      									AMD
+      								</Button>
+     								<Button as={Link} to="/products/intel" variant="secondary">
+     									INTEL
+     								</Button>
 
     							</ButtonGroup>
 
@@ -58,7 +66,7 @@ export default function ActiveProducts (){
 
 						<div className="prodSection flex-row">
 						<Row className="prodRow" xs={2} md={3}>
-							{products}
+							{products}	
 						</Row>
 						</div>
 					</>

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
-import AdminDash from './AdminDash';
+import AdminDashboard from './AdminDashboard';
 
 import { Form, Button, Container, Col, Row, Card, InputGroup } from 'react-bootstrap';
 
@@ -139,7 +139,7 @@ export default function EditProduct() {
     	<Container>
     		<Row>
     			<Col md={12} lg={4}>
-            		<AdminDash />
+            		<AdminDashboard />
         		</Col>
         		
         		<Col md={12} lg={8}>

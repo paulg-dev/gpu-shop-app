@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import '../css/ProductCard.css';
 
@@ -27,8 +27,8 @@ export default function ProductCard({productProp}){
 						</Col>
 						<Col md={12} lg={6}>
 						<Button className="cardProdBtn" as={Link} to={`/products/${_id}`}>
-							Details &nbsp;
-							<FontAwesomeIcon icon={faArrowRight} />
+							Details
+							<FontAwesomeIcon icon={faChevronRight} className="hideOnSpecial"/>
 						</Button>
 						</Col>
 					</Row>

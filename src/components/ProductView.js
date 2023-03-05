@@ -15,12 +15,10 @@ export default function ProductView(){
   	const handleClose = () => setShow(false);
   	const handleShow = () => setShow(true);
 
-	//Consume the "User" context object to be able to obtain the user ID so we can buy a product
 	const { user } = useContext(UserContext);
 
 	// const navigate = useNavigate();
 
-	//Retrieve the "prductId" via the url using the "useParams" hook from react-router-dom and create a "useEffect" hook to check if the courseId is retrieved properly
 	const { productId } = useParams();
 
 	const [name, setName] = useState('');
@@ -35,10 +33,6 @@ export default function ProductView(){
 	const [quantity, setQuantity] = useState(0);
 
 	const [isActive, setIsActive] = useState(false);
-
-
-	//"order" function that will "purchase" a product and bind it to the "Check out" button
-
 
 	function order (e) {
 
@@ -142,8 +136,6 @@ export default function ProductView(){
 
 	useEffect(()=>{
 
-		//fetch request that will retrieve the details of the product from our database to be displayed in the "ProductView" page
-
 		console.log(productId);
 
 		fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`)
@@ -182,9 +174,6 @@ export default function ProductView(){
 	const priceFormatted = price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
 	const subtotalFormatted = orderSubtotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
-
-	// console.log(priceFormatted)
-
 
 	return(
 		<Container className="mt-5">

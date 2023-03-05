@@ -29,9 +29,8 @@ export default function AdminDash(){
             				<Form.Group className="mb-3" controlId="profile">
               				<Form.Label>Profile</Form.Label>
               				<InputGroup className="mb-3">
-		                	<InputGroup.Text>Name</InputGroup.Text>
+		                	<InputGroup.Text className="adminProfileLabel">Name</InputGroup.Text>
               				<Form.Control
-              					
               					type="text"
               					readOnly
               					value={user.firstName +  " " + user.lastName }
@@ -39,7 +38,7 @@ export default function AdminDash(){
               				</InputGroup>
 
               				<InputGroup className="mb-3">
-		                	<InputGroup.Text>Email</InputGroup.Text>
+		                	<InputGroup.Text className="adminProfileLabel">Email</InputGroup.Text>
               				<Form.Control
              					
               					type="text"
