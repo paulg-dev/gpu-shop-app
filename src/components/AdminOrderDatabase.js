@@ -99,8 +99,8 @@ export default function Orders(){
         			ORDER DATABASE
         			</div>
         			<div>
-						<Container>
-							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+						<Container className="dataTable">
+							<Table className="adminOrderDatabase text-center mt-4 align-middle" width="100%" striped bordered hover>
 		     					<thead className="table-dark align-middle">
 		       						<tr>
 		       							<th width="6%">#</th>

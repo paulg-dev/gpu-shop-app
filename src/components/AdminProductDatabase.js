@@ -288,24 +288,26 @@ export default function AllProducts(){
         			<div className="dataLabel mt-4 text-center">
         			PRODUCT DATABASE
         			</div>
-        			<Table className="text-center mt-4 align-middle" width="100%" bordered striped hover>
-		     			<thead className="table-dark prodTableHead">
-		       				<tr>
-		         			{/*<th>Product ID</th>*/}
-		         			<th width="6%">#</th>
-		         			<th width="12%" className="hideOnSmall">Manufacturer</th>
-		         			<th width="22%">Product Name</th>
-		         			{/*<th>Description</th>*/}
-		         			<th width="20%" className="hideOnSmall">Price</th>
-		         			<th width="12%">Stocks</th>
-		         			<th width="13%" className="hideOnSmall">Status</th>
-		         			<th width="15%">Actions</th>
-		       				</tr>
-		     			</thead>
-		     			<tbody className="prodTableBody">
-		       				{ allProducts }
-		     			</tbody>
-		   			</Table>
+        			<Container className="dataTable">
+	        			<Table className="text-center mt-4 align-middle" width="100%" bordered striped hover>
+			     			<thead className="table-dark prodTableHead">
+			       				<tr>
+			         			{/*<th>Product ID</th>*/}
+			         			<th width="6%">#</th>
+			         			<th width="12%" className="hideOnSmall">Manufacturer</th>
+			         			<th width="22%">Product Name</th>
+			         			{/*<th>Description</th>*/}
+			         			<th width="20%" className="hideOnSmall">Price</th>
+			         			<th width="12%">Stocks</th>
+			         			<th width="13%" className="hideOnSmall">Status</th>
+			         			<th width="15%">Actions</th>
+			       				</tr>
+			     			</thead>
+			     			<tbody className="prodTableBody">
+			       				{ allProducts }
+			     			</tbody>
+			   			</Table>
+			   		</Container>
                 </Col>
       		</Row>
    		</Container>

@@ -95,7 +95,7 @@ export default function Orders(){
         			ORDER HISTORY
         			</div>
         			<div>
-						<Container>
+						<Container className="dataTable">
 							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
 		     					<thead className="table-dark align-middle">
 		       						<tr>

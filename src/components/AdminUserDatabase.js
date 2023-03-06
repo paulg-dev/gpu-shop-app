@@ -176,7 +176,7 @@ export default function Users(){
         			USER DATABASE
         			</div>
         			<div>
-						<Container>
+						<Container className="dataTable">
 							<Table className="text-center mt-4 align-middle" striped bordered hover>
 		     				<thead className="table-dark align-middle">
 		       					<tr>
@@ -195,8 +195,8 @@ export default function Users(){
 		        			</Table>
 		    			</Container>
 		    		</div>
-          			
         		</Col>
+        		
       		</Row>
     	</Container>	
 		</>
