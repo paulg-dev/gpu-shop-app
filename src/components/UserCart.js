@@ -295,7 +295,7 @@ export default function Orders(){
 	    })
 	}
 
-	console.log(user)
+	// console.log(user)
 
 	return (
 
@@ -335,17 +335,10 @@ export default function Orders(){
 		    		</div>
 		    		<div className="checkOutSelected text-end mx-4 mt-4">
 
-		    		{
-		    			(user.cart.length === 0) ? 
-		    			<Button variant="secondary" disabled>
-        					Checkout All
-          				</Button>
-          				:
           				<Button variant="primary">
         					Checkout All
           				</Button>
-		    		}
-
+          				
           			</div>
         		</Col>
       		</Row>

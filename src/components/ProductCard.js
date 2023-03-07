@@ -37,7 +37,7 @@ export default function ProductCard({productProp}){
 			if (data === true) {
 
 				Swal.fire({
-				  title: "Successfully added to Cart!",
+				  title: `${name} successfully added to cart!`,
 				  icon: "success",
 				});
 				
@@ -46,9 +46,9 @@ export default function ProductCard({productProp}){
 			} else {
 
 				Swal.fire({
-				  title: "Something went wrong!",
+				  title: "Add to cart failed!",
 				  icon: "error",
-				  text: "Please try again in a while."
+				  text: "Log in a customer account to start shopping."
 				});
 			}
 		})
