@@ -3,12 +3,11 @@ import { Container, Card, Button, Row, Col, Form, Modal, InputGroup } from 'reac
 import { useParams, Link } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
-// import NumericInput from "react-numeric-input";
 
 import '../css/ProductView.css'
 
 
-export default function ProductView(){
+export default function ProductView() {
 
 	const [show, setShow] = useState(false);
 
@@ -31,7 +30,6 @@ export default function ProductView(){
 	const [stocks, setStocks] = useState(0);
 
 	const [quantity, setQuantity] = useState(0);
-
 	const [isActive, setIsActive] = useState(false);
 
 	function order (e) {
@@ -54,13 +52,13 @@ export default function ProductView(){
 				]
 			})
 	    })
-	    .then(res=>res.json())
-		.then(data=>{
+	    .then(res => res.json())
+		.then(data => {
 
 			console.log(data)
 			console.log(quantity)
 
-			if(data===true){
+			if (data === true) {
 
 				Swal.fire({
 				  title: "Order Successful!",
@@ -70,7 +68,7 @@ export default function ProductView(){
 				
 				// navigate("/products")
 
-			}else{
+			} else {
 
 				Swal.fire({
 				  title: "Something went wrong!",
@@ -92,7 +90,7 @@ export default function ProductView(){
 	    e.preventDefault();
 
 	    fetch(`${process.env.REACT_APP_API_URL}/users/addToCart`, {
-	    	method: "PUT",
+	    	method: "PATCH",
 	    	headers: {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -102,13 +100,13 @@ export default function ProductView(){
 					quantity: quantity
 			})
 	    })
-	    .then(res=>res.json())
-		.then(data=>{
+	    .then(res => res.json())
+		.then(data => {
 
 			console.log(data)
 			console.log(quantity)
 
-			if(data===true){
+			if (data === true) {
 
 				Swal.fire({
 				  title: "Successfully added to Cart!",
@@ -117,26 +115,20 @@ export default function ProductView(){
 				
 				// navigate("/products")
 
-			}else{
+			} else {
 
 				Swal.fire({
 				  title: "Something went wrong!",
 				  icon: "error",
 				  text: "Please try again in a while."
 				});
-
 			}
-
 		})
-
 		setQuantity(0);
-
 	}
 
 
-	useEffect(()=>{
-
-		console.log(productId);
+	useEffect(() => {
 
 		fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`)
 		.then(res=>res.json())
@@ -151,7 +143,6 @@ export default function ProductView(){
 			setStocks(data.stocks);
 			
 		})
-	
 
 	},[productId])
 
@@ -159,8 +150,7 @@ export default function ProductView(){
 
 	useEffect(() => {
 
-		// eslint-disable-next-line
-        if(quantity == 0 || quantity > stocks || quantity < 0 ){
+        if(quantity <= 0 || quantity > stocks){
             setIsActive(false);
         } else {
             setIsActive(true);
@@ -175,7 +165,7 @@ export default function ProductView(){
 
 	const subtotalFormatted = orderSubtotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
-	return(
+	return (
 		<Container className="mt-5">
 		  <Row>
 

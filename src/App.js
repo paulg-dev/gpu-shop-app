@@ -57,7 +57,8 @@ function App() {
           email: data.email,
           firstName: data.firstName,
           lastName: data.lastName,
-          mobileNo: data.mobileNo
+          mobileNo: data.mobileNo,
+          cart: data.cart
         });
       }else{
         setUser({

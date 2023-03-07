@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHome, faStore, faExternalLink, faUser, faPen, faGear } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function AppNavbar(){
+export default function AppNavbar() {
 
 	const { user } = useContext(UserContext);
 

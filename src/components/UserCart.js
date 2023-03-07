@@ -3,6 +3,9 @@ import { Table, Container, Row, Col, Button, Form, Modal, InputGroup, ButtonGrou
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import UserProfile from './UserProfile';
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import '../App.css';
 
@@ -11,57 +14,14 @@ export default function Orders(){
 	const {user} = useContext(UserContext);
 
 	const [allInCart, setAllInCart] = useState([]);
+	const [stocks, setStocks] = useState(0);
+	// const [cartQuantity, setCartQuantity] = useState(0);
 
 	const [show, setShow] = useState(false);
-
   	const handleClose = () => setShow(false);
   	const handleShow = () => setShow(true);
 
-	// const [orderQuantity, setOrderQuantity] = useState(0);
-
-	// function removeFromCart(e) {
-
-	//     e.preventDefault();
-
-	//     fetch('http://localhost:4000/users/re', {
-	//     	method: "PATCH",
-	//     	headers: {
-	// 			"Content-Type": "application/json",
-	// 			"Authorization": `Bearer ${localStorage.getItem('token')}`
-	// 		},
-	// 		body: JSON.stringify({
-
-	// 		})
-	//     })
-	//     .then(res => res.json())
-	//     .then(data => {
-	    	
-	//     	console.log(data);
-	//     	console.log(data.err);
-
-	//     	if(data === true){
-	//     		Swal.fire({
-	//     		    icon: "success",
-	//     		    text: `${productName} was successfully removed from the cart.`
-	//     		});
-
-	//     	}
-
-	//     	else{
-	//     		Swal.fire({
-	//     		    title: "Error!",
-	//     		    icon: "error",
-	//     		    text: `Something went wrong. Please try again later!`
-	//     		});
-
-	//     	}
-	    	
-	//     })
-
-	// }
-
-
-	const fetchData = () =>{
+	const fetchData = () => {
 
 		fetch(`${process.env.REACT_APP_API_URL}/users/viewCart`,{
 			headers:{
@@ -72,9 +32,7 @@ export default function Orders(){
 		.then(data => {
 
 			setAllInCart(data.reverse());
-			
-			// console.log(data);
-			
+						
 			// eslint-disable-next-line
 			setAllInCart(data.map((cart, index) => {
 
@@ -88,23 +46,33 @@ export default function Orders(){
 
 					<tr key={cart._id}>
 						<td>{index + 1}</td>
-						<td>
+						{/*<td>
 							<Form.Check
-		            				type="checkbox"
-        							defaultChecked={false}
+	            				type="checkbox"
+    							defaultChecked={false}
       						/>
-      					</td>
-						
+      					</td>*/}
 						<td>
 							<Button 
 								className="prodNameButton" 
 								as={Link} to={`/products/${cart.productId}`}
-							>{cart.productName}
+							>
+							{cart.productName}
 							</Button>
 						</td>
 						<td className="hideOnSmall">{priceFormatted}</td>
-						<td className="hideOnSmall">{cart.quantity}</td>
-						<td>{subTotalFormatted}</td>
+						<td> 
+							<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
+								<FontAwesomeIcon icon={faMinus} className="editQty" />
+							</Button>
+							&nbsp; {cart.quantity} &nbsp;
+							<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity + 1))}>
+								<FontAwesomeIcon icon={faPlus} className="editQty" />
+							</Button>
+						</td>
+
+						<td className="hideOnSmall">{subTotalFormatted}</td>
+
 						<td>
 							<ButtonGroup vertical>
 								<Button className="mb-1" variant="success" onClick={handleShow}>
@@ -116,7 +84,7 @@ export default function Orders(){
 		        									show={show}
 		        									onHide={handleClose}
 		        									backdrop="static"
-		        									keyboard={false}
+		        									// keyboard={false}
 		        									centered
 		      									>
 
@@ -197,7 +165,7 @@ export default function Orders(){
 		      									</Modal>
 
 		      			
-		      					<Button variant="danger">
+		      					<Button variant="danger" onClick = {() => removeFromCart(cart.productId, cart.productName)}>
 		      					Remove
 		      					</Button>					
 	      					</ButtonGroup>
@@ -217,6 +185,117 @@ export default function Orders(){
 		fetchData();
 	})
 
+	const retrieveProductStocks = (productId) => {
+
+		console.log(productId)
+
+		fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`,{
+			method: "GET",
+			headers:{
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token')}`
+			}
+		})
+		.then(res => res.json())
+		.then(data =>{
+
+    		setStocks(data.stocks);
+
+    	});
+
+	}
+
+
+	const removeFromCart = (productId, productName) => {
+
+	    console.log (productId)
+
+	    fetch(`${process.env.REACT_APP_API_URL}/users/removeFromCart`, {
+	    	method: "PATCH",
+	    	headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token')}`
+			},
+			body: JSON.stringify({
+				productId: productId
+			})
+	    })
+	    .then(res => res.json())
+	    .then(data => {
+	    	
+	    	console.log(data);
+
+	    	if (data === true) {
+	    		Swal.fire({
+	    		    icon: "success",
+	    		    text: `${productName} was successfully removed from the cart.`
+	    		});
+	    	}
+
+	    	else {
+	    		Swal.fire({
+	    		    title: "Warning!",
+	    		    icon: "warning",
+	    		    text: "Database might be slow in removing items. Please review your actions."
+	    		});
+	    	}
+	    })
+	}
+
+	const editProductQuantity = (productId, quantity, productName) => {
+
+		retrieveProductStocks(productId);
+
+		let quantityUpdate = quantity;
+
+		if (quantity === 0) {
+			removeFromCart (productId, productName)
+		}
+
+		if (stocks !== 0) {
+
+			if (quantity > stocks) {
+				quantityUpdate = stocks;
+			} else {
+				quantityUpdate = quantity
+			}
+
+		} else {
+			quantityUpdate = quantity
+		}
+
+		// {(quantity > stocks) ? quantityUpdate = stocks : quantityUpdate = quantity}
+
+	    fetch(`${process.env.REACT_APP_API_URL}/users/viewCart/${productId}`, {
+	    	method: "PATCH",
+	    	headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem('token')}`
+			},
+			body: JSON.stringify({
+				quantity: quantityUpdate
+			})
+	    })
+	    .then(res => res.json())
+	    .then(data => {
+	    	
+	    	console.log(data);
+
+	    	if (data === true) {
+	    		fetchData()
+	    	}
+
+	    	else {
+	    		Swal.fire({
+	    		    title: "Warning!",
+	    		    icon: "warning",
+	    		    text: "Database might be slow in updating. Please review your actions."
+	    		});
+	    	}
+	    })
+	}
+
+	console.log(user)
 
 	return (
 
@@ -240,11 +319,11 @@ export default function Orders(){
 		     					<thead className="table-dark align-middle">
 		       						<tr>
 		       							<th width="6%">#</th>
-		         						<th width="9%">Select</th>
+		         						{/*<th width="9%">Select</th>*/}
 		         						<th width="25%">Product Name</th>
-		         						<th className="hideOnSmall" width="17%">Price</th>
-		         						<th className="hideOnSmall" width="7%">Qty</th>
-		         						<th width="20%">Subtotal</th>
+		         						<th className="hideOnSmall" width="15%">Price</th>
+		         						<th width="18%">Quantity</th>
+		         						<th className="hideOnSmall" width="20%">Subtotal</th>
 		         						<th width="17%">Action</th>
 		       						</tr>
 		           				</thead>
@@ -255,9 +334,18 @@ export default function Orders(){
 		    			</Container>
 		    		</div>
 		    		<div className="checkOutSelected text-end mx-4 mt-4">
-						<Button variant="warning">
-        					Checkout Selected
+
+		    		{
+		    			(user.cart.length === 0) ? 
+		    			<Button variant="secondary" disabled>
+        					Checkout All
           				</Button>
+          				:
+          				<Button variant="primary">
+        					Checkout All
+          				</Button>
+		    		}
+
           			</div>
         		</Col>
       		</Row>

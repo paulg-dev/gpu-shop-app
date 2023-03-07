@@ -126,3 +126,8 @@ body, html {
   overflow-x: scroll;
 
 }
+
+.editQty {
+  background: none !important;
+  color: var(--link-blue);
+}
