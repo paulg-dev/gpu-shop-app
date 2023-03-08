@@ -1,19 +1,18 @@
-import { useState, useEffect, useContext } from 'react';
-import { Navigate, useParams, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import UserContext from '../UserContext';
-import AdminDashboard from './AdminDashboard';
 
 import { Form, Button, Container, Col, Row, Card, InputGroup } from 'react-bootstrap';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import AdminDashboard from './AdminDashboard';
+import UserContext from '../UserContext';
+import Swal from 'sweetalert2';
+
 
 export default function EditProduct() {
 
-	const {user} = useContext(UserContext);
-
+	const { user } = useContext(UserContext);
 	const { productId } = useParams();
 
 	const navigate = useNavigate();
-
 
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
@@ -23,8 +22,6 @@ export default function EditProduct() {
 	const [isFeatured, setIsFeatured] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(0);
-
-
     const [isActive, setIsActive] = useState(false);
 
 
@@ -52,18 +49,16 @@ export default function EditProduct() {
 	    .then(res => res.json())
 	    .then(data => {
 
-	    	console.log(data);
-
-	    	if(data===true){
+	    	if (data === true) {
 	    		Swal.fire({
 	    		    title: "Edit Success!",
 	    		    icon: "success",
-	    		    text: `${name} has been updated!`
+	    		    text: `${name} has been updated!`,
+	    		    confirmButtonColor: "#183153"
 	    		});
 
 	    		navigate("/admin/allProducts");
-	    	}
-	    	else{
+	    	} else {
 	    		Swal.fire({
 	    		    title: "Error!",
 	    		    icon: "error",
@@ -87,8 +82,7 @@ export default function EditProduct() {
 
 	useEffect(() => {
 
-
-        if(name !== "" && description !== "" && imageUrl !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && !(stocks < 0)){
+        if (name !== "" && description !== "" && imageUrl !== "" && (brand !=="" && brand !== "Select Brand") && price > 0 && !(stocks < 0)) {
             setIsActive(true);
         } else {
             setIsActive(false);
@@ -97,7 +91,7 @@ export default function EditProduct() {
     }, [name, description, imageUrl, brand, price, stocks]);
 
 
-    useEffect(()=> {
+    useEffect(() => {
 
     	console.log(productId);
 
@@ -109,9 +103,7 @@ export default function EditProduct() {
 			}
 		})
 		.then(res => res.json())
-		.then(data =>{
-
-    		console.log(data);
+		.then(data => {
 
     		setName(data.name);
     		setDescription(data.description);
@@ -126,155 +118,134 @@ export default function EditProduct() {
 
     }, [productId]);
 
-    function backButton(){
+    function backButton() {
     	window.history.back()
     }
 
-
     return (
-
-    	user.isAdmin
-    	?
+    	user.isAdmin ?
     	<>
-    	<Container>
-    		<Row>
-    			<Col md={12} lg={4}>
-            		<AdminDashboard />
-        		</Col>
-        		
-        		<Col md={12} lg={8}>
-
-        		<Card className="p-2 mb-3 mt-5" border="dark">
-            		<Card.Header as="h4">Edit Product</Card.Header>
-            		<Card.Body>
-			
-		    	{/*<h5 className="my-5 text-center">Edit Product</h5>*/}
-		        <Form onSubmit={(e) => editProduct(e)}>
-		        	<Form.Group controlId="name" className="mb-3">
-		                <Form.Label>Product Name</Form.Label>
-		                <Form.Control 
-			                type="text" 
-			                placeholder="Enter Product Name" 
-			                value = {name}
-			                onChange={e => setName(e.target.value)}
-			                required
-		                />
-		            </Form.Group>
-
-		            <Form.Group controlId="description" className="mb-3">
-		                <Form.Label>Product Description</Form.Label>
-		                <Form.Control
-		                	as="textarea"
-		                	rows={3}
-			                placeholder="Enter Product Description" 
-			                value = {description}
-			                onChange={e => setDescription(e.target.value)}
-			                required
-		                />
-		            </Form.Group>
-
-		             <Form.Group controlId="imageUrl" className="mb-3">
-		                <Form.Label>Image Url</Form.Label>
-		                <Form.Control 
-			                type="text"
-			                placeholder="Enter Image Url" 
-			                value = {imageUrl}
-			                onChange={e => setImageUrl(e.target.value)}
-		                />
-		            </Form.Group>
-
-		            <div className="d-flex p-2 mb-3 justify-content-center">
-
-		            			<Form.Select
-		            				className="mx-4 px-2"
-		            				required
-		            				value = {brand}
-		            				onChange={e => setBrand(e.target.value)}>
-      								<option className="mx-3">Select Brand</option>
-      								<option value="nvidia">NVIDIA</option>
-      								<option value="amd">AMD</option>
-      								<option value="intel">INTEL</option>
-    							</Form.Select>
-
-		            			<Form.Check className="mx-4"
-        							type="checkbox"
-        							label="List Product"
-      							/>
-
-		            			<Form.Check className="mx-4"
-		            				type="checkbox"
-        							label="Feature Product"
-      							/>
-
-		            </div>
-
-		            <div>
-		            	<Row>
-
-		            		<Col>
-		            			<Form.Group controlId="price" className="mb-3">
-		                			<Form.Label>Product Price</Form.Label>
-		                			<InputGroup>
-		                			<InputGroup.Text>₱</InputGroup.Text>
-		                			<Form.Control
-		                				className="text-end" 
-			                			type="number" 
-			                			placeholder="Enter Product Price" 
-			                			value = {price}
-			                			onChange={e => setPrice(e.target.value)}
-			                			required
-		                			/>
-		                			<InputGroup.Text>.00</InputGroup.Text>
-		                			</InputGroup>
-		            			</Form.Group>
-		            		</Col>
-
-		            		<Col>
-		            			<Form.Group controlId="stocks" className="mb-3">
-		                			<Form.Label>Stocks</Form.Label>
-		                			<InputGroup>
-		                			<Form.Control 
-		                				className="text-end"
-			                			type="number" 
-			                			placeholder="Enter Number of Stocks" 
-			                			value = {stocks}
-			                			onChange={e => setStocks(e.target.value)}
-			                			required
-		                			/>
-		                			<InputGroup.Text>pcs</InputGroup.Text>
-		               			 	</InputGroup>
-		            			</Form.Group>
-		            		</Col>
-
-		            	</Row>
-		            </div>
-
-		            <div className="text-center">
-	        	    { isActive 
-	        	    	? 
-	        	    	<Button variant="success" type="submit" id="submitBtn">
-	        	    		Update Product
-	        	    	</Button>
-	        	        : 
-	        	        <Button variant="danger" type="submit" id="submitBtn" disabled>
-	        	        	Update Product
-	        	        </Button>
-	        	    }
-	        	    	{/*<Button className="m-2" as={Link} to="/admin/allProducts" variant="danger" type="submit" id="submitBtn">
-	        	    	*/}<Button className="m-2" onClick={backButton} variant="danger">
-	        	    		Cancel
-	        	    	</Button>
-	        	    </div>
-		        </Form>
-		        	</Card.Body>
-		        	</Card>
-
-		        </Col>
-		    </Row>
-		</Container> 
+	    	<Container>
+	    		<Row>
+	    			<Col md={12} lg={4}>
+	            		<AdminDashboard />
+	        		</Col>
+	        		<Col md={12} lg={8}>
+		        		<Card className="p-2 mb-3 mt-5" border="dark">
+		            		<Card.Header as="h4">Edit Product</Card.Header>
+		            		<Card.Body>
+						        <Form onSubmit={e => editProduct(e)}>
+						        	<Form.Group controlId="name" className="mb-3">
+						                <Form.Label>Product Name</Form.Label>
+						                <Form.Control 
+							                type="text" 
+							                placeholder="Enter Product Name" 
+							                value = {name}
+							                onChange={e => setName(e.target.value)}
+							                required
+						                />
+						            </Form.Group>
+						            <Form.Group controlId="description" className="mb-3">
+						                <Form.Label>Product Description</Form.Label>
+						                <Form.Control
+						                	as="textarea"
+						                	rows={3}
+							                placeholder="Enter Product Description" 
+							                value = {description}
+							                onChange={e => setDescription(e.target.value)}
+							                required
+						                />
+						            </Form.Group>
+						            <Form.Group controlId="imageUrl" className="mb-3">
+						                <Form.Label>Image Url</Form.Label>
+						                <Form.Control 
+							                type="text"
+							                placeholder="Enter Image Url" 
+							                value = {imageUrl}
+							                onChange={e => setImageUrl(e.target.value)}
+						                />
+						            </Form.Group>
+						            <div className="d-flex p-2 mb-3 justify-content-center">
+				            			<Form.Select
+				            				className="mx-4 px-2"
+				            				required
+				            				value = {brand}
+				            				onChange={e => setBrand(e.target.value)}>
+			      								<option className="mx-3">Select Brand</option>
+			      								<option value="nvidia">NVIDIA</option>
+			      								<option value="amd">AMD</option>
+			      								<option value="intel">INTEL</option>
+		    							</Form.Select>
+				            			<Form.Check className="mx-4"
+		        							type="checkbox"
+		        							label="List Product"
+		      							/>
+				            			<Form.Check className="mx-4"
+				            				type="checkbox"
+		        							label="Feature Product"
+		      							/>
+						            </div>
+						            <div>
+						            	<Row>
+						            		<Col>
+						            			<Form.Group controlId="price" className="mb-3">
+						                			<Form.Label>Product Price</Form.Label>
+						                			<InputGroup>
+						                			<InputGroup.Text>₱</InputGroup.Text>
+						                			<Form.Control
+						                				className="text-end" 
+							                			type="number" 
+							                			placeholder="Enter Product Price" 
+							                			value = {price}
+							                			onChange={e => setPrice(e.target.value)}
+							                			required
+						                			/>
+						                			<InputGroup.Text>.00</InputGroup.Text>
+						                			</InputGroup>
+						            			</Form.Group>
+						            		</Col>
+						            		<Col>
+						            			<Form.Group controlId="stocks" className="mb-3">
+						                			<Form.Label>Stocks</Form.Label>
+						                			<InputGroup>
+						                			<Form.Control 
+						                				className="text-end"
+							                			type="number" 
+							                			placeholder="Enter Number of Stocks" 
+							                			value = {stocks}
+							                			onChange={e => setStocks(e.target.value)}
+							                			required
+						                			/>
+						                			<InputGroup.Text>pc/s</InputGroup.Text>
+						               			 	</InputGroup>
+						            			</Form.Group>
+						            		</Col>
+						            	</Row>
+						            </div>
+						            <div className="text-center">
+						        	    { 
+						        	    	isActive ? 
+						        	    	<Button variant="success" type="submit" id="submitBtn">
+						        	    		Update Product
+						        	    	</Button>
+						        	        : 
+						        	        <Button variant="danger" type="submit" id="submitBtn" disabled>
+						        	        	Update Product
+						        	        </Button>
+						        	    }
+										<Button className="m-2" onClick={backButton} variant="danger">
+					        	    		Cancel
+					        	    	</Button>
+					        	    </div>
+						        </Form>
+				        	</Card.Body>
+				        </Card>
+			        </Col>
+			    </Row>
+			</Container> 
 	   	</>
     	:
-    	    <Navigate to="/products" />
+    	<Navigate to="/products" />
 	    	
     )
 

@@ -1,38 +1,38 @@
  
 import { Row, Col,  ButtonGroup, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-// import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-// import UserContext from '../UserContext';
 import FeaturedProducts from '../components/FeaturedProducts'
+// import { useEffect, useState, useContext } from 'react';
+// import UserContext from '../UserContext';
 
-export default function ActiveProducts (){
 
-	const [products, setProducts] =useState([])
+export default function ActiveProducts() {
 
-	useEffect(()=>{
+	const [products, setProducts] = useState([])
+
+	useEffect(() => {
 
 	fetch(`${process.env.REACT_APP_API_URL}/products/active`)
-	.then(res=>res.json())
-	.then(data=>{
+		.then(res => res.json())
+		.then(data => {
 
-	setProducts(data.reverse());
+			setProducts(data.reverse());
 
-	const productArr = (data.map(product => {
+			const productArr = (data.map(product => {
+				return (
+					<ProductCard
+						productProp={product}
+						key={product._id}
+					/>
+				)
+			}))
+			setProducts(productArr)
+		})
+	}, [products])
 
-		return (
-
-			<ProductCard productProp={product} key={product._id}/>
-			)
-		}))
-		setProducts(productArr)
-	})
-
-	},[products])
-
-
-	return(
+	return (
 
 		<div className="mt-5">
 			<Row>
@@ -42,32 +42,26 @@ export default function ActiveProducts (){
 					:*/}
 					<>	
 						<h4 className="productsMain text-center">PRODUCTS</h4>
-
-								<div className="text-center">
-
-								<ButtonGroup className="mt-3 mb-5">
-
-									<Button as={Link} to="/products" variant="primary">
-										All GPUs
-									</Button>
-									<Button as={Link} to="/products/nvidia" variant="secondary">
-										NVIDIA
-									</Button>
-      								<Button as={Link} to="/products/amd" variant="secondary">
-      									AMD
-      								</Button>
-     								<Button as={Link} to="/products/intel" variant="secondary">
-     									INTEL
-     								</Button>
-
-    							</ButtonGroup>
-
-    							</div>
-
-						<div className="prodSection flex-row">
-						<Row className="prodRow" xs={2} md={3}>
-							{products}	
-						</Row>
+						<div className="text-center">
+							<ButtonGroup className="mt-3 mb-5">
+								<Button as={Link} to="/products" variant="primary">
+									All GPUs
+								</Button>
+								<Button as={Link} to="/products/nvidia" variant="secondary">
+									NVIDIA
+								</Button>
+								<Button as={Link} to="/products/amd" variant="secondary">
+									AMD
+								</Button>
+								<Button as={Link} to="/products/intel" variant="secondary">
+									INTEL
+								</Button>
+							</ButtonGroup>
+						</div>
+						<div className="flex-row">
+							<Row xs={2} md={3}>
+								{products}	
+							</Row>
 						</div>
 					</>
 				</Col>

@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react';
+
+import { faShoppingCart, faHome, faStore, faExternalLink, faUser, faPen, faGear } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import UserContext from '../UserContext';
 import '../css/AppNavbar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faHome, faStore, faExternalLink, faUser, faPen, faGear } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function AppNavbar() {
@@ -12,7 +13,6 @@ export default function AppNavbar() {
 	const { user } = useContext(UserContext);
 
 	const [show, setShow] = useState(false);
-
   	const handleClose = () => setShow(false);
   	const handleShow = () => setShow(true);
 
@@ -93,5 +93,6 @@ export default function AppNavbar() {
 	        </Navbar.Collapse>
 	      </Container>
 	    </Navbar>
+
 	)
 }

@@ -1,19 +1,18 @@
+
 import { Form, Button, Container, Row, Col, Card, FloatingLabel } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../UserContext';
 import Swal from 'sweetalert2';
 
+
 export default function Login() {
+
+  const { user, setUser } = useContext(UserContext);
 
   const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
   const [isActive, setIsActive] = useState ('');
-
-  // console.log(email);
-  // console.log(password);
-
-  const { user, setUser } = useContext(UserContext);
 
   function authenticate(e) {
 
@@ -35,8 +34,7 @@ export default function Login() {
       console.log("Data from login fetch:")  
       console.log(data);
 
-        if(typeof data.access !== "undefined"){
-
+        if (typeof data.access !== "undefined") {
           localStorage.setItem('token', data.access)
           localStorage.setItem('userId', data.id);
           localStorage.setItem('isAdmin', data.isAdmin);
@@ -44,22 +42,19 @@ export default function Login() {
           retrieveUserDetails(data.access)
 
           Swal.fire({
-            title: "Login Successful!",
+            title: `Welcome ${data.firstName}!`,
             icon: "success",
-            text: "Welcome to the GPU Online Shop!"
+            text: "It's time for a new GPU!",
+            confirmButtonColor: "#183153"
           });
-
-        }else{
-
+        } else {
           Swal.fire({
             title: "Login Failed!",
             icon: "error",
             text: "Check your email and password!" 
           });
-          
         }
       })
-
     
       const retrieveUserDetails = (token) => {
 
@@ -69,8 +64,8 @@ export default function Login() {
             Authorization: `Bearer ${token}`
           }
         })
-        .then(res=>res.json())
-        .then(data=>{
+        .then(res => res.json())
+        .then(data => {
         
         console.log("Data from bearer token fetch:");
         console.log(data);
@@ -81,33 +76,24 @@ export default function Login() {
             email: data.email,
             firstName: data.firstName,
             lastName: data.lastName,
-            mobileNo: data.mobileNo
+            mobileNo: data.mobileNo,
+            cart: data.cart
           });
-
         })
-
       }
-
       // setEmail("");
       setPassword("");
-
-
   }
 
-  useEffect(()=>{
+  useEffect(() => {
 
-    if(email !== "" && password !== ""){
+    if (email !== "" && password !== "") {
       setIsActive(true)
     } else {
       setIsActive(false)
     }
  
   }, [email, password])
-
-
-  // console.log("User details set for current session:");
-  // console.log(user);
-
 
   return (
 
@@ -121,59 +107,51 @@ export default function Login() {
             
         </Col>
         <Col md={12} lg={5}>
-
           <Card className="p-2 mb-3 mt-5" border="dark">
             <Card.Header as="h4">Log In</Card.Header>
             <Card.Body>
-
-                <Form className="mt-3" onSubmit={(e)=>authenticate(e)}>
-
+                <Form className="mt-3" onSubmit={e => authenticate(e)}>
                   <Form.Group className="mb-4 " controlId="userEmail">
-                    {/*<Form.Label>Email address</Form.Label>*/}
-                  <FloatingLabel
-                    controlId="floatingEmail"
-                    label="Email address"
-                  >  
+                    <FloatingLabel
+                      controlId="floatingEmail"
+                      label="Email address"
+                    >  
                     <Form.Control
-                    type="email"
-                    placeholder="Email address"
-                    value={email}
-                    onChange={e=>setEmail(e.target.value)}
-                    required
+                      type="email"
+                      placeholder="Email address"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      required
                     />
-                  </FloatingLabel>
+                    </FloatingLabel>
                   </Form.Group>
-
                   <Form.Group className="mb-3" controlId="password">
-                    {/*<Form.Label>Password</Form.Label>*/}
-                  <FloatingLabel
-                    controlId="floatingPassword"
-                    label="Password"
-                  >
+                    <FloatingLabel
+                      controlId="floatingPassword"
+                      label="Password"
+                    >
                     <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={e=>setPassword(e.target.value)}
-                    required
-                      />
-                  </FloatingLabel>
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      required
+                    />
+                    </FloatingLabel>
                   </Form.Group>
-
                   <div className="text-center">
-                  { isActive ?
-                  <Button width="50" variant="success" type="submit" id="submitBtn">
-                  Sign In
-                  </Button>
-                  :
-                  <Button width="50" variant="danger" type="submit" id="submitBtn" disabled>
-                  Sign In
-                  </Button>
-                  }
+                    { 
+                      isActive ?
+                      <Button width="50" variant="success" type="submit" id="submitBtn">
+                        Sign In
+                      </Button>
+                      :
+                      <Button width="50" variant="danger" type="submit" id="submitBtn" disabled>
+                        Sign In
+                      </Button>
+                    }
                   </div>
-
                 </Form>
-
             </Card.Body>
             <Card.Footer className="text-center">
                   Don't have an account? <a href="/register">Register</a>
@@ -182,7 +160,6 @@ export default function Login() {
         </Col>
       </Row>
     </Container>
-
-
-  );
+    
+  )
 }

@@ -25,6 +25,10 @@
   text-align: center;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 body, html {
   font-family: 'Lexend', sans-serif !important;
   -moz-osx-font-smoothing: grayscale;
@@ -80,6 +84,10 @@ body, html {
   color: var(--link-blue) !important;
   border: none !important;
   font-weight: bold !important;
+}
+
+.yourCartIsEmpty {
+  font-size: 22px !important;
 }
 
 .btn-danger {

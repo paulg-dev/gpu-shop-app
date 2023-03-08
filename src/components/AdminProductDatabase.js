@@ -1,14 +1,15 @@
-import { useContext, useState, useEffect } from "react";
+
 import { Table, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
+import { useContext, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
-import UserContext from "../UserContext";
 import AdminDashboard from './AdminDashboard';
+import UserContext from "../UserContext";
 
 import '../App.css'
 
 import Swal from "sweetalert2";
 
-export default function AllProducts(){
+export default function AllProducts() {
 
 	const {user} = useContext(UserContext);
 
@@ -16,7 +17,7 @@ export default function AllProducts(){
 
 	const fetchData = () => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/`, {
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
@@ -26,85 +27,107 @@ export default function AllProducts(){
 
 			setAllProducts(data.reverse());
 			
-			// console.log(data);
-
 			setAllProducts(data.map((product, index) => {
-
 
 				const priceFormatted = product.price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
 
-				return(
-					<tr key={product._id} className="prodTableRow">
+				return (
+					<tr key={product._id}>
 						{/*<td>{product._id}</td>*/}
 						<td>{index + 1}</td>
-						<td className="hideOnSmall"><div>
-
+						<td className="hideOnSmall">
 							{
-									(product.brand !== "nvidia" && product.brand !== "amd")?
+								(product.brand !== "nvidia" && product.brand !== "amd") ?
+								<img
+									className="brandImg"
+									src={require('../images/intel.png')}
+									alt="intel"
+								/>
+								:
+								<>
+									{
+										(product.brand !== "nvidia") ?
 										<img
 											className="brandImg"
-											src={require('../images/intel.png')}
-											alt="intel"
+											src={require('../images/amd.png')}
+											alt="amd"
 										/>
 										:
-										<>
-											{
-												(product.brand !== "nvidia") ?
-													<img
-														className="brandImg"
-														src={require('../images/amd.png')}
-														alt="amd"
-													/>
-													:
-													<img
-														className="brandImg"
-														src={require('../images/nvidia.png')}
-														alt="nvidia"
-													/>
-											}
-										</>
+										<img
+											className="brandImg"
+											src={require('../images/nvidia.png')}
+											alt="nvidia"
+										/>
+									}
+								</>
 							}
-
-
-						</div></td>
-						<td><div><Button className="prodNameButton" as={Link} to={`/products/${product._id}`}>{product.name}</Button></div></td>
-						{/*<td>{product.description}</td>*/}
-						<td className="hideOnSmall"><div>{priceFormatted}</div></td>
-						<td><div>{product.stocks}</div></td>
-						<td className="hideOnSmall"><div><div>{product.isListed ? "Active" : "Inactive"},</div><div className="mt-3"> {product.isFeatured ? "Featured" : "Not Feautured"}</div></div></td>
+						</td>
 						<td>
-								
-								<ButtonGroup vertical>
-
+							<Button className="prodNameButton" as={Link} to={`/products/${product._id}`}>
+								{product.name}
+							</Button>
+						</td>
+						{/*<td>{product.description}</td>*/}
+						<td className="hideOnSmall">
+							{priceFormatted}
+						</td>
+						<td>{product.stocks}</td>
+						<td className="hideOnSmall">
+								<div>
 									{
-										(product.isListed)
-										?	
-										<>
-										<Button className="py-2 px-1" variant="danger" size="sm" onClick = {() => archive(product._id, product.name)}>Archive</Button>
-										</>
-										:
-										<> 
-										<Button className="py-2 px-1" variant="success" size="sm" onClick = {() => unarchive(product._id, product.name)}>Activate</Button>
-										</>
-									}
-
+										product.isListed ? "Active" : "Inactive"
+									},
+								</div>
+								<div className="mt-3">
 									{
-										(product.isFeatured)
-										?	
-										<>
-										<Button className="py-2 px-1 mt-1" variant="danger" size="sm" onClick = {() => removeFeatured(product._id, product.name)}>Remove From Featured</Button>
-										</>
-										:
-										<>
-										<Button className="py-2 px-1 mt-1" variant="success" size="sm" onClick = {() => addFeatured(product._id, product.name)}>Add to Featured</Button>
-										</>
+										product.isFeatured ? "Featured" : "Not Feautured"
 									}
-
-     								<Button variant="primary" className="mt-1" as={Link} to={`/editProduct/${product._id}`}>Edit</Button>
-
-
-    							</ButtonGroup>
-
+								</div>
+						</td>
+						<td>
+							<ButtonGroup vertical>
+								{
+									(product.isListed) ?	
+									<Button
+										className="py-2 px-1"
+										variant="danger"
+										size="sm"
+										onClick = {() => archive(product._id, product.name)}
+									>
+										Archive
+									</Button>
+									:
+									<Button
+										className="py-2 px-1"
+										variant="success"
+										size="sm"
+										onClick = {() => unarchive(product._id, product.name)}
+									>
+										Activate
+									</Button>
+								}
+								{
+									(product.isFeatured) ?	
+									<Button 
+										className="py-2 px-1 mt-1"
+										variant="danger"
+										size="sm"
+										onClick = {() => removeFeatured(product._id, product.name)}
+									>
+										Remove From Featured
+									</Button>
+									:
+									<Button
+										className="py-2 px-1 mt-1"
+										variant="success"
+										size="sm"
+										onClick = {() => addFeatured(product._id, product.name)}
+									>
+										Add to Featured
+									</Button>
+								}
+ 								<Button variant="primary" className="mt-1" as={Link} to={`/editProduct/${product._id}`}>Edit</Button>
+							</ButtonGroup>
 						</td>
 					</tr>
 				)
@@ -115,10 +138,7 @@ export default function AllProducts(){
 
 	const archive = (productId, productName) => {
 
-		console.log(productId);
-		console.log(productName);
-
-		fetch(`${process.env.REACT_APP_API_URL}/products/archive/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/archive/${productId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -132,15 +152,15 @@ export default function AllProducts(){
 		.then(data =>{
 			console.log(data);
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Archive Succesful!",
 					icon: "success",
-					text: `${productName} is now inactive.`
+					text: `${productName} is now inactive.`,
+					confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Archive Unsuccessful!",
 					icon: "error",
@@ -152,11 +172,8 @@ export default function AllProducts(){
 
 
 	const unarchive = (productId, productName) => {
-		
-		console.log(productId);
-		console.log(productName);
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/activate/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/activate/${productId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -167,18 +184,17 @@ export default function AllProducts(){
 			}),
 		})
 		.then(res => res.json())
-		.then(data =>{
-			console.log(data);
+		.then(data => {
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Unarchive Succesful!",
 					icon: "success",
-					text: `${productName} is now active.`
+					text: `${productName} is now active.`,
+					confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Unarchive Unsuccessful!",
 					icon: "error",
@@ -191,10 +207,7 @@ export default function AllProducts(){
 
 	const removeFeatured = (productId, productName) => {
 
-		console.log(productId);
-		console.log(productName);
-
-		fetch(`${process.env.REACT_APP_API_URL}/products/removeFeatured/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/removeFeatured/${productId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -205,18 +218,18 @@ export default function AllProducts(){
 			})
 		})
 		.then(res => res.json())
-		.then(data =>{
-			console.log(data);
+		.then(data => {
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Change Succesful!",
 					icon: "success",
-					text: `${productName} is removed from the list of featured products.`
+					html: `<strong> ${productName} </strong> <br>
+				  		is removed from the list of featured products.`,
+				  	confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Change Unsuccessful!",
 					icon: "error",
@@ -227,13 +240,9 @@ export default function AllProducts(){
 	}
 
 
-
 	const addFeatured = (productId, productName) => {
-		
-		console.log(productId);
-		console.log(productName);
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/addFeatured/${productId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/products/addFeatured/${productId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -244,18 +253,18 @@ export default function AllProducts(){
 			}),
 		})
 		.then(res => res.json())
-		.then(data =>{
-			console.log(data);
+		.then(data => {
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Change Succesful!",
 					icon: "success",
-					text: `${productName} is now added to list of featured products.`
+					html: `<strong> ${productName} </strong> <br>
+				  		is added to the list of featured products.`,
+				  	confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Change Unsuccessful!",
 					icon: "error",
@@ -272,25 +281,22 @@ export default function AllProducts(){
 	})
 
 
+	return (
 
-	return(
-
-		(user.isAdmin)
-		?
+		(user.isAdmin) ?
 		<>
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
             		<AdminDashboard />
         		</Col>
-        		
         		<Col md={12} lg={8}>
         			<div className="dataLabel mt-4 text-center">
-        			PRODUCT DATABASE
+        				PRODUCT DATABASE
         			</div>
         			<Container className="dataTable">
 	        			<Table className="text-center mt-4 align-middle" width="100%" bordered striped hover>
-			     			<thead className="table-dark prodTableHead">
+			     			<thead className="table-dark">
 			       				<tr>
 			         			{/*<th>Product ID</th>*/}
 			         			<th width="6%">#</th>
@@ -303,7 +309,7 @@ export default function AllProducts(){
 			         			<th width="15%">Actions</th>
 			       				</tr>
 			     			</thead>
-			     			<tbody className="prodTableBody">
+			     			<tbody>
 			       				{ allProducts }
 			     			</tbody>
 			   			</Table>
@@ -311,9 +317,9 @@ export default function AllProducts(){
                 </Col>
       		</Row>
    		</Container>
-			
 		</>
 		:
 		<Navigate to="/products" />
+
 	)
 }

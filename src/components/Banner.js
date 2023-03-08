@@ -1,11 +1,10 @@
+
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
 import '../App.css';
 
-export default function Banner({bannerProp}){
 
-	// console.log(bannerProp);
+export default function Banner({bannerProp}) {
 
 	const {title, content, destination, label} = bannerProp;
 

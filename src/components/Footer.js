@@ -1,24 +1,24 @@
-import { Row, Col} from 'react-bootstrap';
 
+import { Row, Col } from 'react-bootstrap';
 import '../css/Footer.css'
 
-export default function Footer(){
+export default function Footer() {
 
 	return (
 
 		<div className="footerDiv text-center mt-5">
 			<Row>
 				<Col>
-				Official Sites
+					Official Sites
 				</Col>
 				<Col>
-				Downloads
+					Downloads
 				</Col>
 				<Col>
-				Partner Shops
+					Partner Shops
 				</Col>
 				<Col>
-				Forums
+					Forums
 				</Col>
 			</Row>
 		</div>	

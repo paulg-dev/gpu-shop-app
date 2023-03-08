@@ -1,34 +1,32 @@
-import { useContext, useState, useEffect } from "react";
-import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
-import UserContext from "../UserContext";
-import AdminDashboard from './AdminDashboard';
 
+import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
+import { useContext, useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import AdminDashboard from './AdminDashboard';
+import UserContext from "../UserContext";
+import Swal from "sweetalert2";
 import '../css/Users.css'
 
-import Swal from "sweetalert2";
 
-export default function Users(){
+export default function Users() {
 
 	const {user} = useContext(UserContext);
 
 	const [allUsers, setAllUsers] = useState([]);
 
-	const fetchData = () =>{
+	const fetchData = () => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/users/`,{
+		fetch(`${process.env.REACT_APP_API_URL}/users/`, {
 			headers:{
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
 			}
 		})
 		.then(res => res.json())
 		.then(data => {
-			
-			// console.log(data);
 
 			setAllUsers(data.map((user, index) => {
 
-				return(
+				return (
 					<tr key={user._id}>
 						<td>{index + 1}</td>
 						<td className="hideOnSmall">{user.firstName}</td>
@@ -39,39 +37,38 @@ export default function Users(){
 								placement="left"
 								overlay={
 									<Popover>
-									<Popover.Body>
-										User ID: {user._id}
-									</Popover.Body>
+										<Popover.Body>
+											User ID: {user._id}
+										</Popover.Body>
 									</Popover>
 								}
 							>
-							
 								<Button className="userEmail">
-								{user.email}
+									{user.email}
 								</Button>
 							</OverlayTrigger>	
 						</td>
 						<td className="hideOnSmall">{user.mobileNo}</td>
 						<td className="hideOnSmall">{user.isAdmin ? "Admin" : "User"}</td>
 						<td>
-
 							{
-
-								(user.isAdmin)
-								?	
-									<>
-
-										<Button variant="secondary" size="sm" onClick ={() => notAdmin(user._id, user.firstName, user.lastName)}>to User</Button>
-
-									</>
+								(user.isAdmin) ?	
+								<Button
+									variant="secondary"
+									size="sm"
+									onClick ={() => notAdmin(user._id, user.firstName, user.lastName)}
+								>
+									to User
+								</Button>
 								:
-									<>
-
-										<Button variant="primary" size="sm" onClick ={() => admin(user._id, user.firstName, user.lastName)}>to Admin</Button>
-
-									</>
+								<Button
+									variant="primary"
+									size="sm"
+									onClick ={() => admin(user._id, user.firstName, user.lastName)}
+								>
+									to Admin
+								</Button>
 							}
-
 						</td>
 					</tr>
 				)
@@ -80,12 +77,12 @@ export default function Users(){
 	}
 
 
-	const admin = (userId, userName, userLName) =>{
+	const admin = (userId, userName, userLName) => {
 
 		console.log(userId);
 		console.log(userName);
 
-		fetch(`${process.env.REACT_APP_API_URL}/users/updateAdmin/${userId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/users/updateAdmin/${userId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -96,18 +93,17 @@ export default function Users(){
 			})
 		})
 		.then(res => res.json())
-		.then(data =>{
-			console.log(data);
+		.then(data => {
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Change Succesful!",
 					icon: "success",
-					text: `${userName} ${userLName} is now an admin.`
+					text: `${userName} ${userLName} is now an admin.`,
+					confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Change Unsuccessful!",
 					icon: "error",
@@ -118,11 +114,9 @@ export default function Users(){
 	}
 
 
-	const notAdmin = (userId, userName, userLName) =>{
-		console.log(userId);
-		console.log(userName);
+	const notAdmin = (userId, userName, userLName) => {
 
-		fetch(`${process.env.REACT_APP_API_URL}/users/updateUser/${userId}`,{
+		fetch(`${process.env.REACT_APP_API_URL}/users/updateUser/${userId}`, {
 			method: "PUT",
 			headers:{
 				"Content-Type": "application/json",
@@ -133,18 +127,17 @@ export default function Users(){
 			})
 		})
 		.then(res => res.json())
-		.then(data =>{
-			console.log(data);
+		.then(data => {
 
-			if(data){
+			if (data) {
 				Swal.fire({
 					title: "Change Succesful!",
 					icon: "success",
-					text: `${userName} ${userLName} is now a regular user.`
+					text: `${userName} ${userLName} is now a regular user.`,
+					confirmButtonColor: "#183153"
 				})
 				fetchData();
-			}
-			else{
+			} else {
 				Swal.fire({
 					title: "Unarchive Unsuccessful!",
 					icon: "error",
@@ -161,19 +154,18 @@ export default function Users(){
 	})
 
 
-	return(
-		(user.isAdmin)
-		?
+	return (
+		
+		(user.isAdmin) ?
 		<>
 		<Container>
       		<Row>
         		<Col md={12} lg={4}>
             		<AdminDashboard />
         		</Col>
-        		
         		<Col md={12} lg={8}>
         			<div className="dataLabel mt-4 text-center">
-        			USER DATABASE
+        				USER DATABASE
         			</div>
         			<div>
 						<Container className="dataTable">
