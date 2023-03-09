@@ -379,6 +379,16 @@ export default function ProductView() {
 				</div>
 		     </Col>
 		  </Row>
+		  <Row className="mt-4">
+		  	<Card>
+		  		<Card.Header>
+		  			<h4 className="pt-2"> SPECIFICATIONS </h4>
+		  		</Card.Header>
+		  		<Card.Body>
+		  			This section is for displaying product specifications in future updates.
+		  		</Card.Body>
+		  	</Card>
+		  </Row>
 		</Container>
 	)
 }

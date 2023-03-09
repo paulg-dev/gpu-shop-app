@@ -101,13 +101,13 @@ export default function Login() {
     ?
     <Navigate to="/" />
     :
-    <Container>
+    <Container className="loginContainer">
       <Row>
         <Col md={12} lg={7}>
             
         </Col>
         <Col md={12} lg={5}>
-          <Card className="p-2 mb-3 mt-5" border="dark">
+          <Card className="p-2" border="dark">
             <Card.Header as="h4">Log In</Card.Header>
             <Card.Body>
                 <Form className="mt-3" onSubmit={e => authenticate(e)}>

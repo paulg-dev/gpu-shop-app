@@ -24,6 +24,11 @@
   text-align: center;
 }
 
+.mainContainer {
+  min-height: calc(100vh - 95px) !important;
+  align-items: center;
+}
+
 a {
   text-decoration: none !important;
 }
@@ -151,4 +156,8 @@ body, html {
 .editQty {
   background: none !important;
   color: var(--link-blue);
+}
+
+.loginContainer {
+  padding-top: calc(((100vh - 416px)/2) - 92px) !important;
 }

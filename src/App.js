@@ -22,7 +22,7 @@ import AdminDashboard from './components/AdminDashboard';
 import AdminProductDatabase from './components/AdminProductDatabase';
 import AdminUserDatabase from './components/AdminUserDatabase';
 import AdminOrderDatabase from './components/AdminOrderDatabase';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import './App.css';
 
 
@@ -71,7 +71,7 @@ function App() {
     <UserProvider value = {{user, setUser, unsetUser}}>
         <Router>
           <AppNavbar />
-          <Container>
+          <Container className="mainContainer">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
@@ -93,7 +93,7 @@ function App() {
               <Route path="*" element={<Error />} />
             </Routes>
           </Container>
-          {/*<Footer />*/}
+          <Footer />
         </Router>
     </UserProvider>
 

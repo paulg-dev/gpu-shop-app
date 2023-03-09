@@ -1,7 +1,40 @@
 
+.footerContainer {
+	background: linear-gradient(to top, rgba(44, 62, 80, 98%), rgba(44, 62, 80, 90%), rgba(44, 62, 80, 82%));
+}
+
 .footerDiv {
-	background-color: gray;
-	position: relative;
-    bottom: 0;
-    left: 0;
+	background-color: none;
+    width: 90%;
+    max-width: 1550px;
+    margin: 0 auto;
+    color: var(--gen-white);
+}
+
+ul > li {
+	list-style-type: disclosure-closed;
+	text-align: start;
+}
+
+.footerHeader {
+	text-align: center;
+	letter-spacing: 2px;
+}
+
+.footerLine {
+	margin: 25px 60px !important;
+}
+
+.foooterLinksLine {
+	margin: 20px 80px !important;
+}
+
+.footerSocials {
+	width: 28px;
+	padding: 0px 5px;
+}
+
+.footerLinks {
+	color: var(--nvidia-green);
+	letter-spacing: 1px;
 }

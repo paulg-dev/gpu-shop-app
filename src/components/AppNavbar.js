@@ -17,7 +17,7 @@ export default function AppNavbar() {
   	const handleShow = () => setShow(true);
 
 	return (
-		<Navbar className="nav-gradient" expand="lg false" sticky="top" collapseOnSelect>
+		<Navbar className="nav-gradient" expand="lg false" sticky="top" variant="dark" collapseOnSelect>
 	      <Container>
 	        <Navbar.Brand as={Link} to="/">
 	        	<img className="navbarLogo" src={require("../images/navbarLogo.png")} alt="GPU_Shop_Logo"/>
@@ -61,16 +61,16 @@ export default function AppNavbar() {
       							>
 
         						<Modal.Header>
-          						<Modal.Title>Are you sure you want to log out?</Modal.Title>
+          						<Modal.Title>Sure you want to log out?</Modal.Title>
         						</Modal.Header>
         						<Modal.Body className="m-2 text-center">
 
  
         							<Button className="mx-2" variant="primary" as={Link} to="/logout" onClick={handleClose}>
-        							Confirm
+        								Logout
         							</Button>
         							<Button className="mx-2" variant="secondary" onClick={handleClose}>
-        							Cancel
+        								Cancel
           							</Button>
 
         						</Modal.Body>

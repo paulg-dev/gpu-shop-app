@@ -162,13 +162,24 @@ export default function AddProduct() {
 							checked={isListed}
 							onChange={handleListChange}
 						/>
-	        			<Form.Check 
-	        				className="mx-auto"
-	        				type="checkbox"
-							label="Feature Product"
-							checked={isFeatured}
-							onChange={handleFeatureChange}
-						/>
+						{
+							isListed ?
+							<Form.Check 
+		        				className="mx-auto"
+		        				type="checkbox"
+								label="Feature Product"
+								checked={isFeatured}
+								onChange={handleFeatureChange}
+							/>
+							:
+							<Form.Check 
+		        				className="mx-auto"
+		        				type="checkbox"
+								label="Feature Product"
+								checked={false}
+								disabled
+							/>
+						}
 					</Col>
 	            </Row>
             	<Row>
