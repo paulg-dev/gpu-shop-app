@@ -73,16 +73,16 @@ export default function AllProducts() {
 						</td>
 						<td>{product.stocks}</td>
 						<td className="hideOnSmall">
-								<div>
-									{
-										product.isListed ? "Active" : "Inactive"
-									},
-								</div>
-								<div className="mt-3">
-									{
-										product.isFeatured ? "Featured" : "Not Feautured"
-									}
-								</div>
+							<div>
+								{
+									product.isListed ? "Active" : "Inactive"
+								},
+							</div>
+							<div className="mt-3">
+								{
+									product.isFeatured ? "Featured" : "Not Feautured"
+								}
+							</div>
 						</td>
 						<td>
 							<ButtonGroup vertical>
@@ -107,24 +107,40 @@ export default function AllProducts() {
 									</Button>
 								}
 								{
-									(product.isFeatured) ?	
-									<Button 
-										className="py-2 px-1 mt-1"
-										variant="danger"
-										size="sm"
-										onClick = {() => removeFeatured(product._id, product.name)}
-									>
-										Remove From Featured
-									</Button>
+									(product.isListed) ?
+									<>
+									{
+										(product.isFeatured) ?	
+										<Button 
+											className="py-2 px-1 mt-1"
+											variant="danger"
+											size="sm"
+											onClick = {() => removeFeatured(product._id, product.name)}
+										>
+											Remove From Featured
+										</Button>
 									:
-									<Button
-										className="py-2 px-1 mt-1"
-										variant="success"
-										size="sm"
-										onClick = {() => addFeatured(product._id, product.name)}
-									>
-										Add to Featured
-									</Button>
+										<Button
+											className="py-2 px-1 mt-1"
+											variant="success"
+											size="sm"
+											onClick = {() => addFeatured(product._id, product.name)}
+										>
+											Add to Featured
+										</Button>
+									}
+									</>
+									:
+									<>
+										<Button
+											className="py-2 px-1 mt-1"
+											variant="success"
+											size="sm"
+											disabled
+										>
+											Add to Featured
+										</Button>
+									</>	
 								}
  								<Button variant="primary" className="mt-1" as={Link} to={`/editProduct/${product._id}`}>Edit</Button>
 							</ButtonGroup>
@@ -153,6 +169,19 @@ export default function AllProducts() {
 			console.log(data);
 
 			if (data) {
+
+				fetch(`${process.env.REACT_APP_API_URL}/products/removeFeatured/${productId}`, {
+					method: "PUT",
+					headers:{
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${localStorage.getItem('token')}`
+					},
+					body: JSON.stringify({
+						isFeatured: false
+					})
+				})
+				.then(res => res.json())
+
 				Swal.fire({
 					title: "Archive Succesful!",
 					icon: "success",

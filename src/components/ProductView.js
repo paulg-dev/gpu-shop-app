@@ -157,7 +157,7 @@ export default function ProductView() {
         		<Card>
 					<Card.Body>
 						<Form onSubmit={e => order(e)}>
-							<div className="text-end">
+							<div className="text-end productViewBrand">
 								{
 									(brand !== "nvidia" && brand !== "amd") ?
 										<a href="/products/intel">
@@ -191,19 +191,16 @@ export default function ProductView() {
 								}
 							</div>
 							<Card.Title className="prodName">{name}</Card.Title>
-							<Card.Subtitle className="mt-3">Description:</Card.Subtitle>
-							<Card.Text>{description}</Card.Text>
+							<Card.Text className="prodDescription mt-3">{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text className="prodPrice">{priceFormatted}</Card.Text>
 							
 							<div className="text-center">
 								<Row>
-									<Col className="text-end mt-1">
+									<Col sm={6} className="d-flex p-1 my-auto justify-content-center align-items-center">
 										Quantity:
-									</Col>
-									<Col>
 										<Form.Control
-			                				className="qtyInput text-center" 
+			                				className="qtyInput text-center mx-2" 
 				                			type="number"
 				                			min = {0}
 				                			max = {stocks}
@@ -213,7 +210,7 @@ export default function ProductView() {
 				                			required
 			                			/>
 									</Col>
-									<Col className = "text-muted mt-1">
+									<Col sm={6} className="d-flex p-1 my-auto text-muted justify-content-center align-items-center">
 										{
 											(stocks < 10) ?
 											<>

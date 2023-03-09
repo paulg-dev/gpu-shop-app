@@ -22,6 +22,20 @@ export default function AddProduct() {
 	const [stocks, setStocks] = useState(0)
     const [isActive, setIsActive] = useState(false);
 
+    const handleListChange = () => {
+    	setIsListed(!isListed)
+    	if (!isListed === false && isFeatured === true) {
+    		setIsFeatured(false);
+    	}
+  	};
+
+  	const handleFeatureChange = () => {
+    	setIsFeatured(!isFeatured)
+    	if (!isFeatured === true && isListed === false) {
+    		setIsFeatured(false);
+    	}
+  	};
+
 	function addProduct(e) {
 
 	    e.preventDefault();
@@ -61,6 +75,7 @@ export default function AddProduct() {
 	    		    title: "Error!",
 	    		    icon: "error",
 	    		    text: `A product with the name ${name} is already listed the the shop.`,
+	    		    confirmButtonColor: "#183153"
 	    		});
 	    	} else {
 	    		Swal.fire({
@@ -112,7 +127,7 @@ export default function AddProduct() {
 	                <Form.Label>Product Description</Form.Label>
 	                <Form.Control
 	                	as="textarea"
-	                	rows={3}
+	                	rows={4}
 		                placeholder="Enter Product Description" 
 		                value = {description}
 		                onChange={e => setDescription(e.target.value)}
@@ -127,7 +142,8 @@ export default function AddProduct() {
 		                onChange={e => setImageUrl(e.target.value)}
 	                />
 	            </Form.Group>
-	            <div className="d-flex p-2 mb-3 justify-content-center">
+	            <Row>
+	            	<Col sm={6} className="d-flex p-2 my-auto justify-content-center">
         			<Form.Select
         				className="mx-4 px-2"
         				required
@@ -137,25 +153,26 @@ export default function AddProduct() {
 							<option value="amd">AMD</option>
 							<option value="intel">INTEL</option>
 					</Form.Select>
-        			<Form.Check
-        				className="mx-4"
-						type="checkbox"
-						defaultChecked={true}
-						label="List Product"
-						value={isListed}
-						onChange={e => setIsListed(e.target.value)}
-					/>
-        			<Form.Check 
-        				className="mx-4"
-        				type="checkbox"
-						defaultChecked={false}
-						label="Feature Product"
-						value={isFeatured}
-						onChange={e => setIsFeatured(e.target.value)}
-					/>
-	            </div>
+					</Col>
+					<Col sm={6} className="d-flex p-2 my-auto justify-content-center">
+	        			<Form.Check
+	        				className="mx-auto"
+							type="checkbox"
+							label="List Product"
+							checked={isListed}
+							onChange={handleListChange}
+						/>
+	        			<Form.Check 
+	        				className="mx-auto"
+	        				type="checkbox"
+							label="Feature Product"
+							checked={isFeatured}
+							onChange={handleFeatureChange}
+						/>
+					</Col>
+	            </Row>
             	<Row>
-            		<Col>
+            		<Col xs={7}>
             			<Form.Group controlId="price" className="mb-3">
                 			<Form.Label>Product Price</Form.Label>
                 			<InputGroup>
@@ -164,7 +181,7 @@ export default function AddProduct() {
                 				className="text-end" 
 	                			type="number"
 	                			min = {0}
-	                			placeholder="Enter Product Price" 
+	                			placeholder="Price" 
 	                			value = {price}
 	                			onChange={e => setPrice(e.target.value)}
 	                			required
@@ -173,7 +190,7 @@ export default function AddProduct() {
                 			</InputGroup>
             			</Form.Group>
             		</Col>
-            		<Col>
+            		<Col xs={5}>
             			<Form.Group controlId="stocks" className="mb-3">
                 			<Form.Label>Stocks</Form.Label>
                 			<InputGroup>
@@ -181,7 +198,7 @@ export default function AddProduct() {
                 				className="text-end"
 	                			type="number"
 	                			min = {0}
-	                			placeholder="Enter Stocks" 
+	                			placeholder="Stocks" 
 	                			value = {stocks}
 	                			onChange={e => setStocks(e.target.value)}
 	                			required

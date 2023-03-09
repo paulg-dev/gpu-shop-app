@@ -50,18 +50,16 @@ export default function Orders() {
 							<td>{index + 1}</td>
 							<td className="hideOnSmall">{order.userId}</td>
 							<td>
-								<div>
 								<Button 
 									className="prodNameButton" 
 									as={Link} to={`/products/${order.products[i].productId}`}
 								>
 									{order.products[i].productName}
 								</Button>
-								</div>
 							</td>
-							<td><div>{order.products[i].quantity}</div></td>
-							<td><div>{priceFormatted}</div></td>
-							<td><div>{formatDate(order.orderedOn)}</div></td>
+							<td>{order.products[i].quantity}</td>
+							<td className="hideOnSmall">{priceFormatted}</td>
+							<td>{formatDate(order.orderedOn)}</td>
 						</tr>
 					)
 
@@ -99,7 +97,7 @@ export default function Orders() {
 			         						<th width="10%" className="hideOnSmall">Customer Id</th>
 			         						<th width="28%">Product</th>
 			         						<th width="10%">Qty</th>
-			         						<th width="24%">Order Amount</th>
+			         						<th width="24%" className="hideOnSmall">Order Amount</th>
 			         						<th width="24%">Order Date</th>
 			       						</tr>
 			           				</thead>

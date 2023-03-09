@@ -18,12 +18,25 @@ export default function EditProduct() {
 	const [description, setDescription] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
 	const [brand, setBrand] = useState('');
-	const [isListed, setIsListed] = useState(true);
+	const [isListed, setIsListed] = useState(false);
 	const [isFeatured, setIsFeatured] = useState(false);
 	const [price, setPrice] = useState(0);
 	const [stocks, setStocks] = useState(0);
     const [isActive, setIsActive] = useState(false);
 
+    const handleListChange = () => {
+    	setIsListed(!isListed)
+    	if (!isListed === false && isFeatured === true) {
+    		setIsFeatured(false);
+    	}
+  	};
+
+  	const handleFeatureChange = () => {
+    	setIsFeatured(!isFeatured)
+    	if (!isFeatured === true && isListed === false) {
+    		setIsFeatured(false);
+    	}
+  	};
 
 	function editProduct(e) {
 
@@ -72,7 +85,7 @@ export default function EditProduct() {
 	    setDescription('');
 	    setImageUrl('');
 	    setBrand('Select Brand');
-	    setIsListed(true);
+	    setIsListed(false);
 	    setIsFeatured(false);
 	    setPrice(0);
 	    setStocks(0);
@@ -165,63 +178,80 @@ export default function EditProduct() {
 							                onChange={e => setImageUrl(e.target.value)}
 						                />
 						            </Form.Group>
-						            <div className="d-flex p-2 mb-3 justify-content-center">
-				            			<Form.Select
-				            				className="mx-4 px-2"
-				            				required
-				            				value = {brand}
-				            				onChange={e => setBrand(e.target.value)}>
-			      								<option className="mx-3">Select Brand</option>
-			      								<option value="nvidia">NVIDIA</option>
-			      								<option value="amd">AMD</option>
-			      								<option value="intel">INTEL</option>
-		    							</Form.Select>
-				            			<Form.Check className="mx-4"
-		        							type="checkbox"
-		        							label="List Product"
-		      							/>
-				            			<Form.Check className="mx-4"
-				            				type="checkbox"
-		        							label="Feature Product"
-		      							/>
-						            </div>
-						            <div>
-						            	<Row>
-						            		<Col>
-						            			<Form.Group controlId="price" className="mb-3">
-						                			<Form.Label>Product Price</Form.Label>
-						                			<InputGroup>
-						                			<InputGroup.Text>₱</InputGroup.Text>
-						                			<Form.Control
-						                				className="text-end" 
-							                			type="number" 
-							                			placeholder="Enter Product Price" 
-							                			value = {price}
-							                			onChange={e => setPrice(e.target.value)}
-							                			required
-						                			/>
-						                			<InputGroup.Text>.00</InputGroup.Text>
-						                			</InputGroup>
-						            			</Form.Group>
-						            		</Col>
-						            		<Col>
-						            			<Form.Group controlId="stocks" className="mb-3">
-						                			<Form.Label>Stocks</Form.Label>
-						                			<InputGroup>
-						                			<Form.Control 
-						                				className="text-end"
-							                			type="number" 
-							                			placeholder="Enter Number of Stocks" 
-							                			value = {stocks}
-							                			onChange={e => setStocks(e.target.value)}
-							                			required
-						                			/>
-						                			<InputGroup.Text>pc/s</InputGroup.Text>
-						               			 	</InputGroup>
-						            			</Form.Group>
-						            		</Col>
-						            	</Row>
-						            </div>
+						            <Row className="mb-3">
+						            	<Col sm={6} className="d-flex p-2 my-auto justify-content-center">
+					            			<Form.Select
+					            				sm={6}
+					            				className="mx-4 px-2"
+					            				required
+					            				value = {brand}
+					            				onChange={e => setBrand(e.target.value)}>
+				      								<option className="mx-3">Select Brand</option>
+				      								<option value="nvidia">NVIDIA</option>
+				      								<option value="amd">AMD</option>
+				      								<option value="intel">INTEL</option>
+			    							</Form.Select>
+			    						</Col>
+			    						<Col sm={6} className="d-flex p-2 my-auto justify-content-center">
+					            			<Form.Check className="mx-auto"
+			        							type="checkbox"
+			        							label="List Product"
+			        							checked={isListed}
+			        							onChange={handleListChange}
+			      							/>
+			      							{
+			      								isListed ?
+			      								<Form.Check className="mx-auto"
+						            				type="checkbox"
+				        							label="Feature Product"
+				        							checked={isFeatured}
+				        							onChange={handleFeatureChange}
+			      								/>
+			      								:
+			      								<Form.Check className="mx-auto"
+						            				type="checkbox"
+				        							label="Feature Product"
+				        							checked={false}
+				        							disabled
+			      								/>
+			      							}
+			      						</Col>
+			      					</Row>
+					            	<Row className="mb-3">
+					            		<Col sm={6}>
+					            			<Form.Group controlId="price" className="my-1">
+					                			<Form.Label>Product Price</Form.Label>
+					                			<InputGroup>
+					                			<InputGroup.Text>₱</InputGroup.Text>
+					                			<Form.Control
+					                				className="text-end" 
+						                			type="number" 
+						                			placeholder="Enter Product Price" 
+						                			value = {price}
+						                			onChange={e => setPrice(e.target.value)}
+						                			required
+					                			/>
+					                			<InputGroup.Text className="editProductLabel">.00</InputGroup.Text>
+					                			</InputGroup>
+					            			</Form.Group>
+					            		</Col>
+					            		<Col sm={6}>
+					            			<Form.Group controlId="stocks" className="my-1">
+					                			<Form.Label>Stocks</Form.Label>
+					                			<InputGroup>
+					                			<Form.Control 
+					                				className="text-end"
+						                			type="number" 
+						                			placeholder="Enter Number of Stocks" 
+						                			value = {stocks}
+						                			onChange={e => setStocks(e.target.value)}
+						                			required
+					                			/>
+					                			<InputGroup.Text className="editProductLabel">pc/s</InputGroup.Text>
+					               			 	</InputGroup>
+					            			</Form.Group>
+					            		</Col>
+					            	</Row>
 						            <div className="text-center">
 						        	    { 
 						        	    	isActive ? 

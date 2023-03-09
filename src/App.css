@@ -18,7 +18,6 @@
   --amd-red: rgb(227, 27, 34);
   --nvidia-green: rgb(118, 185, 0);
   --intel-blue: rgb(8, 217, 214);
-  
 }
 
 .App {
@@ -117,7 +116,17 @@ body, html {
 }
 
 @media (max-width: 991px){
+  .showOnSmall {
+    display: block;
+  }
+
   .hideOnSmall {
+    display: none;
+  }
+}
+
+@media (min-width: 992px){
+  .showOnSmall {
     display: none;
   }
 }
@@ -130,9 +139,13 @@ body, html {
   width: 105px;
 }
 
+.editProductLabel {
+  justify-content: center;
+  width: 55px;
+}
+
 .dataTable {
   overflow-x: scroll;
-
 }
 
 .editQty {

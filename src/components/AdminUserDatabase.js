@@ -1,5 +1,7 @@
 
 import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
+import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import AdminDashboard from './AdminDashboard';
@@ -30,15 +32,19 @@ export default function Users() {
 					<tr key={user._id}>
 						<td>{index + 1}</td>
 						<td className="hideOnSmall">{user.firstName}</td>
-						<td>{user.lastName}</td>
+						<td className="hideOnSmall">{user.lastName}</td>
 						<td>
 							<OverlayTrigger
 								trigger="click"
-								placement="left"
+								placement="top"
 								overlay={
 									<Popover>
-										<Popover.Body>
-											User ID: {user._id}
+										<Popover.Body className="text-center">
+											User Id : {user._id}
+											<div className="showOnSmall">
+												<FontAwesomeIcon icon={faUser} /> {user.firstName} {user.lastName}<br />
+												<FontAwesomeIcon icon={faPhone} /> {user.mobileNo} 
+											</div>
 										</Popover.Body>
 									</Popover>
 								}
@@ -174,7 +180,7 @@ export default function Users() {
 		       					<tr>
 		       						<th>#</th>
 		         					<th className="hideOnSmall">First Name</th>
-		         					<th>Last Name</th>
+		         					<th className="hideOnSmall">Last Name</th>
 		         					<th>Email Address</th>
 		         					<th className="hideOnSmall">Mobile No.</th>
 		         					<th className="hideOnSmall">Role</th>

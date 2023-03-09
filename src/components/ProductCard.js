@@ -1,5 +1,4 @@
 
-
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 import { faChevronRight, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
