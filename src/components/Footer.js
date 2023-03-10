@@ -50,7 +50,7 @@ export default function Footer() {
 						<a href="https://www.linkedin.com/in/paulguzon3/" className="footerLinks">
 							<FontAwesomeIcon className="footerSocials" icon={faLinkedin} size="3x"/>
 						</a> &nbsp;
-						<a href="https://github.com/paulg-dev/" className="footerLinks">
+						<a href="https://paulg-dev.github.io/portfoliov2/" className="footerLinks">
 							<FontAwesomeIcon className="footerSocials" icon={faGithub} size="3x"/>
 						</a>
 					</Col>

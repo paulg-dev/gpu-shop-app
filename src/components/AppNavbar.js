@@ -1,7 +1,7 @@
 
 import { faShoppingCart, faHome, faStore, faExternalLink, faUser, faPen, faGear } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import UserContext from '../UserContext';
@@ -12,11 +12,33 @@ export default function AppNavbar() {
 
 	const { user } = useContext(UserContext);
 
+	const [cartCount, setCartCount] = useState(0);
 	const [show, setShow] = useState(false);
   	const handleClose = () => setShow(false);
   	const handleShow = () => setShow(true);
 
+  	useEffect(() => {
+		fetch(`${process.env.REACT_APP_API_URL}/users/viewCart`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem("token")}`
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			setCartCount(data);
+			const cartCounter = (data => {
+				return (
+					<Button className="nav-cart-counter bg-danger">
+						{data.length}
+					</Button>
+				)
+			})
+			setCartCount(cartCounter)
+		})
+	}, [cartCount])
+
 	return (
+
 		<Navbar className="nav-gradient" expand="lg false" sticky="top" variant="dark" collapseOnSelect>
 	      <Container>
 	        <Navbar.Brand as={Link} to="/">
@@ -32,50 +54,45 @@ export default function AppNavbar() {
 	            <Nav.Link as={Link} to="/products" eventKey="2">
 	            	<FontAwesomeIcon icon={faStore} /> &nbsp; Products
 	            </Nav.Link>
-	            
-	            {(user.id !== null) ?
-
+	            {
+	            	(user.id !== null) ?
 	            	<>
-	            		{(user.isAdmin) ?
+	            		{
+	            			(user.isAdmin) ?
 	            			<Nav.Link as={Link} to="/admin/allProducts" eventKey="3">
 	            				<FontAwesomeIcon icon={faGear} /> &nbsp; Manage
 	            			</Nav.Link>
-	            		:
-	            		<>
+	            			:
+	            			<>
 	            			<Nav.Link as={Link} to="/users/viewCart" eventKey="4">
-	            				<FontAwesomeIcon icon={faShoppingCart} /> &nbsp; Cart
+	            				<FontAwesomeIcon icon={faShoppingCart} />
+	            				&nbsp; Cart {cartCount}
 	            			</Nav.Link>
 	            			{/*<Nav.Link as={Link} to="/users/details">Profile</Nav.Link>*/}
-	            		< />
+	            			< />
 	            		}
-	            			<Nav.Link onClick={handleShow}>
-	            				<FontAwesomeIcon icon={faExternalLink} /> &nbsp; Logout
-	            			</Nav.Link>
-
-	            				<Modal
-        							show={show}
-        							onHide={handleClose}
-        							backdrop="static"
-        							keyboard={false}
-        							centered
-      							>
-
-        						<Modal.Header>
-          						<Modal.Title>Sure you want to log out?</Modal.Title>
-        						</Modal.Header>
-        						<Modal.Body className="m-2 text-center">
-
- 
-        							<Button className="mx-2" variant="primary" as={Link} to="/logout" onClick={handleClose}>
-        								Logout
-        							</Button>
-        							<Button className="mx-2" variant="secondary" onClick={handleClose}>
-        								Cancel
-          							</Button>
-
-        						</Modal.Body>
-
-      							</Modal>
+            			<Nav.Link onClick={handleShow}>
+            				<FontAwesomeIcon icon={faExternalLink} /> &nbsp; Logout
+            			</Nav.Link>
+            				<Modal
+    							show={show}
+    							onHide={handleClose}
+    							backdrop="static"
+    							keyboard={false}
+    							centered
+  							>
+	    						<Modal.Header>
+	      							<Modal.Title>Sure you want to log out?</Modal.Title>
+	    						</Modal.Header>
+	    						<Modal.Body className="m-2 text-center">
+	    							<Button className="mx-2" variant="primary" as={Link} to="/logout" onClick={handleClose}>
+	    								Logout
+	    							</Button>
+	    							<Button className="mx-2" variant="secondary" onClick={handleClose}>
+	    								Cancel
+	      							</Button>
+	    						</Modal.Body>
+  							</Modal>
 	            	</>
 	            	:
 	            	<>
@@ -87,12 +104,10 @@ export default function AppNavbar() {
 	            		</Nav.Link>
 	            	</>
 	            }
-
 	          </Nav>
-
 	        </Navbar.Collapse>
 	      </Container>
 	    </Navbar>
-
 	)
+
 }

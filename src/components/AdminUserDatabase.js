@@ -30,7 +30,7 @@ export default function Users() {
 
 				return (
 					<tr key={user._id}>
-						<td>{index + 1}</td>
+						<td className="sm-table-fontsize">{index + 1}</td>
 						<td className="hideOnSmall">{user.firstName}</td>
 						<td className="hideOnSmall">{user.lastName}</td>
 						<td>
@@ -49,16 +49,16 @@ export default function Users() {
 									</Popover>
 								}
 							>
-								<Button className="userEmail">
+								<Button className="user-email-button">
 									{user.email}
 								</Button>
 							</OverlayTrigger>	
 						</td>
 						<td className="hideOnSmall">{user.mobileNo}</td>
 						<td className="hideOnSmall">{user.isAdmin ? "Admin" : "User"}</td>
-						<td>
+						<td className="sm-table-fontsize">
 							{
-								(user.isAdmin) ?	
+								(user.isAdmin) ?
 								<Button
 									variant="secondary"
 									size="sm"

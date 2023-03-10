@@ -37,3 +37,9 @@ svg {
         width: 175px;
     }
 }
+
+.nav-cart-counter {
+    margin: 0px 2px !important;
+    padding: 0px 6px !important;
+    border-radius: 50px !important;
+}

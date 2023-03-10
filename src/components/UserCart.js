@@ -2,7 +2,7 @@
 import { Table, Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
 import UserProfile from './UserProfile';
@@ -29,58 +29,76 @@ export default function Orders() {
 		.then(data => {
 
 			setAllInCart(data.reverse());
-						
-			// eslint-disable-next-line
-			setAllInCart(data.map((cart, index) => {
 
-				for (let i=0; i<data.length; i++) {
+			console.log(data.length)
+			console.log(data)
 
-					const priceFormatted = cart.price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
-					const subTotalFormatted = cart.subTotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
-
+			if (data.length === 0) {
+				const cartEmpty = (data => {
 					return (
-
-						<tr key={cart._id}>
-							<td>{index + 1}</td>
-							{/*<td>
-								<Form.Check
-		            				type="checkbox"
-	    							defaultChecked={false}
-	      						/>
-	      					</td>*/}
-							<td>
-								<Button 
-									className="prodNameButton" 
-									as={Link} to={`/products/${cart.productId}`}
-								>
-								{cart.productName}
-								</Button>
-							</td>
-							<td className="hideOnSmall">{priceFormatted}</td>
-							<td> 
-								<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
-									<FontAwesomeIcon icon={faMinus} className="editQty" />
-								</Button>
-								&nbsp; {cart.quantity} &nbsp;
-								<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity + 1))}>
-									<FontAwesomeIcon icon={faPlus} className="editQty" />
-								</Button>
-							</td>
-							<td className="hideOnSmall">{subTotalFormatted}</td>
-							<td>
-								<ButtonGroup vertical>
-									<Button className="mb-1" variant="success" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
-	        	    					Checkout
-	        	    				</Button>
-			      					<Button variant="danger" onClick = {() => removeFromCart(cart.productId, cart.productName)}>
-			      						Remove
-			      					</Button>					
-		      					</ButtonGroup>
-							</td>
-						</tr>
+						<Container className="d-flex flex-column text-center mx-auto mt-4">
+							Your cart is empty.
+							<Button className="my-4 mx-auto" as={Link} to="/products">
+								Check Products
+							</Button>
+						</Container>
 					)
-				}
-			}))
+				})
+				setAllInCart(cartEmpty)
+			} else {
+						
+				// eslint-disable-next-line
+				setAllInCart(data.map((cart, index) => {
+
+					for (let i = 0; i < data.length; i++) {
+
+						const priceFormatted = cart.price.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
+						const subTotalFormatted = cart.subTotal.toLocaleString(undefined, { style: 'currency', currency: 'PHP' })
+
+						return (
+
+							<tr key={cart._id}>
+								<td className="sm-table-fontsize">{index + 1}</td>
+								{/*<td>
+									<Form.Check
+			            				type="checkbox"
+		    							defaultChecked={false}
+		      						/>
+		      					</td>*/}
+								<td>
+									<Button 
+										className="prodNameButton" 
+										as={Link} to={`/products/${cart.productId}`}
+									>
+										{cart.productName}
+									</Button>
+								</td>
+								<td className="hideOnSmall">{priceFormatted}</td>
+								<td> 
+									<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
+										<FontAwesomeIcon icon={faMinus} className="editQty" />
+									</Button>
+									&nbsp; {cart.quantity} &nbsp;
+									<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity + 1))}>
+										<FontAwesomeIcon icon={faPlus} className="editQty" />
+									</Button>
+								</td>
+								<td className="hideOnSmall">{subTotalFormatted}</td>
+								<td>
+									<ButtonGroup vertical>
+										<Button className="mb-1" variant="success" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
+		        	    					<FontAwesomeIcon icon={faCheck} />
+		        	    				</Button>
+				      					<Button variant="danger" onClick = {() => removeFromCart(cart.productId, cart.productName)}>
+				      						<FontAwesomeIcon icon={faTrashAlt} />
+				      					</Button>					
+			      					</ButtonGroup>
+								</td>
+							</tr>
+						)
+					}
+				}))
+			}
 		})
 	}
 
@@ -271,16 +289,11 @@ export default function Orders() {
 	        		</Col>
 	        		<Col md={12} lg={8}>
 	        			<div className="dataLabel mt-5 text-center">
-	        			CART
-	        			</div>{/*
-	        			{
-	        				(user.cart.length === 0) ?
-	        				<div className="text-center mt-4 yourCartIsEmpty">
-	        					Your cart is empty. <a href="/products">Start shopping!</a>
-	          				</div>
-	          				:
-	          				<>
-	          				*/}<div>
+	        				CART
+	        			</div>
+	        			<div>
+							{
+								allInCart.length >= 1 ?
 								<Container className="dataTable">
 									<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
 				     					<thead className="table-dark align-middle">
@@ -288,25 +301,28 @@ export default function Orders() {
 				       							<th width="6%">#</th>
 				         						{/*<th width="9%">Select</th>*/}
 				         						<th width="25%">Product Name</th>
-				         						<th className="hideOnSmall" width="15%">Price</th>
+				         						<th className="hideOnSmall" width="20%">Price</th>
 				         						<th width="18%">Quantity</th>
 				         						<th className="hideOnSmall" width="20%">Subtotal</th>
-				         						<th width="17%">Action</th>
+				         						<th width="12%">Action</th>
 				       						</tr>
 				           				</thead>
 				     	   				<tbody>
 				            				{ allInCart }
 				           				</tbody>
 				        			</Table>
-				    			</Container>
-				    		</div>
-				    		<div className="checkOutSelected text-end mx-4 mt-4">
-		          				{/*<Button variant="secondary" disabled>
-		        					Checkout Selected
-		          				</Button>*/}
-		          			</div>{/*
-		          			</>
-	          			}*/}
+			        			</Container>
+								:
+								<>
+									{allInCart}
+								</>
+		        			}
+			    		</div>
+			    		{/*<div className="checkOutSelected text-end mx-4 mt-4">
+			    			<Button variant="secondary" disabled>
+	        					Checkout Selected
+	          				</Button>
+	          			</div>*/}
 	        		</Col>
 	      		</Row>
 	    	</Container>

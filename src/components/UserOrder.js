@@ -48,9 +48,9 @@ export default function Orders(){
 					return (
 
 						<tr key={order._id}>
-							<td>{index + 1}</td>
+							<td className="sm-table-fontsize">{index + 1}</td>
 							<td className="hideOnSmall">{order._id}</td>
-							<td>
+							<td className="sm-table-fontsize">
 								{order.products[i].quantity} pc/s of
 								<Button 
 									className="prodNameButton" 
@@ -59,8 +59,8 @@ export default function Orders(){
 									{order.products[i].productName}
 								</Button>
 							</td>
-							<td>{priceFormatted}</td>
-							<td>{formatDate(order.orderedOn)}</td>
+							<td className="sm-table-fontsize">{priceFormatted}</td>
+							<td className="sm-table-fontsize">{formatDate(order.orderedOn)}</td>
 						</tr>
 
 					)
