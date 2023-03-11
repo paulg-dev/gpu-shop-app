@@ -1,8 +1,11 @@
 
-import { Button, ButtonGroup, Container, Card, Form, InputGroup } from "react-bootstrap";
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, ButtonGroup, Container, Card, Form, InputGroup, Row, Col } from "react-bootstrap";
 import { Navigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../UserContext";
+import UserOrder from '../components/UserOrder'
 
 export default function UserProfile(){
 
@@ -14,23 +17,30 @@ export default function UserProfile(){
 		<Navigate to="/admin/allProducts" />
 		:
 		<>
-			<Container>
-				<div className="my-5 text-center">
+			<Container className="d-flex">
+				<div className="mt-5 text-center mx-auto">
+					<Row className="d-flex">
 					<h3>USER DASHBOARD</h3>
-					<Card className="p-2 mb-3 mt-5" border="dark">
-	        			<Card.Header as="h5">
-	        				<Form.Group className="mb-3" controlId="profile">
-		          				<Form.Label>Profile</Form.Label>
-		          				<InputGroup className="mb-3">
-			                	<InputGroup.Text className="userProfileLabel">Full Name</InputGroup.Text>
+					<Card className="p-3 mt-5" border="dark">
+	        			<Card.Header>
+		          				<h5>Profile</h5>
+	        			</Card.Header>
+	        			<Card.Body>
+	        				<Row>
+	        				<Col sm={12} md={4} className="d-flex align-items-center justify-content-center">
+	        					<FontAwesomeIcon icon={faUserCircle} className="user-profile-image" size="10x"/>
+	        				</Col>
+	        				<Col sm={12} md={8} className="d-flex flex-column align-items-center justify-content-center">
+	        				<InputGroup className="my-2 user-profile-details">
+			                	<InputGroup.Text className="user-profile-label">Name</InputGroup.Text>
 		          				<Form.Control
 		          					type="text"
 		          					readOnly
 		          					value={user.firstName +  " " + user.lastName }
 		          				/>
 		          				</InputGroup>
-		          				<InputGroup className="mb-3">
-			                	<InputGroup.Text className="userProfileLabel">Email Add</InputGroup.Text>
+		          				<InputGroup className="my-2 user-profile-details">
+			                	<InputGroup.Text className="user-profile-label">Email</InputGroup.Text>
 		          				<Form.Control
 		         					
 		          					type="text"
@@ -38,28 +48,32 @@ export default function UserProfile(){
 		          					value={user.email}
 		          				/>
 		          				</InputGroup>
-		        				<InputGroup className="mb-3">
-			                	<InputGroup.Text className="userProfileLabel">Mobile No</InputGroup.Text>
+		        				<InputGroup className="my-2 user-profile-details">
+			                	<InputGroup.Text className="user-profile-label">Mobile</InputGroup.Text>
 		          				<Form.Control
-		         					
+
 		          					type="text"
 		          					readOnly
 		          					value={user.mobileNo}
 		          				/>
 		          				</InputGroup>
-	        				</Form.Group>
+		          				</Col>
+		          				</Row>
+	        			</Card.Body>
+	      			</Card>
+	      			</Row>
+	      			<Row>
+	      				<Card className="p-2 mt-5" border="dark">
+	        			<Card.Header>
+		          				<h5>Order History</h5>
 	        			</Card.Header>
 	        			<Card.Body>
-	        				<h5>Order Management</h5>
-	        					<ButtonGroup vertical>
-	  								<Button as={Link} to="/users/viewCart" className="mt-1">My Cart</Button>
-	 								<Button as={Link} to="/users/getUserOrders" className="mt-1">Orders</Button>
-								</ButtonGroup>
+	        				<UserOrder />
 	        			</Card.Body>
-	      			</Card> 
+	      			</Card>
+	      			</Row> 
       			</div>   
 			</Container>
-			
 		</>
 
 	)

@@ -43,3 +43,7 @@ svg {
     padding: 0px 6px !important;
     border-radius: 50px !important;
 }
+
+.navbar-cart {
+    background: linear-gradient(to left, rgba(0, 28, 64, 90%), rgba(24, 49, 83, 90%), rgba(44, 62, 80, 90%));
+}

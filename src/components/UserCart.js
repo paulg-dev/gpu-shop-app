@@ -1,11 +1,10 @@
 
-import { Table, Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import { Table, Container, Button, ButtonGroup, Card } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faTrashAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import UserProfile from './UserProfile';
 import Swal from 'sweetalert2';
 import '../App.css';
 
@@ -37,7 +36,7 @@ export default function Orders() {
 				const cartEmpty = (data => {
 					return (
 						<Container className="d-flex flex-column text-center mx-auto mt-4">
-							Your cart is empty.
+							<h3>Your cart is empty.</h3>
 							<Button className="my-4 mx-auto" as={Link} to="/products">
 								Check Products
 							</Button>
@@ -65,15 +64,25 @@ export default function Orders() {
 		    							defaultChecked={false}
 		      						/>
 		      					</td>*/}
-								<td>
+								<td className="hideOnSmall">
+									<Button 
+										className="prodNameButton" 
+										as={Link} to={`/products/${cart.productId}`}
+									>
+										<img src={cart.productImage} className="in-cart-image" alt={cart.productName}/> 
+									</Button>
+									
+								</td>
+								<td className="sm-table-fontsize">
 									<Button 
 										className="prodNameButton" 
 										as={Link} to={`/products/${cart.productId}`}
 									>
 										{cart.productName}
 									</Button>
+									<br/>
+									{priceFormatted}/pc
 								</td>
-								<td className="hideOnSmall">{priceFormatted}</td>
 								<td> 
 									<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
 										<FontAwesomeIcon icon={faMinus} className="editQty" />
@@ -87,7 +96,7 @@ export default function Orders() {
 								<td>
 									<ButtonGroup vertical>
 										<Button className="mb-1" variant="success" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
-		        	    					<FontAwesomeIcon icon={faCheck} />
+		        	    					<FontAwesomeIcon icon={faArrowRight} />
 		        	    				</Button>
 				      					<Button variant="danger" onClick = {() => removeFromCart(cart.productId, cart.productName)}>
 				      						<FontAwesomeIcon icon={faTrashAlt} />
@@ -282,50 +291,41 @@ export default function Orders() {
 
 		(user.id !== null) ?
 		<>
-			<Container>
-	      		<Row>
-	        		<Col md={12} lg={4}>
-	            		<UserProfile />
-	        		</Col>
-	        		<Col md={12} lg={8}>
-	        			<div className="dataLabel mt-5 text-center">
-	        				CART
-	        			</div>
-	        			<div>
-							{
-								allInCart.length >= 1 ?
-								<Container className="dataTable">
-									<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
-				     					<thead className="table-dark align-middle">
-				       						<tr>
-				       							<th width="6%">#</th>
-				         						{/*<th width="9%">Select</th>*/}
-				         						<th width="25%">Product Name</th>
-				         						<th className="hideOnSmall" width="20%">Price</th>
-				         						<th width="18%">Quantity</th>
-				         						<th className="hideOnSmall" width="20%">Subtotal</th>
-				         						<th width="12%">Action</th>
-				       						</tr>
-				           				</thead>
-				     	   				<tbody>
-				            				{ allInCart }
-				           				</tbody>
-				        			</Table>
-			        			</Container>
-								:
-								<>
-									{allInCart}
-								</>
-		        			}
-			    		</div>
-			    		{/*<div className="checkOutSelected text-end mx-4 mt-4">
-			    			<Button variant="secondary" disabled>
-	        					Checkout Selected
-	          				</Button>
-	          			</div>*/}
-	        		</Col>
-	      		</Row>
-	    	</Container>
+			<Card className="mt-5 text-center">
+				<Card.Header className="data-table-header">
+    				CART
+    			</Card.Header>
+    			<Card.Body>
+					{
+						allInCart.length >= 1 ?
+							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+		     					<thead className="table-dark align-middle">
+		       						<tr>
+		       							<th width="6%">#</th>
+		         						{/*<th width="9%">Select</th>*/}
+		         						<th className="hideOnSmall" width="18%">Product</th>
+		         						<th width="23%">Details</th>
+		         						<th width="23%">Quantity</th>
+		         						<th className="hideOnSmall" width="18%">Subtotal</th>
+		         						<th width="12%">Action</th>
+		       						</tr>
+		           				</thead>
+		     	   				<tbody>
+		            				{ allInCart }
+		           				</tbody>
+		        			</Table>
+						:
+						<>
+							{allInCart}
+						</>
+        			}
+	    		{/*<div className="checkOutSelected text-end mx-4 mt-4">
+	    			<Button variant="secondary" disabled>
+    					Checkout Selected
+      				</Button>
+      			</div>*/}
+      			</Card.Body>
+      			</Card>
 		</>
 		:
 		<Navigate to="/login" />

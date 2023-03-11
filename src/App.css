@@ -73,7 +73,7 @@ body, html {
   padding: 0.5rem 2rem !important;
 }
 
-.dataLabel, .productsMain {
+.data-table-header, .productsMain {
   font-weight: bold;
   font-size: 30px;
 }
@@ -132,11 +132,11 @@ body, html {
   .prodNameButton, .user-email-button {
     font-size: 13px !important;
     padding: 0px 0px !important;;
-    margin: 0px 0px !important;;
+    margin: 3px 0px !important;;
   }
 
   .sm-table-fontsize {
-      font-size: 14px;
+      font-size: 12px;
   }
 }
 
@@ -150,8 +150,16 @@ body, html {
   width: 75px;
 }
 
-.userProfileLabel {
-  width: 105px;
+.user-profile-image {
+  width: 100px;
+}
+
+.user-profile-label {
+  width: 80px;
+}
+
+.user-profile-details {
+
 }
 
 .editProductLabel {
@@ -159,7 +167,7 @@ body, html {
   width: 55px;
 }
 
-.dataTable {
+.data-table {
   overflow-x: scroll;
 }
 
@@ -171,4 +179,12 @@ body, html {
 
 .loginContainer {
   padding-top: calc(((100vh - 416px)/2) - 92px) !important;
+}
+
+.in-cart-image {
+  height: 85px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding: 5px;
 }

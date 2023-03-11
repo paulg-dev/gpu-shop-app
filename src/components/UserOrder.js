@@ -1,9 +1,8 @@
 
-import { Table, Container, Row, Col, Button } from "react-bootstrap";
+import { Table, Container, Button } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import UserProfile from './UserProfile';
 import '../App.css'
 
 export default function Orders(){
@@ -64,7 +63,6 @@ export default function Orders(){
 						</tr>
 
 					)
-
 				}
 
 			}))
@@ -81,36 +79,22 @@ export default function Orders(){
 
 		(user.id !== null) ?
 		<>
-			<Container>
-	      		<Row>
-	        		<Col md={12} lg={4}>
-	            		<UserProfile />
-	        		</Col>
-	        		<Col md={12} lg={8}>
-	        			<div className="dataLabel mt-5 text-center">
-	        				ORDER HISTORY
-	        			</div>
-	        			<div>
-							<Container className="dataTable">
-								<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
-			     					<thead className="table-dark align-middle">
-			       						<tr>
-			       							<th width="6%">#</th>
-			         						<th className="hideOnSmall" width="24%">Order Id</th>
-			         						<th width="28%">Order Details</th>
-			         						<th width="24%">Order Amount</th>
-			         						<th width="18%">Order Date</th>
-			       						</tr>
-			           				</thead>
-			     	   				<tbody>
-			            				{ allOrders }
-			           				</tbody>
-			        			</Table>
-			    			</Container>
-			    		</div>
-	        		</Col>
-	      		</Row>
-	    	</Container>
+			<Container className="dataTable">
+				<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
+ 					<thead className="table-dark align-middle">
+   						<tr>
+   							<th width="5%">#</th>
+     						<th className="hideOnSmall" width="24%">Order Id</th>
+     						<th width="26%">Order Details</th>
+     						<th width="20%">Order Amount</th>
+     						<th width="25%">Order Date</th>
+   						</tr>
+       				</thead>
+ 	   				<tbody>
+        				{ allOrders }
+       				</tbody>
+    			</Table>
+			</Container>
 		</>
 		:
 		<Navigate to="/login" />

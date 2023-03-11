@@ -12,30 +12,31 @@ export default function Footer() {
 			<div className="footerDiv text-center py-5 mt-5">
 				<Row>
 					<Col sm={10} md={4} className="d-flex flex-column align-items-center mx-auto py-1">
-						<h4 className="footerHeader"><strong>Downloads</strong></h4>
-						{/*<hr className="foooterLinksLine"/>*/}
-						<ul>
-							<li><a href="https://www.nvidia.com/download/index.aspx" className="footerLinks">Nvidia</a></li>
-							<li><a href="https://www.amd.com/en/support" className="footerLinks">Amd</a></li>
-							<li><a href="https://www.intel.com/content/www/us/en/download-center/home.html" className="footerLinks">Intel</a></li>
-						</ul>
-					</Col>
-					<Col sm={10} md={4} className="d-flex flex-column align-items-center mx-auto py-1">
-						<h4 className="footerHeader"><strong>Partner Shops</strong></h4>
-						{/*<hr className="foooterLinksLine"/>*/}
-						<ul>
-							<li><a href="https://dynaquestpc.com/" className="footerLinks">Dynaquest</a></li>
-							<li><a href="https://www.pchubonline.com/" className="footerLinks">PCHub</a></li>
-							<li><a href="https://pcx.com.ph/" className="footerLinks">PCExpress</a></li>
-						</ul>
-					</Col>
-					<Col sm={10} md={4} className="d-flex flex-column align-items-center mx-auto py-1">
 						<h4 className="footerHeader"><strong>Forums</strong></h4>
-						{/*<hr className="foooterLinksLine"/>*/}
-						<ul>
-							<li><a href="https://linustechtips.com/" className="footerLinks">Linus Tech Tips</a></li>
-							<li><a href="https://www.reddit.com/r/gpu/" className="footerLinks">Reddit</a></li>
-						</ul>
+							<ul>
+								<li><a href="https://linustechtips.com/" className="footerLinks">Linus Tech Tips</a></li>
+								<li><a href="https://www.reddit.com/r/gpu/" className="footerLinks">Reddit</a></li>
+							</ul>
+					</Col>
+					<Col sm={10} md={8} className="mx-auto py-1">
+						<Row>
+							<Col xs={6} sm={6} md={4} className="d-flex flex-column align-items-center mx-auto">
+								<h4 className="footerHeader"><strong>Partners</strong></h4>
+								<ul>
+									<li><a href="https://dynaquestpc.com/" className="footerLinks">Dynaquest</a></li>
+									<li><a href="https://www.pchubonline.com/" className="footerLinks">PCHub</a></li>
+									<li><a href="https://pcx.com.ph/" className="footerLinks">PCExpress</a></li>
+								</ul>
+							</Col>
+							<Col xs={6} sm={6} md={4} className="d-flex flex-column align-items-center mx-auto">
+								<h4 className="footerHeader"><strong>Downloads</strong></h4>
+								<ul>
+									<li><a href="https://www.nvidia.com/download/index.aspx" className="footerLinks">Nvidia</a></li>
+									<li><a href="https://www.amd.com/en/support" className="footerLinks">Amd</a></li>
+									<li><a href="https://www.intel.com/content/www/us/en/download-center/home.html" className="footerLinks">Intel</a></li>
+								</ul>
+							</Col>
+						</Row>
 					</Col>
 				</Row>
 				<hr className="footerLine" />
