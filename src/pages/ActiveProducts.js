@@ -41,7 +41,7 @@ export default function ActiveProducts() {
 					<Navigate to="/admin"/>
 					:*/}
 					<>	
-						<h4 className="productsMain text-center">PRODUCTS</h4>
+						<h4 className="products-main text-center">PRODUCTS</h4>
 						<div className="text-center">
 							<ButtonGroup className="mt-3 mb-5">
 								<Button as={Link} to="/products" variant="primary">

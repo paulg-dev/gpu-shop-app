@@ -27,6 +27,7 @@ export default function Home() {
 									src={require('../images/productivity.jpg')}
 									alt="GPU for Productivity"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Productivity
 								</Carousel.Caption>
@@ -37,6 +38,7 @@ export default function Home() {
 									src={require('../images/gaming.jpg')}
 									alt="GPU for Gaming"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Gaming
 								</Carousel.Caption>
@@ -47,6 +49,7 @@ export default function Home() {
 									src={require('../images/cryptoMining.jpg')}
 									alt="GPU for Crypto Mining"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Crypto Mining
 								</Carousel.Caption>
@@ -57,6 +60,7 @@ export default function Home() {
 									src={require('../images/virtualReality.jpg')}
 									alt="GPU for Virtual Reality"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Virtual Reality
 								</Carousel.Caption>
@@ -67,6 +71,7 @@ export default function Home() {
 									src={require('../images/rendering.jpg')}
 									alt="GPU for Rendering"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Rendering
 								</Carousel.Caption>
@@ -77,6 +82,7 @@ export default function Home() {
 									src={require('../images/enthusiasts.jpg')}
 									alt="GPU for Enthusiasts"
 								/>
+								<div className="carousel-overlay"></div>
 								<Carousel.Caption>
 									Enthusiasts
 								</Carousel.Caption>

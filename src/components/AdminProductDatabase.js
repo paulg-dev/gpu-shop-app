@@ -4,10 +4,9 @@ import { useContext, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import AdminDashboard from './AdminDashboard';
 import UserContext from "../UserContext";
-
+import Swal from "sweetalert2";
 import '../App.css'
 
-import Swal from "sweetalert2";
 
 export default function AllProducts() {
 
@@ -35,11 +34,11 @@ export default function AllProducts() {
 					<tr key={product._id}>
 						{/*<td>{product._id}</td>*/}
 						<td>{index + 1}</td>
-						<td className="hideOnSmall">
+						<td className="hide-on-small">
 							{
 								(product.brand !== "nvidia" && product.brand !== "amd") ?
 								<img
-									className="brandImg"
+									className="product-brand"
 									src={require('../images/intel.png')}
 									alt="intel"
 								/>
@@ -48,13 +47,13 @@ export default function AllProducts() {
 									{
 										(product.brand !== "nvidia") ?
 										<img
-											className="brandImg"
+											className="product-brand"
 											src={require('../images/amd.png')}
 											alt="amd"
 										/>
 										:
 										<img
-											className="brandImg"
+											className="product-brand"
 											src={require('../images/nvidia.png')}
 											alt="nvidia"
 										/>
@@ -63,16 +62,16 @@ export default function AllProducts() {
 							}
 						</td>
 						<td>
-							<Button className="prodNameButton" as={Link} to={`/products/${product._id}`}>
+							<Button className="product-link-btn" as={Link} to={`/products/${product._id}`}>
 								{product.name}
 							</Button>
 						</td>
 						{/*<td>{product.description}</td>*/}
-						<td className="hideOnSmall">
+						<td className="hide-on-small">
 							{priceFormatted}
 						</td>
 						<td>{product.stocks}</td>
-						<td className="hideOnSmall">
+						<td className="hide-on-small">
 							<div>
 								{
 									product.isListed ? "Active" : "Inactive"
@@ -320,7 +319,7 @@ export default function AllProducts() {
             		<AdminDashboard />
         		</Col>
         		<Col md={12} lg={8}>
-        			<div className="dataLabel mt-4 text-center">
+        			<div className="data-label mt-4 text-center">
         				PRODUCT DATABASE
         			</div>
         			<Container className="dataTable">
@@ -329,12 +328,12 @@ export default function AllProducts() {
 			       				<tr>
 			         			{/*<th>Product ID</th>*/}
 			         			<th width="6%">#</th>
-			         			<th width="12%" className="hideOnSmall">Manufacturer</th>
+			         			<th width="12%" className="hide-on-small">Manufacturer</th>
 			         			<th width="22%">Product Name</th>
 			         			{/*<th>Description</th>*/}
-			         			<th width="20%" className="hideOnSmall">Price</th>
+			         			<th width="20%" className="hide-on-small">Price</th>
 			         			<th width="12%">Stocks</th>
-			         			<th width="13%" className="hideOnSmall">Status</th>
+			         			<th width="13%" className="hide-on-small">Status</th>
 			         			<th width="15%">Actions</th>
 			       				</tr>
 			     			</thead>

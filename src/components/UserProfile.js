@@ -1,8 +1,8 @@
 
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, ButtonGroup, Container, Card, Form, InputGroup, Row, Col } from "react-bootstrap";
-import { Navigate, Link } from "react-router-dom";
+import { Container, Card, Form, InputGroup, Row, Col } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../UserContext";
 import UserOrder from '../components/UserOrder'

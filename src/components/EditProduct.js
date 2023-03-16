@@ -231,7 +231,7 @@ export default function EditProduct() {
 						                			onChange={e => setPrice(e.target.value)}
 						                			required
 					                			/>
-					                			<InputGroup.Text className="editProductLabel">.00</InputGroup.Text>
+					                			<InputGroup.Text className="edit-product-label">.00</InputGroup.Text>
 					                			</InputGroup>
 					            			</Form.Group>
 					            		</Col>
@@ -247,7 +247,7 @@ export default function EditProduct() {
 						                			onChange={e => setStocks(e.target.value)}
 						                			required
 					                			/>
-					                			<InputGroup.Text className="editProductLabel">pc/s</InputGroup.Text>
+					                			<InputGroup.Text className="edit-product-label">pc/s</InputGroup.Text>
 					               			 	</InputGroup>
 					            			</Form.Group>
 					            		</Col>

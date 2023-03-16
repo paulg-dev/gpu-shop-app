@@ -15,7 +15,7 @@ export default function Banner({bannerProp}) {
 				<Col>
 					<h2 className="mb-3">{title}</h2>
 					<h5 className="mb-4">{content}</h5>
-					<Button className="bannerBtn mb-4" as={Link} to={destination} variant="primary">{label}</Button>
+					<Button className="banner-btn mb-4" as={Link} to={destination} variant="primary">{label}</Button>
 				</Col>
 			</Row>
 		</div>	

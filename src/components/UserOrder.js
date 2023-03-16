@@ -48,7 +48,7 @@ export default function Orders(){
 
 						<tr key={order._id}>
 							<td className="sm-table-fontsize">{index + 1}</td>
-							<td className="hideOnSmall">{order._id}</td>
+							<td className="hide-on-small">{order._id}</td>
 							<td className="sm-table-fontsize">
 								{order.products[i].quantity} pc/s of
 								<Button 
@@ -84,7 +84,7 @@ export default function Orders(){
  					<thead className="table-dark align-middle">
    						<tr>
    							<th width="5%">#</th>
-     						<th className="hideOnSmall" width="24%">Order Id</th>
+     						<th className="hide-on-small" width="24%">Order Id</th>
      						<th width="26%">Order Details</th>
      						<th width="20%">Order Amount</th>
      						<th width="25%">Order Date</th>

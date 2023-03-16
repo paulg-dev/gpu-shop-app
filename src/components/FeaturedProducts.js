@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { Row, Card, Badge } from 'react-bootstrap';
 import ProductCard from '../components/ProductCard';
-import '../css/FeaturedProducts.css';
 
 
 export default function Products () {
@@ -28,12 +27,14 @@ export default function Products () {
 	return (
 
 		<div className="mt-3" >
-			<Card className="featuredProdCard text-center p-3" border="light">
-				<Card.Header className="text-light">
-					Featured Products
-					<Badge className="m-2" bg="danger">
+			<Card className="featured-section text-center p-3" border="light">
+				<Card.Header className="featured-section-header">
+					<h5>
+					Featured Products &nbsp;
+					<Badge bg="danger">
 						NEW!
 					</Badge>
+					</h5>	
 				</Card.Header>
 				<Card.Body>
 					<div className="d-flex flex-row">

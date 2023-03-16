@@ -7,7 +7,6 @@ import { Navigate } from "react-router-dom";
 import AdminDashboard from './AdminDashboard';
 import UserContext from "../UserContext";
 import Swal from "sweetalert2";
-import '../css/Users.css'
 
 
 export default function Users() {
@@ -31,8 +30,8 @@ export default function Users() {
 				return (
 					<tr key={user._id}>
 						<td className="sm-table-fontsize">{index + 1}</td>
-						<td className="hideOnSmall">{user.firstName}</td>
-						<td className="hideOnSmall">{user.lastName}</td>
+						<td className="hide-on-small">{user.firstName}</td>
+						<td className="hide-on-small">{user.lastName}</td>
 						<td>
 							<OverlayTrigger
 								trigger="click"
@@ -41,7 +40,7 @@ export default function Users() {
 									<Popover>
 										<Popover.Body className="text-center">
 											User Id : {user._id}
-											<div className="showOnSmall">
+											<div className="show-on-small">
 												<FontAwesomeIcon icon={faUser} /> {user.firstName} {user.lastName}<br />
 												<FontAwesomeIcon icon={faPhone} /> {user.mobileNo} 
 											</div>
@@ -54,8 +53,8 @@ export default function Users() {
 								</Button>
 							</OverlayTrigger>	
 						</td>
-						<td className="hideOnSmall">{user.mobileNo}</td>
-						<td className="hideOnSmall">{user.isAdmin ? "Admin" : "User"}</td>
+						<td className="hide-on-small">{user.mobileNo}</td>
+						<td className="hide-on-small">{user.isAdmin ? "Admin" : "User"}</td>
 						<td className="sm-table-fontsize">
 							{
 								(user.isAdmin) ?
@@ -170,7 +169,7 @@ export default function Users() {
             		<AdminDashboard />
         		</Col>
         		<Col md={12} lg={8}>
-        			<div className="dataLabel mt-4 text-center">
+        			<div className="data-label mt-4 text-center">
         				USER DATABASE
         			</div>
         			<div>
@@ -179,11 +178,11 @@ export default function Users() {
 		     				<thead className="table-dark align-middle">
 		       					<tr>
 		       						<th>#</th>
-		         					<th className="hideOnSmall">First Name</th>
-		         					<th className="hideOnSmall">Last Name</th>
+		         					<th className="hide-on-small">First Name</th>
+		         					<th className="hide-on-small">Last Name</th>
 		         					<th>Email Address</th>
-		         					<th className="hideOnSmall">Mobile No.</th>
-		         					<th className="hideOnSmall">Role</th>
+		         					<th className="hide-on-small">Mobile No.</th>
+		         					<th className="hide-on-small">Role</th>
 		         					<th>Update</th>
 		       					</tr>
 		           			</thead>

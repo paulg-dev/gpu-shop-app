@@ -64,9 +64,9 @@ export default function Orders() {
 		    							defaultChecked={false}
 		      						/>
 		      					</td>*/}
-								<td className="hideOnSmall">
+								<td className="hide-on-small">
 									<Button 
-										className="prodNameButton" 
+										className="product-link-btn" 
 										as={Link} to={`/products/${cart.productId}`}
 									>
 										<img src={cart.productImage} className="in-cart-image" alt={cart.productName}/> 
@@ -75,7 +75,7 @@ export default function Orders() {
 								</td>
 								<td className="sm-table-fontsize">
 									<Button 
-										className="prodNameButton" 
+										className="product-link-btn" 
 										as={Link} to={`/products/${cart.productId}`}
 									>
 										{cart.productName}
@@ -84,15 +84,15 @@ export default function Orders() {
 									{priceFormatted}/pc
 								</td>
 								<td> 
-									<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
-										<FontAwesomeIcon icon={faMinus} className="editQty" />
+									<Button className="edit-qty-btn p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity - 1), cart.productName)}>
+										<FontAwesomeIcon icon={faMinus} className="edit-qty-minus" />
 									</Button>
 									&nbsp; {cart.quantity} &nbsp;
-									<Button className="editQty p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity + 1))}>
-										<FontAwesomeIcon icon={faPlus} className="editQty" />
+									<Button className="edit-qty-btn p-1" onClick = {() => editProductQuantity(cart.productId, (cart.quantity + 1))}>
+										<FontAwesomeIcon icon={faPlus} className="edit-qty-plus" />
 									</Button>
 								</td>
-								<td className="hideOnSmall">{subTotalFormatted}</td>
+								<td className="hide-on-small">{subTotalFormatted}</td>
 								<td>
 									<ButtonGroup vertical>
 										<Button className="mb-1" variant="success" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
@@ -303,10 +303,10 @@ export default function Orders() {
 		       						<tr>
 		       							<th width="6%">#</th>
 		         						{/*<th width="9%">Select</th>*/}
-		         						<th className="hideOnSmall" width="18%">Product</th>
+		         						<th className="hide-on-small" width="18%">Product</th>
 		         						<th width="23%">Details</th>
 		         						<th width="23%">Quantity</th>
-		         						<th className="hideOnSmall" width="18%">Subtotal</th>
+		         						<th className="hide-on-small" width="18%">Subtotal</th>
 		         						<th width="12%">Action</th>
 		       						</tr>
 		           				</thead>

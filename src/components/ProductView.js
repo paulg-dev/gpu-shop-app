@@ -149,20 +149,20 @@ export default function ProductView() {
 		<Container className="mt-5">
 		  <Row>
 		  	<Col md={12} lg={5}>
-				<Card className="prodImgCard p-3 mb-3">
-					<Card.Img className="prodImg rounded-2" variant="top" src={imageUrl} />
+				<Card className="p-3 mb-3">
+					<Card.Img className="product-img rounded-2" variant="top" src={imageUrl} />
 				</Card>
         	</Col>
         	<Col md={12} lg={7}>
         		<Card>
 					<Card.Body>
 						<Form onSubmit={e => order(e)}>
-							<div className="text-end productViewBrand">
+							<div className="text-end product-brand-offset">
 								{
 									(brand !== "nvidia" && brand !== "amd") ?
 										<a href="/products/intel">
 										<img
-											className="brandImg mb-3"
+											className="product-brand mb-3"
 											src={require('../images/intel.png')}
 											alt="intel"
 										/>
@@ -173,7 +173,7 @@ export default function ProductView() {
 												(brand !== "nvidia") ?
 													<a href="/products/amd">
 													<img
-														className="brandImg mb-3"
+														className="product-brand mb-3"
 														src={require('../images/amd.png')}
 														alt="amd"
 													/>
@@ -181,7 +181,7 @@ export default function ProductView() {
 													:
 													<a href="/products/nvidia">
 													<img
-														className="brandImg mb-3"
+														className="product-brand mb-3"
 														src={require('../images/nvidia.png')}
 														alt="nvidia"
 													/>
@@ -190,17 +190,17 @@ export default function ProductView() {
 										</>
 								}
 							</div>
-							<Card.Title className="prodName">{name}</Card.Title>
-							<Card.Text className="prodDescription mt-3">{description}</Card.Text>
+							<Card.Title className="product-name">{name}</Card.Title>
+							<Card.Text className="product-description mt-3">{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
-							<Card.Text className="prodPrice">{priceFormatted}</Card.Text>
+							<Card.Text className="product-price">{priceFormatted}</Card.Text>
 							
 							<div className="text-center">
 								<Row>
 									<Col sm={6} className="d-flex p-1 my-auto justify-content-center align-items-center">
 										Quantity:
 										<Form.Control
-			                				className="qtyInput text-center mx-2" 
+			                				className="qty-input text-center mx-2" 
 				                			type="number"
 				                			min = {0}
 				                			max = {stocks}
@@ -256,11 +256,11 @@ export default function ProductView() {
 	    									centered
 	  									>
 	    									<Modal.Header>
-	      										<Modal.Title>Are you sure you want to log out?</Modal.Title>
+	      										<Modal.Title>Confirm log out?</Modal.Title>
 	    									</Modal.Header>
 	    									<Modal.Body className="m-2 text-center">
 		    									<Button className="mx-2" variant="primary" as={Link} to="/logout" onClick={handleClose}>
-		    										Confirm
+		    										Logout
 		    									</Button>
 		    									<Button className="mx-2" variant="secondary" onClick={handleClose}>
 		    										Cancel
@@ -280,7 +280,6 @@ export default function ProductView() {
 	        	    					Check Out
 	        	    				</Button>
 	        	    					<Modal
-	        	    						className="orderModal"
 	    									show={show}
 	    									onHide={handleClose}
 	    									backdrop="static"
@@ -296,7 +295,7 @@ export default function ProductView() {
 	          										<InputGroup className="mb-3">
 		                								<InputGroup.Text>Product:</InputGroup.Text>
 		                								<Form.Control
-		                									className="orderDetailsText" 
+		                									className="order-details-text" 
 	          												type="text"
 	          												readOnly
 	          												value={name}
@@ -308,7 +307,7 @@ export default function ProductView() {
 	                											<InputGroup>
 	                											<InputGroup.Text>Price:</InputGroup.Text>
 	                											<Form.Control
-	                												className="orderDetailsText"
+	                												className="order-details-text"
           															type="text"
           															readOnly
           															value={priceFormatted}
@@ -321,7 +320,7 @@ export default function ProductView() {
 	                											<InputGroup>
 	                											<InputGroup.Text>Quantity:</InputGroup.Text>
 	                											<Form.Control
-	                												className="orderDetailsText"
+	                												className="order-details-text"
           															type="text"
           															readOnly
           															value={quantity}
@@ -333,7 +332,7 @@ export default function ProductView() {
 		            								<InputGroup>
 		                								<InputGroup.Text>Order Amount:</InputGroup.Text>
 		                								<Form.Control
-		                									className="orderDetailsPrice" 
+		                									className="order-details-price" 
 	          												type="text"
 	          												readOnly
 	          												value={subtotalFormatted}
@@ -385,7 +384,7 @@ export default function ProductView() {
 		  			<h4 className="pt-2"> SPECIFICATIONS </h4>
 		  		</Card.Header>
 		  		<Card.Body>
-		  			This section is for displaying product specifications in future updates.
+		  			This section is for displaying detailed product specifications.
 		  		</Card.Body>
 		  	</Card>
 		  </Row>

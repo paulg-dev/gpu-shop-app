@@ -71,7 +71,7 @@ function App() {
     <UserProvider value = {{user, setUser, unsetUser}}>
         <Router>
           <AppNavbar />
-          <Container className="mainContainer">
+          <Container className="main-container">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />

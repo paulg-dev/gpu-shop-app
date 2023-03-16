@@ -101,7 +101,7 @@ export default function Login() {
     ?
     <Navigate to="/" />
     :
-    <Container className="loginContainer">
+    <Container className="login-container">
       <Row>
         <Col md={12} lg={7}>
             

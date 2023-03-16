@@ -53,21 +53,20 @@ export default function ProductCard ({productProp}) {
 	return (
 
 		<Container className="p-2 mb-2">
-			<Card className="cardProd mb-3 h-100">
-				<Button className="quickCart" onClick={addToCart}>
+			<Card className="card-product mb-3 h-100">
+				<Button className="quick-cart-btn" onClick={addToCart}>
 					<FontAwesomeIcon icon={faCartPlus}/>
 				</Button>
-				<Card.Img className="cardProdImg" variant="top" src={imageUrl} alt={name}/>
-				<Card.Body className="cardBody d-flex flex-column text-center">
-					<Card.Title className="cardProdName">{name}</Card.Title>
-					<Row className="cardProdDetails">
+				<Card.Img className="card-product-img" variant="top" src={imageUrl} alt={name}/>
+				<Card.Body className="card-product-body d-flex flex-column text-center">
+					<Card.Title className="card-product-name">{name}</Card.Title>
+					<Row className="card-product-details">
 						<Col className="py-2" md={12} lg={6}>
-							<Card.Text className="cardProdPrice">{priceFormatted}</Card.Text>
+							<Card.Text className="card-product-price">{priceFormatted}</Card.Text>
 						</Col>
 						<Col md={12} lg={6}>
-							<Button className="cardProdBtn" as={Link} to={`/products/${_id}`}>
-								Details
-								<FontAwesomeIcon icon={faChevronRight} className="hideOnSpecial"/>
+							<Button className="product-details-btn" as={Link} to={`/products/${_id}`}>
+								Details <FontAwesomeIcon icon={faChevronRight} className="hide-on-lg-xl"/>
 							</Button>
 						</Col>
 					</Row>

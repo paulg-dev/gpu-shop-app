@@ -1,9 +1,9 @@
 
-.footerContainer {
+.footer-container {
 	background: linear-gradient(to top, rgba(44, 62, 80, 98%), rgba(44, 62, 80, 90%), rgba(44, 62, 80, 82%));
 }
 
-.footerDiv {
+.footer-div {
 	background-color: none;
     width: 90%;
     max-width: 1550px;
@@ -11,30 +11,27 @@
     color: var(--gen-white);
 }
 
+.footer-headers {
+	text-align: center;
+	letter-spacing: 2px;
+}
+
 ul > li {
 	list-style-type: disclosure-closed;
 	text-align: start;
 }
 
-.footerHeader {
-	text-align: center;
-	letter-spacing: 2px;
+.footer-links {
+	color: var(--nvidia-green);
+	letter-spacing: 1px;
 }
 
-.footerLine {
+.footer-line {
 	margin: 25px 60px !important;
 }
 
-.foooterLinksLine {
-	margin: 20px 80px !important;
-}
-
-.footerSocials {
+.footer-socials {
 	width: 28px;
 	padding: 0px 5px;
 }
 
-.footerLinks {
-	color: var(--nvidia-green);
-	letter-spacing: 1px;
-}

@@ -48,17 +48,17 @@ export default function Orders() {
 					return (
 						<tr key={order._id}>
 							<td className="sm-table-fontsize">{index + 1}</td>
-							<td className="hideOnSmall">{order.userId}</td>
+							<td className="hide-on-small">{order.userId}</td>
 							<td>
 								<Button 
-									className="prodNameButton" 
+									className="product-link-btn" 
 									as={Link} to={`/products/${order.products[i].productId}`}
 								>
 									{order.products[i].productName}
 								</Button>
 							</td>
 							<td className="sm-table-fontsize">{order.products[i].quantity}</td>
-							<td className="hideOnSmall">{priceFormatted}</td>
+							<td className="hide-on-small">{priceFormatted}</td>
 							<td className="sm-table-fontsize">{formatDate(order.orderedOn)}</td>
 						</tr>
 					)
@@ -85,7 +85,7 @@ export default function Orders() {
 	            		<AdminDashboard />
 	        		</Col>
 	        		<Col md={12} lg={8}>
-	        			<div className="dataLabel mt-4 text-center">
+	        			<div className="data-label mt-4 text-center">
 	        				ORDER DATABASE
 	        			</div>
 	        			<div>
@@ -94,10 +94,10 @@ export default function Orders() {
 			     					<thead className="table-dark align-middle">
 			       						<tr>
 			       							<th width="6%">#</th>
-			         						<th width="10%" className="hideOnSmall">Customer Id</th>
+			         						<th width="10%" className="hide-on-small">Customer Id</th>
 			         						<th width="28%">Product</th>
 			         						<th width="10%">Qty</th>
-			         						<th width="24%" className="hideOnSmall">Order Amount</th>
+			         						<th width="24%" className="hide-on-small">Order Amount</th>
 			         						<th width="24%">Order Date</th>
 			       						</tr>
 			           				</thead>
