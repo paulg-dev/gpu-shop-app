@@ -52,7 +52,7 @@ export default function Orders(){
 							<td className="sm-table-fontsize">
 								{order.products[i].quantity} pc/s of
 								<Button 
-									className="prodNameButton" 
+									className="product-link-btn" 
 									as={Link} to={`/products/${order.products[i].productId}`}
 								>
 									{order.products[i].productName}

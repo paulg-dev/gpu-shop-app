@@ -37,7 +37,7 @@ export default function Products () {
 					</h5>	
 				</Card.Header>
 				<Card.Body>
-					<div className="d-flex flex-row">
+					<div className="card-content d-flex flex-row">
 						<Row sm={2} md={2} lg={1}>
 							{products}
 						</Row>

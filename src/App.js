@@ -12,9 +12,6 @@ import Error from './pages/Error';
 import ProductView from './components/ProductView';
 import ActiveProducts from './pages/ActiveProducts';
 import EditProduct from './components/EditProduct';
-import NvidiaFilter from './components/NvidiaFilter';
-import AmdFilter from './components/AmdFilter';
-import IntelFilter from './components/IntelFilter';
 import UserProfile from './components/UserProfile';
 import UserOrder from './components/UserOrder';
 import UserCart from './components/UserCart';
@@ -78,9 +75,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/products" element={<ActiveProducts />} />
-              <Route path="/products/nvidia" element={<NvidiaFilter />} />
-              <Route path="/products/amd" element={<AmdFilter />} />
-              <Route path="/products/intel" element={<IntelFilter />} />
               <Route path="/products/:productId" element={<ProductView />} />
               <Route path="/editProduct/:productId" element={<EditProduct />} />
               <Route path="/users/details" element={<UserProfile />} />

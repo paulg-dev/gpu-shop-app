@@ -19,6 +19,10 @@
         color: var(--gen-white) !important;
 }
 
+.nav-link:hover {
+    color: var(--nvidia-green) !important;
+}
+
 @media (max-width: 991px) {
     .nav-link {
         padding: 0.75rem 0.75rem !important;

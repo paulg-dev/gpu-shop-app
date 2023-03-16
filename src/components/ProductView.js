@@ -160,32 +160,26 @@ export default function ProductView() {
 							<div className="text-end product-brand-offset">
 								{
 									(brand !== "nvidia" && brand !== "amd") ?
-										<a href="/products/intel">
 										<img
 											className="product-brand mb-3"
 											src={require('../images/intel.png')}
 											alt="intel"
 										/>
-										</a>
 										:
 										<>
 											{
 												(brand !== "nvidia") ?
-													<a href="/products/amd">
 													<img
 														className="product-brand mb-3"
 														src={require('../images/amd.png')}
 														alt="amd"
 													/>
-													</a>
 													:
-													<a href="/products/nvidia">
 													<img
 														className="product-brand mb-3"
 														src={require('../images/nvidia.png')}
 														alt="nvidia"
 													/>
-													</a>
 											}
 										</>
 								}

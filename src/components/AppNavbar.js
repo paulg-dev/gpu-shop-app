@@ -121,12 +121,14 @@ export default function AppNavbar() {
 		    <div className="nav-cart">
 		    	{
 		    		(user.id !== null && !(user.isAdmin)) ?
-			    	<Container>
-			    	<Nav.Link className="d-flex align-items-center" as={Link} to="/users/viewCart" eventKey="4">
-			    		<FontAwesomeIcon className="nav-svg" icon={faArrowLeft} onClick={backButton}/>
-	    				<FontAwesomeIcon className="nav-svg ms-auto" icon={faShoppingCart}/>
-	    				&nbsp; Cart {cartCount}
-	    			</Nav.Link>
+			    	<Container className="d-flex align-items-center">
+				    	<Nav.Link>
+				    		<FontAwesomeIcon className="nav-svg" icon={faArrowLeft} onClick={backButton}/>
+		    			</Nav.Link>
+		    			<Nav.Link className="d-flex align-items-center ms-auto" as={Link} to="/users/viewCart" eventKey="5">
+		    			<FontAwesomeIcon className="nav-svg" icon={faShoppingCart}/>
+		    				&nbsp; Cart {cartCount}
+		    			</Nav.Link>
 	    			</Container>
 	    			:
 	    			<></>

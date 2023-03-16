@@ -26,6 +26,10 @@ ul > li {
 	letter-spacing: 1px;
 }
 
+.footer-links:hover {
+	color: var(--gen-white);
+}
+
 .footer-line {
 	margin: 25px 60px !important;
 }

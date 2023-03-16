@@ -91,21 +91,6 @@ body, html {
   font-weight: bold !important;
 }
 
-.nvidiaFilter {
-  color: var(--nvidia-green) !important;
-  border-color: var(--nvidia-green) !important;
-}
-
-.amdFilter {
-  color: var(--amd-red) !important;
-  border-color: var(--amd-red) !important;
-}
-
-.intelFilter {
-  color: var(--intel-blue) !important;
-  border-color: var(--intel-blue) !important;
-}
-
 
 /*FeaturedProducts*/
 
@@ -114,6 +99,7 @@ body, html {
     background: -webkit-linear-gradient(to bottom, rgba(0, 28, 64, 55%), rgba(24, 49, 83, 55%));
     background: linear-gradient(to bottom, rgba(0, 28, 64, 55%), rgba(24, 49, 83, 55%));
     border-radius: 21px !important;
+    min-height: 1000px;
 }
 
 .featured-section-header {
