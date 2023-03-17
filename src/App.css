@@ -53,13 +53,19 @@ body, html {
 }
 
 .btn-warning {
-  background-color: var(--warning-orange) !important;
-  border-color: var(--warning-orange) !important;
+  border-color: var(--danger-red) !important;
+  background-color: var(--danger-red) !important;
   color: var(--gen-white) !important;
 }
 
 
 /*HOME*/
+
+.banner-title,
+.banner-text {
+  font-weight: bold;
+  color: rgba(0, 28, 64, 75%) !important;
+}
 
 .banner-btn {
   background: rgba(24, 49, 83, 90%);
@@ -79,16 +85,26 @@ body, html {
 
 /*PRODUCTS*/
 
-.products-main, .data-table-header {
-  font-weight: bold;
-  font-size: 30px;
-}
-
 .product-link-btn {
   background: none !important;
   color: var(--link-blue) !important;
   border: none !important;
   font-weight: bold !important;
+}
+
+.brand-buttongroup {
+  box-shadow:
+    0 3px 2px rgba(0, 0, 0, 0.15),
+    0 6px 4px rgba(0, 0, 0, 0.25),
+    0 9px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 359px) {
+  .brand-filter-btn {
+    display: flex !important;
+    font-size: 12px !important;
+    align-items: center;
+  }
 }
 
 
@@ -108,18 +124,21 @@ body, html {
 }
 
 
-/*USER*/
+/*USER and ADMIN TABLES*/
+
+.user-table-container,
+.admin-table-container {
+  overflow-x: auto;
+}
 
 .user-profile-image {
   width: 100px;
+  color: rgba(0, 28, 64, 55%)
 }
 
 .user-profile-label {
   width: 80px;
 }
-
-
-/*ADMIN*/
 
 .admin-profile-label {
   width: 75px;
@@ -128,6 +147,33 @@ body, html {
 .edit-product-label {
   justify-content: center;
   width: 55px;
+}
+
+.user-data-table,
+.admin-data-table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.user-data-table thead tr,
+.admin-data-table thead tr {
+  background-color: rgba(0, 28, 64, 55%);
+  color: var(--gen-white);
+  letter-spacing: 1px;
+  padding: 0px 0px !important;
+}
+
+.user-data-table tbody tr,
+.admin-data-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.user-data-table tbody tr:last-child,
+.admin-data-table tbody tr:last-child {
+    border-bottom: 2px solid rgba(0, 28, 64, 55%);
 }
 
 
@@ -175,12 +221,17 @@ body, html {
 
 /*TABLES*/
 
-.data-label {
-  font-size: 26px;
+.products-main,
+.data-table-header,
+.profile-header {
+  font-weight: bold;
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: rgba(0, 28, 64, 75%) !important;
 }
 
-.data-table {
-  overflow-x: scroll;
+.data-label {
+  font-size: 26px;
 }
 
 @media (max-width: 991px){

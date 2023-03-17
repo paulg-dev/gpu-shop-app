@@ -1,5 +1,5 @@
 
-import { Table, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
+import { Table, Button, Row, Col, ButtonGroup } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import AdminDashboard from './AdminDashboard';
@@ -313,7 +313,6 @@ export default function AllProducts() {
 
 		(user.isAdmin) ?
 		<>
-		<Container>
       		<Row>
         		<Col md={12} lg={4}>
             		<AdminDashboard />
@@ -322,9 +321,9 @@ export default function AllProducts() {
         			<div className="data-label mt-4 text-center">
         				PRODUCT DATABASE
         			</div>
-        			<Container className="dataTable">
-	        			<Table className="text-center mt-4 align-middle" width="100%" bordered striped hover>
-			     			<thead className="table-dark">
+        			<div className="admin-table-container">
+	        			<Table className="admin-data-table text-center mt-4 align-middle" width="100%" striped hover>
+			     			<thead className="align-middle">
 			       				<tr>
 			         			{/*<th>Product ID</th>*/}
 			         			<th width="6%">#</th>
@@ -341,10 +340,9 @@ export default function AllProducts() {
 			       				{ allProducts }
 			     			</tbody>
 			   			</Table>
-			   		</Container>
+			   		</div>
                 </Col>
       		</Row>
-   		</Container>
 		</>
 		:
 		<Navigate to="/products" />

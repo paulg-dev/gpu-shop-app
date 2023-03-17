@@ -41,19 +41,19 @@ export default function ActiveProducts() {
 		<div className="mt-5">
 			<Row>
 				<Col md={12} lg={8}>
-					<h4 className="products-main text-center">PRODUCTS</h4>
+					<h2 className="products-main text-center">PRODUCTS</h2>
 					<div className="text-center">
-						<ToggleButtonGroup className="mt-3 mb-5" type="radio" name="brand" defaultValue={1}>
-							<ToggleButton variant="secondary" id="radio-1" value={1} onClick={() => handleBrandFilter('all')}>
+						<ToggleButtonGroup className="brand-buttongroup mt-3 mb-5" type="radio" name="brand" defaultValue={1}>
+							<ToggleButton className="brand-filter-btn" variant="secondary" id="radio-1" value={1} onClick={() => handleBrandFilter('all')}>
 								All GPUs
 							</ToggleButton>
-							<ToggleButton variant="secondary" id="radio-2" value={2} onClick={() => handleBrandFilter('nvidia')}>
+							<ToggleButton className="brand-filter-btn" variant="secondary" id="radio-2" value={2} onClick={() => handleBrandFilter('nvidia')}>
 								NVIDIA
 							</ToggleButton>
-							<ToggleButton variant="secondary" id="radio-3" value={3} onClick={() => handleBrandFilter('amd')}>
+							<ToggleButton className="brand-filter-btn" variant="secondary" id="radio-3" value={3} onClick={() => handleBrandFilter('amd')}>
 								AMD
 							</ToggleButton>
-							<ToggleButton variant="secondary" id="radio-4" value={4} onClick={() => handleBrandFilter('intel')}>
+							<ToggleButton className="brand-filter-btn" variant="secondary" id="radio-4" value={4} onClick={() => handleBrandFilter('intel')}>
 								INTEL
 							</ToggleButton>
 						</ToggleButtonGroup>

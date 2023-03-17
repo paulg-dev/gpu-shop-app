@@ -1,5 +1,5 @@
 
-import { Table, Button, Container, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
+import { Table, Button, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useContext, useState, useEffect } from "react";
@@ -163,7 +163,6 @@ export default function Users() {
 		
 		(user.isAdmin) ?
 		<>
-		<Container>
       		<Row>
         		<Col md={12} lg={4}>
             		<AdminDashboard />
@@ -172,30 +171,26 @@ export default function Users() {
         			<div className="data-label mt-4 text-center">
         				USER DATABASE
         			</div>
-        			<div>
-						<Container className="dataTable">
-							<Table className="text-center mt-4 align-middle" striped bordered hover>
-		     				<thead className="table-dark align-middle">
-		       					<tr>
-		       						<th>#</th>
-		         					<th className="hide-on-small">First Name</th>
-		         					<th className="hide-on-small">Last Name</th>
-		         					<th>Email Address</th>
-		         					<th className="hide-on-small">Mobile No.</th>
-		         					<th className="hide-on-small">Role</th>
-		         					<th>Update</th>
-		       					</tr>
-		           			</thead>
-		     	   			<tbody>
-		            			{ allUsers }
-		           			</tbody>
-		        			</Table>
-		    			</Container>
+        			<div className="admin-table-container">
+						<Table className="admin-data-table text-center mt-4 align-middle" striped hover>
+	     				<thead className="align-middle">
+	       					<tr>
+	       						<th>#</th>
+	         					<th className="hide-on-small">First Name</th>
+	         					<th className="hide-on-small">Last Name</th>
+	         					<th>Email Address</th>
+	         					<th className="hide-on-small">Mobile No.</th>
+	         					<th className="hide-on-small">Role</th>
+	         					<th>Update</th>
+	       					</tr>
+	           			</thead>
+	     	   			<tbody>
+	            			{ allUsers }
+	           			</tbody>
+	        			</Table>
 		    		</div>
         		</Col>
-        		
       		</Row>
-    	</Container>	
 		</>
 		:
 		<Navigate to="/login" />

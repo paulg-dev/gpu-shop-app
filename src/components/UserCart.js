@@ -15,7 +15,6 @@ export default function Orders() {
 
 	const [allInCart, setAllInCart] = useState([]);
 	const [stocks, setStocks] = useState(0);
-	// const [cartQuantity, setCartQuantity] = useState(0);
 
 	const fetchData = () => {
 
@@ -29,14 +28,11 @@ export default function Orders() {
 
 			setAllInCart(data.reverse());
 
-			console.log(data.length)
-			console.log(data)
-
 			if (data.length === 0) {
 				const cartEmpty = (data => {
 					return (
 						<Container className="d-flex flex-column text-center mx-auto mt-4">
-							<h3>Your cart is empty.</h3>
+							<h4>Your cart is empty.</h4>
 							<Button className="my-4 mx-auto" as={Link} to="/products">
 								Check Products
 							</Button>
@@ -95,7 +91,7 @@ export default function Orders() {
 								<td className="hide-on-small">{subTotalFormatted}</td>
 								<td>
 									<ButtonGroup vertical>
-										<Button className="mb-1" variant="success" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
+										<Button className="mb-1" variant="primary" onClick = {() => reviewCheckOut(cart.productId, cart.productName, cart.quantity, subTotalFormatted)}>
 		        	    					<FontAwesomeIcon icon={faArrowRight} />
 		        	    				</Button>
 				      					<Button variant="danger" onClick = {() => removeFromCart(cart.productId, cart.productName)}>
@@ -293,13 +289,14 @@ export default function Orders() {
 		<>
 			<Card className="mt-5 text-center">
 				<Card.Header className="data-table-header">
-    				CART
+    				Shopping Cart
     			</Card.Header>
     			<Card.Body>
 					{
-						allInCart.length >= 1 ?
-							<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
-		     					<thead className="table-dark align-middle">
+						allInCart.length > 0 ?
+							<div className="user-table-container">
+							<Table className="user-data-table text-center mt-4 align-middle" width="100%" striped hover>
+		     					<thead className="align-middle">
 		       						<tr>
 		       							<th width="6%">#</th>
 		         						{/*<th width="9%">Select</th>*/}
@@ -314,6 +311,7 @@ export default function Orders() {
 		            				{ allInCart }
 		           				</tbody>
 		        			</Table>
+		        			</div>
 						:
 						<>
 							{allInCart}
@@ -325,7 +323,7 @@ export default function Orders() {
       				</Button>
       			</div>*/}
       			</Card.Body>
-      			</Card>
+      		</Card>
 		</>
 		:
 		<Navigate to="/login" />

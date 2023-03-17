@@ -1,5 +1,5 @@
 
-import { Table, Container, Row, Col, Button } from "react-bootstrap";
+import { Table, Row, Col, Button } from "react-bootstrap";
 import { useContext, useState, useEffect } from "react";
 import { Navigate, Link } from "react-router-dom";
 import AdminDashboard from './AdminDashboard';
@@ -79,37 +79,33 @@ export default function Orders() {
 
 		(user.isAdmin) ?
 		<>
-			<Container>
-	      		<Row>
-	        		<Col md={12} lg={4}>
-	            		<AdminDashboard />
-	        		</Col>
-	        		<Col md={12} lg={8}>
-	        			<div className="data-label mt-4 text-center">
-	        				ORDER DATABASE
-	        			</div>
-	        			<div>
-							<Container className="dataTable">
-								<Table className="text-center mt-4 align-middle" width="100%" striped bordered hover>
-			     					<thead className="table-dark align-middle">
-			       						<tr>
-			       							<th width="6%">#</th>
-			         						<th width="10%" className="hide-on-small">Customer Id</th>
-			         						<th width="28%">Product</th>
-			         						<th width="10%">Qty</th>
-			         						<th width="24%" className="hide-on-small">Order Amount</th>
-			         						<th width="24%">Order Date</th>
-			       						</tr>
-			           				</thead>
-			     	   				<tbody>
-			            				{ allOrders }
-			           				</tbody>
-			        			</Table>
-			    			</Container>
-			    		</div>
-	        		</Col>
-	      		</Row>
-	    	</Container>
+      		<Row>
+        		<Col md={12} lg={4}>
+            		<AdminDashboard />
+        		</Col>
+        		<Col md={12} lg={8}>
+        			<div className="data-label mt-4 text-center">
+        				ORDER DATABASE
+        			</div>
+        			<div className="admin-table-container">
+						<Table className="admin-data-table text-center mt-4 align-middle" width="100%" striped hover>
+	     					<thead className="align-middle">
+	       						<tr>
+	       							<th width="6%">#</th>
+	         						<th width="10%" className="hide-on-small">Customer Id</th>
+	         						<th width="28%">Product</th>
+	         						<th width="10%">Qty</th>
+	         						<th width="24%" className="hide-on-small">Order Amount</th>
+	         						<th width="24%">Order Date</th>
+	       						</tr>
+	           				</thead>
+	     	   				<tbody>
+	            				{ allOrders }
+	           				</tbody>
+	        			</Table>
+		    		</div>
+        		</Col>
+      		</Row>
 		</>
 		:
 		<Navigate to="/login" />
