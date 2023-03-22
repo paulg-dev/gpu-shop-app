@@ -3,14 +3,16 @@ import { Row, Col, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import FeaturedProducts from '../components/FeaturedProducts'
+import { SkeletonCard } from '../components/SkeletonCard'
 // import { useEffect, useState, useContext } from 'react';
 // import UserContext from '../UserContext';
 
 
 export default function ActiveProducts() {
 
-	const [products, setProducts] = useState([])
+	const [products, setProducts] = useState([]);
 	const [selectedBrand, setSelectedBrand] = useState('all');
+	const [isLoading, setIsLoading] = useState(true);
 
 	const handleBrandFilter = (brand) => {
 		setSelectedBrand(brand);
@@ -26,6 +28,7 @@ export default function ActiveProducts() {
 				filteredProducts = data.filter((product) => product.brand === selectedBrand);
 			}
 			setProducts(filteredProducts.reverse());
+			setIsLoading(false);
 		})
 		.catch((error) => {
       		console.error(error);
@@ -58,11 +61,10 @@ export default function ActiveProducts() {
 							</ToggleButton>
 						</ToggleButtonGroup>
 					</div>
-					<div className="flex-row">
-						<Row xs={2} md={3}>
-   							{productCards}
-						</Row>
-					</div>
+					<Row xs={2} md={3} className="mx-auto">
+						{isLoading && <SkeletonCard cards={12} />}
+						{productCards}
+					</Row>
 				</Col>
 				<Col md={12} lg={4}>
 					<FeaturedProducts />

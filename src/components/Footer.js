@@ -56,6 +56,9 @@ export default function Footer() {
 						</a>
 					</Col>
 				</Row>
+				<p className="text-center text-muted">
+					Disclaimer: This site is made for showcase purposes only and not an actual shop. All product images and names that are used for item identification are trademarks of each respective manufacturer.
+				</p>
 			</div>
 		</div>
 

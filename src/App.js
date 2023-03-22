@@ -20,6 +20,8 @@ import AdminProductDatabase from './components/AdminProductDatabase';
 import AdminUserDatabase from './components/AdminUserDatabase';
 import AdminOrderDatabase from './components/AdminOrderDatabase';
 import Footer from './components/Footer';
+import 'react-loading-skeleton/dist/skeleton.css'
+import { SkeletonTheme } from 'react-loading-skeleton';
 import './App.css';
 
 
@@ -67,6 +69,7 @@ function App() {
     
     <UserProvider value = {{user, setUser, unsetUser}}>
         <Router>
+        <SkeletonTheme baseColor="#f2faff66" highlightColor="#98a6adf2">
           <AppNavbar />
           <Container className="main-container">
             <Routes>
@@ -88,6 +91,7 @@ function App() {
             </Routes>
           </Container>
           <Footer />
+        </SkeletonTheme>
         </Router>
     </UserProvider>
 
